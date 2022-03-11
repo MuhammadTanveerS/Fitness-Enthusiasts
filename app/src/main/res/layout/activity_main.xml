@@ -15,11 +15,12 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="26dp"
+        android:transitionName="logo_image"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/splash_fit" />
+        app:srcCompat="@drawable/ic_workingout" />
 
     <TextView
         android:id="@+id/textView"
@@ -28,6 +29,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/bangers"
+        android:transitionName="logo_text"
         android:text="Fitness Enthusiasts"
         android:textAlignment="center"
         android:textColor="@color/neon"

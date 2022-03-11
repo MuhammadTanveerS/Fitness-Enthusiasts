@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
+            android:name=".activities.LogReg.SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LogReg.Login"
+            android:exported="false" />
+        <activity
             android:name=".activities.testMainActivity"
             android:exported="false" />
         <activity
