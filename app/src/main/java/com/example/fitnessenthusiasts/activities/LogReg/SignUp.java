@@ -3,6 +3,7 @@ package com.example.fitnessenthusiasts.activities.LogReg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +21,11 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void check(View view){
-//        rootNode = FirebaseDatabase.getInstance();
-//        reference = rootNode.getReference("users");
-//        reference.setValue("First Data Test");
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("test");
+        reference.setValue("Hi");
+
+
+
     }
 }

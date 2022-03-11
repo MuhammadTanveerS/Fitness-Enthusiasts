@@ -125,14 +125,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-    
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GO"
         android:background="@color/neon"
-        android:transitionName="button_tran"
-        android:textColor="@color/custom_black"/>
+        android:onClick="check"
+        android:text="GO"
+        android:textColor="@color/custom_black"
+        android:transitionName="button_tran" />
 
     <Button
         android:layout_width="match_parent"

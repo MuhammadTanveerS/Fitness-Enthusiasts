@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1088101595044",
+    "firebase_url": "https://fitness-enthusiasts-default-rtdb.firebaseio.com",
     "project_id": "fitness-enthusiasts",
     "storage_bucket": "fitness-enthusiasts.appspot.com"
   },

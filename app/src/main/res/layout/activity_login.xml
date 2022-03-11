@@ -85,15 +85,16 @@
             android:layout_margin="5dp"/>
 
         <Button
+            android:id="@+id/Login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Login_btn"
-            android:text="Go"
-            android:background="@color/custom_black"
-            android:textColor="@color/custom_black"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:transitionName="button_tran"/>
+            android:background="@color/custom_black"
+            android:onClick="check"
+            android:text="Go"
+            android:textColor="@color/custom_black"
+            android:transitionName="button_tran" />
 
         <Button
             android:layout_width="match_parent"
