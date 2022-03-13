@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.fitnessenthusiasts.activities.LogReg.Login;
+import com.example.fitnessenthusiasts.activities.LogReg.StartUpScreen;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Variables
     Animation topAnim, bottomAnim;
-    ImageView image;
+    LottieAnimationView image;
     TextView logo,slogan;
 
     @Override
@@ -38,11 +40,12 @@ public class MainActivity extends AppCompatActivity {
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.botton_animation);
 
         //Hooks
-        image = findViewById(R.id.imageView3);
+
+        image = findViewById(R.id.logoanim);
         logo = findViewById(R.id.textView);
         slogan = findViewById(R.id.textView2);
 
-        image.setAnimation(topAnim);
+        //image.setAnimation(topAnim);
         logo.setAnimation(bottomAnim);
         slogan.setAnimation(bottomAnim);
 
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                // Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, Login.class);
+                Intent intent = new Intent(MainActivity.this, StartUpScreen.class);
 
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View,String>(image,"logo_image");
