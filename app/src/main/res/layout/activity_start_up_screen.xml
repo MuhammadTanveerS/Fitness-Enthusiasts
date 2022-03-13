@@ -55,17 +55,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/neon"
                 android:onClick="login"
                 android:text="LogIn"
-                android:textColor="@color/custom_black" />
+                android:textColor="@color/custom_black"
+                android:transitionName="transition_login" />
 
             <Button
                 android:id="@+id/btn_signup"
                 android:layout_width="0dp"
+                android:backgroundTint="@color/neon"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:onClick="signup"
                 android:text="Sign Up"
+                android:transitionName="transition_signup"
                 android:textColor="@color/custom_black" />
 
         </LinearLayout>
