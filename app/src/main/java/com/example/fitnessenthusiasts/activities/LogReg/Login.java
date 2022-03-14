@@ -1,12 +1,10 @@
 package com.example.fitnessenthusiasts.activities.LogReg;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,11 +14,8 @@ import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.R;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -43,8 +38,8 @@ public class Login extends AppCompatActivity {
         image = findViewById(R.id.topImage);
         logoText = findViewById(R.id.logo_name);
         sloganText = findViewById(R.id.slogan_name);
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        username = findViewById(R.id.signup_uname);
+        password = findViewById(R.id.signup_password);
         login_btn = findViewById(R.id.Login_btn);
         signup_Btn = findViewById(R.id.Signup_btn);
 
