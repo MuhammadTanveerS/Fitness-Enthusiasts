@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -47,8 +46,8 @@ public class SignUp extends AppCompatActivity {
         //Hooks for getting data
         fullName = findViewById(R.id.signup_fname);
         username = findViewById(R.id.signup_uname);
-        email = findViewById(R.id.signup_email);
-        password = findViewById(R.id.signup_password);
+        email = findViewById(R.id.signin_username);
+        password = findViewById(R.id.signin_password);
 
 
     }

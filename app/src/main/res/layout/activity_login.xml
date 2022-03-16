@@ -51,14 +51,15 @@
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signup_email"
+            android:id="@+id/signin_username"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Email"
+            android:hint="Enter Username"
             android:transitionName="user_tran"
             app:boxStrokeColor="@color/custom_black"
             app:boxStrokeWidthFocused="2dp"
@@ -69,16 +70,17 @@
             app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/custom_black"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:textColor="@color/custom_black" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signup_password"
+            android:id="@+id/signin_password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,14 +95,14 @@
             app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_passwird"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/custom_black"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textColor="@color/custom_black" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
         <!--        <com.google.android.material.textfield.TextInputLayout-->
@@ -127,12 +129,12 @@
             android:layout_marginTop="10dp">
 
             <CheckBox
+                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:text="Remember Me"
-                android:buttonTint="@color/black"
                 android:layout_centerVertical="true"
+                android:buttonTint="@color/black"
+                android:text="Remember Me"
                 android:textColor="@color/black" />
 
             <Button
@@ -154,7 +156,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
             android:background="@color/custom_black"
-            android:onClick="check"
+            android:onClick="login"
             android:text="Go"
             android:textColor="@color/white"
             android:transitionName="button_tran" />

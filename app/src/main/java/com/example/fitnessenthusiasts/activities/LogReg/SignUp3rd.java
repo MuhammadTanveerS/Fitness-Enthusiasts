@@ -41,10 +41,10 @@ public class SignUp3rd extends AppCompatActivity {
 
     public void storeUserDate(){
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com");
-        DatabaseReference reference = rootNode.getReference("users");
+        DatabaseReference reference = rootNode.getReference("Users");
 
         UserHelperClass addNewUser = new UserHelperClass(fullName,username,email,phoneNo,password,date,gender);
-        reference.setValue(addNewUser);
+        reference.child(username).setValue(addNewUser);
     }
 
 }
