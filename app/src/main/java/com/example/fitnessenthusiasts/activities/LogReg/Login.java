@@ -4,8 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -72,7 +78,21 @@ public class Login extends AppCompatActivity {
     //Testing a code
     public void login(View view){
 
-        //Add progress Bar LATER!!!!!!!!!!!!!!!
+        /*
+        --------------------------------
+        ADD
+        PROGRESS
+        BAR
+        LATER
+        ---------------------------------
+         */
+
+        //Checking internet Connection
+        //Get it to work later
+        if(!isconnected(this)){
+            showCustomDialog();
+        }
+
 
         String _username = username.getEditText().getText().toString().trim();
         String _password = password.getEditText().getText().toString().trim();
@@ -113,5 +133,49 @@ public class Login extends AppCompatActivity {
 
 
     }
+
+
+    /*
+    Method for checking
+    Internet Connection
+     */
+
+    private boolean isconnected(Login login) {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) login.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if((wifiConn != null && wifiConn.isConnected()) || (mobileConn!=null && mobileConn.isConnected() )){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    private void showCustomDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+        builder.setMessage("Please connect to Internet to proceed further")
+                .setCancelable(false)
+                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(), StartUpScreen.class));
+                        finish();
+                    }
+                }).show();
+
+    }
+
+
 
 }
