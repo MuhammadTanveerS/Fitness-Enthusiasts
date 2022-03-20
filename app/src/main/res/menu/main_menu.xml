@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/field_user_icon"/>
+
+        <item
+            android:id="@+id/nav_home1"
+            android:title="Home"
+            android:icon="@drawable/field_user_icon"/>
+
+        <item
+            android:id="@+id/nav_home2"
+            android:title="Home"
+            android:icon="@drawable/field_user_icon"/>
+
+        <item
+            android:id="@+id/nav_home3"
+            android:title="Home"
+            android:icon="@drawable/field_user_icon"/>
+
+
+    </group>
+
+    <item android:title="Profile">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_home22"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+                <item
+                    android:id="@+id/nav_home13"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+                <item
+                    android:id="@+id/nav_home23"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+                <item
+                    android:id="@+id/nav_home33"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Details">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_home31"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+                <item
+                    android:id="@+id/nav_home131"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+                <item
+                    android:id="@+id/nav_home231"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+                <item
+                    android:id="@+id/nav_home331"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Share">
+        <menu>
+            <group
+                android:checkableBehavior="none">
+
+                <item
+                    android:id="@+id/nav_home34"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+                <item
+                    android:id="@+id/nav_home134"
+                    android:title="Home"
+                    android:icon="@drawable/field_user_icon"/>
+
+
+            </group>
+        </menu>
+    </item>
+
+</menu>

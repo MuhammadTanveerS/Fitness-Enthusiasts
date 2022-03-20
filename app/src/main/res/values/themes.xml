@@ -17,4 +17,10 @@
         <item name="android:windowContentTransitions">true</item>
 
     </style>
+
+    <style name="navbar">
+        <item name="colorPrimary">@color/neon</item>
+        <item name="colorControlHighlight">@color/custom_black</item>
+    </style>
+
 </resources>

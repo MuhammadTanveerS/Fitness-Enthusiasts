@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/neon"
+    android:paddingLeft="15dp">
+
+    <TextView
+        android:id="@+id/randtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:text="Where the hood where the hood where the hood at" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/randtext"
+        android:fontFamily="@font/robotoblack"
+        android:text="WELCOME"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_above="@id/name"
+        android:src="@drawable/ic_workingout" />
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="175dp"
+        android:src="@drawable/ic_workingout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
