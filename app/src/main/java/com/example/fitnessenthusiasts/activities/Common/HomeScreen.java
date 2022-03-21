@@ -5,15 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
+import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -84,6 +87,16 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId())
+        {
+            case R.id.nav_home:
+                return true;
+            case R.id.step_counter:
+                Intent intent = new Intent(getApplicationContext(), testMainActivity.class);
+                startActivity(intent);
+                return true;
+        }
+
         return true;
     }
 

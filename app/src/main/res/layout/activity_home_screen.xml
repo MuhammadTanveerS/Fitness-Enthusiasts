@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.Common.HomeScreen"
-    android:id="@+id/drawer">
+    android:id="@+id/drawer"
+    tools:openDrawer="start">
+    <!--    tools:openDrawer="start"-->
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -33,7 +35,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_nav" />
+                android:src="@drawable/ic_nav"
+                app:tint="@color/custom_black"/>
 
             <ImageView
                 android:layout_width="40dp"
@@ -41,7 +44,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:padding="5dp"
-                android:src="@drawable/ic_notification" />
+                android:src="@drawable/ic_notification"
+                app:tint="@color/custom_black"/>
 
         </RelativeLayout>
 

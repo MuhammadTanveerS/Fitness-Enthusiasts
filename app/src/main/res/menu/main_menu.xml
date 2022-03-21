@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_home"
             android:title="Home"
-            android:icon="@drawable/field_user_icon"/>
+            android:icon="@drawable/ic_home"/>
 
         <item
-            android:id="@+id/nav_home1"
-            android:title="Home"
+            android:id="@+id/step_counter"
+            android:title="Step Counter"
             android:icon="@drawable/field_user_icon"/>
 
         <item
