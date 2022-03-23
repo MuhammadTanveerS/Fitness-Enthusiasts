@@ -4,7 +4,7 @@
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/neon</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/custom_black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -21,6 +21,13 @@
     <style name="navbar">
         <item name="colorPrimary">@color/neon</item>
         <item name="colorControlHighlight">@color/custom_black</item>
+    </style>
+
+    <style name="bottom_navbar">
+        <item name="colorPrimary">@color/neon</item>
+        <item name="colorControlHighlight">@color/neon</item>
+        <item name="colorOnPrimary">@color/teal_200</item>
+
     </style>
 
 </resources>

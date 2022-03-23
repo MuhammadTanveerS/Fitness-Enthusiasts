@@ -12,6 +12,8 @@
         <activity
             android:name=".activities.Common.HomeScreen"
             android:exported="false" />
+
+
         <activity
             android:name=".activities.LogReg.SignUp3rd"
             android:exported="false" />
@@ -38,6 +40,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data

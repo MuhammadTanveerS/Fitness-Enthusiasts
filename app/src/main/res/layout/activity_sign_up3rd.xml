@@ -45,15 +45,16 @@
         android:layout_marginTop="40dp"
         android:orientation="vertical">
 
-       <com.hbb20.CountryCodePicker
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           app:ccp_autoDetectCountry="true"
-           app:ccp_showFlag="true"
-           app:ccp_showNameCode="true"
-           app:ccp_showFullName="true"
-           android:padding="5dp"
-           android:background="@drawable/black_border"/>
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/numberpicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_border"
+            android:padding="5dp"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_showFlag="true"
+            app:ccp_showFullName="true"
+            app:ccp_showNameCode="true" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
