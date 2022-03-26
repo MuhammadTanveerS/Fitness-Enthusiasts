@@ -23,10 +23,11 @@
         <item name="colorControlHighlight">@color/custom_black</item>
     </style>
 
-    <style name="bottom_navbar">
+    <style name="bottom_navbar" parent="Theme.MaterialComponents">
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
         <item name="colorPrimary">@color/neon</item>
-        <item name="colorControlHighlight">@color/neon</item>
-        <item name="colorOnPrimary">@color/teal_200</item>
+        <item name="colorControlHighlight">@color/custom_black</item>
+        <item name="colorOnPrimary">@color/custom_black</item>
 
     </style>
 

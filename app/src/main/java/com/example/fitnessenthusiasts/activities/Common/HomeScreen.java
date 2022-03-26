@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
+import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
+import com.example.fitnessenthusiasts.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -28,14 +33,21 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     NavigationView navigationView;
     ImageView navIcon;
 
+    View header;
+    TextView menuName;
+
+    ActivityHomeScreenBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_home_screen);
+        binding = ActivityHomeScreenBinding.inflate(getLayoutInflater());
+        //setContentView(R.layout.activity_home_screen);
+        setContentView(binding.getRoot());
+        replaceFragment(new ProfileFragment());
 
         //Testing Session
-        TextView textView = findViewById(R.id.testTV);
 
         SPManager spManager = new SPManager(this);
         HashMap<String, String> userDetails = spManager.getUserDetails();
@@ -44,7 +56,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         String email = userDetails.get(SPManager.S_EMAIL);
         String gender = userDetails.get(SPManager.S_GENDER);
 
-        textView.setText(fullName + "\n" + email + "\n" + gender);
+       //textView.setText(fullName + "\n" + email + "\n" + gender);
 
         //Hooks
         drawerLayout = findViewById(R.id.drawer);
@@ -52,6 +64,29 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         navIcon = findViewById(R.id.nav_icon);
 
         navigationBar();
+
+
+        //binding bottom nav
+        binding.bottomNavView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.home:
+                    replaceFragment(new HomeFragment());
+                    break;
+                case R.id.profile:
+                    replaceFragment(new ProfileFragment());
+                    break;
+                case R.id.community:
+                    replaceFragment(new CommunityFragment());
+                    break;
+            }
+
+            return true;
+        });
+
+        //Menu
+        header = navigationView.getHeaderView(0);
+        menuName = header.findViewById(R.id.menu_name);
+        menuName.setText(fullName);
 
 
     }
@@ -99,6 +134,15 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
         return true;
     }
+
+    //Method for replacing fragments
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
+    }
+
 
 
 

@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
-        android:enabled="true"
-        android:icon="@drawable/field_user_icon"
-        android:title="Random" />
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
     <item
-        android:id="@+id/page_2"
-        android:enabled="true"
-        android:icon="@drawable/ic_notification"
-        android:title="Notif" />
+        android:id="@+id/activity"
+        android:icon="@drawable/ic_activity"
+        android:title="Activity" />
+    <item
+        android:title="Community"
+        android:id="@+id/community"
+        android:icon="@drawable/ic_community" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/field_user_icon"
+        android:title="Profile" />
 
 </menu>
