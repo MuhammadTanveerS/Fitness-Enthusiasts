@@ -21,7 +21,6 @@ import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
-import com.example.fitnessenthusiasts.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;

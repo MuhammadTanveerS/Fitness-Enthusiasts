@@ -33,8 +33,8 @@
                 android:checkableBehavior="single">
 
                 <item
-                    android:id="@+id/nav_home22"
-                    android:title="Home"
+                    android:id="@+id/nav_profile"
+                    android:title="Profile"
                     android:icon="@drawable/field_user_icon"/>
 
                 <item
@@ -43,14 +43,10 @@
                     android:icon="@drawable/field_user_icon"/>
 
                 <item
-                    android:id="@+id/nav_home23"
-                    android:title="Home"
-                    android:icon="@drawable/field_user_icon"/>
+                    android:id="@+id/nav_logout"
+                    android:title="Logout"
+                    android:icon="@drawable/ic_nav_logout"/>
 
-                <item
-                    android:id="@+id/nav_home33"
-                    android:title="Home"
-                    android:icon="@drawable/field_user_icon"/>
 
 
             </group>
