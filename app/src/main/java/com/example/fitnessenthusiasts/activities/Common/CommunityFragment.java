@@ -41,8 +41,9 @@ public class CommunityFragment extends Fragment {
 
     int[] categoryImages = {R.drawable.fitness_med, R.drawable.fitness_bike,R.drawable.fitness_yoga
     ,R.drawable.fitness_stats,R.drawable.fitness_hike,R.drawable.fitness_runner};
-    int[] categoryBgImages = {R.drawable.category_bg,R.drawable.category_bg,R.drawable.category_bg,
-            R.drawable.category_bg,R.drawable.category_bg,R.drawable.category_bg};
+
+    int[] categoryBgImages = {R.drawable.category_bg_green,R.drawable.category_bg,R.drawable.category_bg_orange,
+            R.drawable.category_bg,R.drawable.category_bg_green,R.drawable.category_bg_blue};
     int c=0;
 
 

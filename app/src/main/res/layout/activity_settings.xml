@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    tools:context=".activities.Common.Settings">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,10 +12,19 @@
         android:orientation="vertical"
         android:padding="30dp">
 
+        <ImageView
+        android:id="@+id/settings_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/general_back_button"
+        android:layout_marginBottom="15dp" />
+
         <TextView
             style="@style/viewParent.headerText"
+            android:text="Settings"
             android:textColor="@color/neon"
-            android:text="Settings" />
+            android:textAllCaps="true"
+            android:layout_marginBottom="15dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,11 +34,11 @@
                 android:id="@+id/profileCircleImageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/neon"
-                android:src="@drawable/avatar_male"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:src="@drawable/avatar_male"
+                app:civ_border_color="@color/neon"
+                app:civ_border_width="2dp" />
 
             <TextView
                 android:id="@+id/usernameTextView"
@@ -48,16 +58,16 @@
 
             <ImageView
                 style="@style/viewParent"
-                android:src="@drawable/ic_more"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_more" />
 
         </RelativeLayout>
 
 
         <TextView
             style="@style/viewParent.headerText.settingsMiniTitle"
-            android:text="Profile"/>
+            android:text="Profile" />
 
         <TextView
             style="@style/viewParent.headerText.settingsTextIcon"
@@ -66,19 +76,23 @@
 
         <TextView
             style="@style/viewParent.headerText.settingsTextIcon"
-            android:drawableLeft="@drawable/ic_edit_password"
+            android:drawableLeft="@drawable/ic_edit_profile"
+            android:text="Change Profile Picture"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            style="@style/viewParent.headerText.settingsTextIcon"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_edit_password"
             android:text="Change Password" />
 
 
         <TextView
             style="@style/viewParent.headerText.settingsTextIcon"
             android:drawableLeft="@drawable/ic_logout"
-            android:text="Logout"/>
-
+            android:text="Logout" />
 
 
     </LinearLayout>
-
 
 </ScrollView>

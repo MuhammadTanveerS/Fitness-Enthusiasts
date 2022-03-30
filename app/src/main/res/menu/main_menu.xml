@@ -38,9 +38,9 @@
                     android:icon="@drawable/field_user_icon"/>
 
                 <item
-                    android:id="@+id/nav_home13"
-                    android:title="Home"
-                    android:icon="@drawable/field_user_icon"/>
+                    android:id="@+id/nav_settings"
+                    android:title="Settings"
+                    android:icon="@drawable/ic_nav_settings"/>
 
                 <item
                     android:id="@+id/nav_logout"

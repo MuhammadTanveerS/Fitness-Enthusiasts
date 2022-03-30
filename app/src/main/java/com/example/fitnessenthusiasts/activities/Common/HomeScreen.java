@@ -44,7 +44,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         binding = ActivityHomeScreenBinding.inflate(getLayoutInflater());
         //setContentView(R.layout.activity_home_screen);
         setContentView(binding.getRoot());
-        replaceFragment(new ProfileFragment());
+        replaceFragment(new HomeFragment());
 
         //Testing Session
 
@@ -128,6 +128,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             case R.id.step_counter:
                 Intent intent = new Intent(getApplicationContext(), testMainActivity.class);
                 startActivity(intent);
+                return true;
+            case R.id.nav_settings:
+                startActivity(new Intent(getApplicationContext(), Settings.class));
                 return true;
         }
 
