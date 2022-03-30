@@ -9,14 +9,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.databinding.ActivitySettingsBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class Settings extends AppCompatActivity {
 
     ActivitySettingsBinding binding;
     ActivityResultLauncher<String> launcher;
+    FirebaseDatabase database;
+    FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +34,35 @@ public class Settings extends AppCompatActivity {
         //setContentView(R.layout.activity_settings);
         setContentView(binding.getRoot());
 
+        database = FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com");
+        storage = FirebaseStorage.getInstance();
+
         launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
             public void onActivityResult(Uri result) {
                 binding.settingCircleImageView.setImageURI(result);
+
+                final StorageReference reference = storage.getReference()
+                        .child("image");
+                reference.putFile(result).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                database.getReference().child("image")
+                                        .setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(getApplicationContext(), "Image Updated", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                });
             }
         });
 

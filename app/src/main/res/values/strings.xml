@@ -2,5 +2,6 @@
     <string name="app_name">Fitness Enthusiasts</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="db_instance">https://fitness-enthusiasts-default-rtdb.firebaseio.com</string>
 
 </resources>
