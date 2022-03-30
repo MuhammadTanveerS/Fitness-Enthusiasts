@@ -31,7 +31,7 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profileCircleImageView"
+                android:id="@+id/settingCircleImageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="15dp"
@@ -44,14 +44,14 @@
                 android:id="@+id/usernameTextView"
                 style="@style/viewParent.headerText"
                 android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/profileCircleImageView"
+                android:layout_toRightOf="@id/settingCircleImageView"
                 android:text="Tanveer Samejo"
                 android:textSize="18sp" />
 
             <TextView
                 style="@style/viewParent.headerText"
                 android:layout_below="@id/usernameTextView"
-                android:layout_toRightOf="@id/profileCircleImageView"
+                android:layout_toRightOf="@id/settingCircleImageView"
                 android:text="Edit personal details"
                 android:textColor="#5D5C5C"
                 android:textSize="16sp" />
@@ -75,6 +75,7 @@
             android:text="Edit Profile" />
 
         <TextView
+            android:id="@+id/changeProf"
             style="@style/viewParent.headerText.settingsTextIcon"
             android:drawableLeft="@drawable/ic_edit_profile"
             android:text="Change Profile Picture"

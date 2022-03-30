@@ -1,84 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="30dp">
-
-        <TextView
-            style="@style/viewParent.headerText"
-            android:textColor="@color/neon"
-            android:text="Settings" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profileCircleImageView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/neon"
-                android:src="@drawable/avatar_male"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="10dp"/>
-
-            <TextView
-                android:id="@+id/usernameTextView"
-                style="@style/viewParent.headerText"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/profileCircleImageView"
-                android:text="Tanveer Samejo"
-                android:textSize="18sp" />
-
-            <TextView
-                style="@style/viewParent.headerText"
-                android:layout_below="@id/usernameTextView"
-                android:layout_toRightOf="@id/profileCircleImageView"
-                android:text="Edit personal details"
-                android:textColor="#5D5C5C"
-                android:textSize="16sp" />
-
-            <ImageView
-                style="@style/viewParent"
-                android:src="@drawable/ic_more"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
-
-        </RelativeLayout>
+    android:layout_height="match_parent"
+    android:id="@+id/container"
+    android:background="@color/white"
+    >
 
 
-        <TextView
-            style="@style/viewParent.headerText.settingsMiniTitle"
-            android:text="Profile"/>
-
-        <TextView
-            style="@style/viewParent.headerText.settingsTextIcon"
-            android:drawableLeft="@drawable/ic_edit_profile"
-            android:text="Edit Profile" />
-
-        <TextView
-            style="@style/viewParent.headerText.settingsTextIcon"
-            android:drawableLeft="@drawable/ic_edit_password"
-            android:layout_marginTop="10dp"
-            android:text="Change Password" />
-
-
-        <TextView
-            style="@style/viewParent.headerText.settingsTextIcon"
-            android:drawableLeft="@drawable/ic_logout"
-            android:text="Logout"/>
-
-
-
-    </LinearLayout>
-
-
-</ScrollView>
+</RelativeLayout>
