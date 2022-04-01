@@ -20,6 +20,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".activities.LogReg.SignUp3rd"
@@ -41,7 +42,11 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

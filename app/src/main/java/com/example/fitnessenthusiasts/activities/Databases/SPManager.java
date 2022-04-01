@@ -20,6 +20,7 @@ public class SPManager {
     public static final String S_PASSWORD = "password";
     public static final String S_DOB = "date";
     public static final String S_GENDER = "gender";
+    public static final String S_IMAGE= "image";
 
     public SPManager(Context _context) {
         context = _context;
@@ -27,7 +28,7 @@ public class SPManager {
         editor = userSP.edit();
     }
 
-    public void createLoginSession(String fullName, String username, String email, String phoneNumber, String password, String age, String gender) {
+    public void createLoginSession(String fullName, String username, String email, String phoneNumber, String password, String age, String gender,String image) {
 
         editor.putBoolean(IS_LOGIN, true);
         editor.putString(S_FULLNAME, fullName);
@@ -37,9 +38,15 @@ public class SPManager {
         editor.putString(S_PASSWORD, password);
         editor.putString(S_DOB, age);
         editor.putString(S_GENDER, gender);
+        editor.putString(S_IMAGE , image);
 
         editor.commit();
 
+    }
+
+    public void updateImage(String image){
+        editor.putString(S_IMAGE , image);
+        editor.commit();
     }
 
     public HashMap<String, String> getUserDetails() {
@@ -52,6 +59,7 @@ public class SPManager {
         userData.put(S_PASSWORD, userSP.getString(S_PASSWORD, null));
         userData.put(S_DOB, userSP.getString(S_DOB, null));
         userData.put(S_GENDER, userSP.getString(S_GENDER, null));
+        userData.put(S_IMAGE, userSP.getString(S_IMAGE, null));
 
         return userData;
 

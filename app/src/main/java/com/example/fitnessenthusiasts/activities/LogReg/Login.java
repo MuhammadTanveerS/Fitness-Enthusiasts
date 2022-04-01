@@ -120,10 +120,11 @@ public class Login extends AppCompatActivity {
                         String _pass= dataSnapshot.child(_username).child("password").getValue(String.class);
                         String _phoneNo = dataSnapshot.child(_username).child("phoneNo").getValue(String.class);
                         String _gender = dataSnapshot.child(_username).child("gender").getValue(String.class);
+                        String _image = dataSnapshot.child(_username).child("Data").child("image").getValue(String.class);
 
                         //Store in Shared Preferences
                         SPManager spManager = new SPManager(Login.this);
-                        spManager.createLoginSession(_fullname, _userName, _email, _phoneNo, _pass, _dob,_gender);
+                        spManager.createLoginSession(_fullname, _userName, _email, _phoneNo, _pass, _dob,_gender, _image);
 
                         startActivity(new Intent(getApplicationContext(), HomeScreen.class));
 
