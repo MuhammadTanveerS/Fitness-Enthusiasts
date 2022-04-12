@@ -82,6 +82,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 case R.id.community:
                     replaceFragment(new CommunityFragment());
                     break;
+                case R.id.activity:
+                    replaceFragment(new ActivityFragment());
+                    break;
             }
 
             return true;
