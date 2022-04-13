@@ -13,6 +13,10 @@
         android:id="@+id/community"
         android:icon="@drawable/ic_community" />
     <item
+        android:id="@+id/workouts"
+        android:icon="@drawable/ic_workout"
+        android:title="Workouts" />
+    <item
         android:id="@+id/profile"
         android:icon="@drawable/field_user_icon"
         android:title="Profile" />

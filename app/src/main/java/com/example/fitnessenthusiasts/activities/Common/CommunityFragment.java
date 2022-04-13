@@ -55,18 +55,6 @@ public class CommunityFragment extends Fragment {
 
 
 
-        //Testing Fragment
-//        TextView textView = view.findViewById(R.id.txt);
-//        Button button = view.findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                textView.setText("HHHHHHHH");
-//            }
-//        });
-
-
-
         /*
         Recycler
         View
@@ -121,13 +109,6 @@ public class CommunityFragment extends Fragment {
         });
 
 
-
-        String[] comNames = {"Comm1","Hello","Comm22"};
-        for(int i=0;i<comNames.length;i++){
-//            categoryModels.add(new CategoryModel(comNames[i],categoryImages[i],categoryBgImages[i]));
-            //categoryModels.add(new CategoryModel(catNames.get(i),categoryImages[i],categoryBgImages[i]));
-
-        }
     }
 
 }
