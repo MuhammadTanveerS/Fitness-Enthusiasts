@@ -1,17 +1,21 @@
 package com.example.fitnessenthusiasts.activities.HelperClasses;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Workout.WorkoutDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,6 +48,19 @@ public class WorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutsRe
                 .load(workoutsModel.bg)
                 .into(holder.woBg);
 
+        //Sending data
+        holder.workoutCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), WorkoutDetails.class);
+                intent.putExtra("name",workoutsModel.name);
+                intent.putExtra("diff",workoutsModel.diff);
+                intent.putExtra("points",workoutsModel.points);
+                intent.putExtra("bg",workoutsModel.bg);
+                view.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -55,6 +72,7 @@ public class WorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutsRe
 
         TextView woName,woDiff,woPoints;
         ImageView woBg;
+        CardView workoutCard;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +81,7 @@ public class WorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutsRe
             woDiff = itemView.findViewById(R.id.woDiff);
             woPoints = itemView.findViewById(R.id.woPoints);
             woBg = itemView.findViewById(R.id.woBg);
+            workoutCard = itemView.findViewById(R.id.workoutCard);
         }
     }
 

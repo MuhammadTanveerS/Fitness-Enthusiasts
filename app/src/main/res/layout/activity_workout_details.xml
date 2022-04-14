@@ -27,12 +27,14 @@
             android:id="@+id/collapsing_detail">
 
             <ImageView
+                android:id="@+id/woDBg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/chest_b"
                 android:scaleType="fitXY"/>
 
             <TextView
+                android:id="@+id/woDName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/robotoblack"
@@ -135,10 +137,11 @@
                             android:layout_height="wrap_content"
                             android:text="Difficulty: "/>
                         <TextView
+                            android:id="@+id/woDDiff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/custom_black"
-                            android:text="Beginner "/>
+                            android:text="Beginner"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -150,6 +153,7 @@
                             android:layout_height="wrap_content"
                             android:text="Points: "/>
                         <TextView
+                            android:id="@+id/woDPoints"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/custom_black"
@@ -206,8 +210,11 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
 
+
+            </androidx.cardview.widget.CardView>
+            <include
+                layout="@layout/exercise_view_layout"/>
 
 
         </LinearLayout>
