@@ -70,4 +70,26 @@
     </style>
 
 
+
+<!--    CustomStyles-->
+    <style name="workoutCollapsing">
+        <item name="colorPrimary">@color/custom_black</item>
+        <item name="colorSecondary">@color/neon</item>
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+    <style name="TextAppearance.Collapsed"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/robotoregular</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+
+
+
+
 </resources>

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Workout.WorkoutDetails;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
@@ -149,6 +150,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 return true;
             case R.id.nav_settings:
                 startActivity(new Intent(getApplicationContext(), Settings.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            case R.id.nav_home2:
+                startActivity(new Intent(getApplicationContext(), WorkoutDetails.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
         }

@@ -25,8 +25,8 @@
                 android:id="@+id/woBg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/fatbrn"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/chest_b" />
 
             <TextView
                 android:id="@+id/woDiff"
