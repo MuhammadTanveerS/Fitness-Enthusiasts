@@ -57,6 +57,7 @@ public class WorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutsRe
                 intent.putExtra("diff",workoutsModel.diff);
                 intent.putExtra("points",workoutsModel.points);
                 intent.putExtra("bg",workoutsModel.bg);
+                intent.putExtra("key",workoutsModel.key);
                 view.getContext().startActivity(intent);
             }
         });

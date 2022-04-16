@@ -25,7 +25,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
@@ -39,6 +39,7 @@
         android:backgroundTint="@color/neon"
         android:foregroundTint="@color/neon"
         android:progressBackgroundTint="@color/neon"
+        android:indeterminateTint="@color/neon"
         android:visibility="visible" />
 
 </FrameLayout>

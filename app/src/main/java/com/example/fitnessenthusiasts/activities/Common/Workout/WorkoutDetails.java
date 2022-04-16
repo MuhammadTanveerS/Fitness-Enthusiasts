@@ -1,5 +1,8 @@
 package com.example.fitnessenthusiasts.activities.Common.Workout;
 
+import static android.icu.lang.UCharacter.toUpperCase;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
@@ -9,16 +12,27 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Exercises;
+import com.example.fitnessenthusiasts.activities.HelperClasses.ExercisesModel;
+import com.example.fitnessenthusiasts.activities.HelperClasses.WorkoutsModel;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class WorkoutDetails extends AppCompatActivity {
@@ -28,6 +42,8 @@ public class WorkoutDetails extends AppCompatActivity {
     CardView cvWorkout;
     TextView seeMore,woDName,woDDiff,woDPoints;
     ImageView woDBg;
+    CollapsingToolbarLayout collapsingToolbarLayout;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +54,24 @@ public class WorkoutDetails extends AppCompatActivity {
         //Hooks
         woInfo = findViewById(R.id.woInfo);
         cvWorkout=findViewById(R.id.cvWorkout);
-        cvWorkout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+//        cvWorkout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         seeMore=findViewById(R.id.viewMore);
 
         woDName = findViewById(R.id.woDName);
         woDPoints = findViewById(R.id.woDPoints);
         woDDiff = findViewById(R.id.woDDiff);
         woDBg = findViewById(R.id.woDBg);
+        collapsingToolbarLayout = findViewById(R.id.collapsing_detail);
         setUpData();
+        loadExercises();
 
-    }
+        LottieAnimationView test;
+        test = findViewById(R.id.lottietest);
+        test.setAnimation(Exercises.ex("Jumping Squats"));
+
+
+
+        }
 
 
     public void expandInfo(View view) {
@@ -69,10 +93,46 @@ public class WorkoutDetails extends AppCompatActivity {
         woDName.setText(name);
         woDPoints.setText(points);
         woDDiff.setText(diff);
+        collapsingToolbarLayout.setTitle(name.toUpperCase());
 
         Picasso.get()
                 .load(bg)
                 .into(woDBg);
+
+    }
+
+    public void goBack(View view) {
+        finish();
+    }
+
+
+    private void loadExercises(){
+        String workOutName = (String) getIntent().getExtras().get("key");
+        //DB
+        databaseReference = FirebaseDatabase.getInstance(getString(R.string.db_instance)).getReference("Workouts").child(workOutName).child("Exercises");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if(snapshot.exists()){
+                    for(DataSnapshot snapshot1:snapshot.getChildren()){
+
+//                        WorkoutsModel data = snapshot1.getValue(WorkoutsModel.class);
+//                        workoutsModel.add(data);
+                        ExercisesModel data = snapshot1.getValue(ExercisesModel.class);
+                        Log.i("Value",data.getName());
+
+                    }
+//                    workoutsRecyclerViewAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 }

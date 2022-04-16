@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.HelperClasses.ExercisesModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.WorkoutsModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.WorkoutsRecyclerViewAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -49,7 +51,7 @@ public class WorkoutsFragment extends Fragment {
 
     private void setUpWorkoutModels(){
         //DB
-        databaseReference = FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com").getReference("Workouts");
+        databaseReference = FirebaseDatabase.getInstance(getString(R.string.db_instance)).getReference("Workouts");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -59,7 +61,9 @@ public class WorkoutsFragment extends Fragment {
                     for(DataSnapshot snapshot1:snapshot.getChildren()){
 
                         WorkoutsModel data = snapshot1.getValue(WorkoutsModel.class);
+                        data.setKey(snapshot1.getKey());
                         workoutsModel.add(data);
+//                        Log.e("ERRROO",snapshot1.getKey());
 
                     }
                     workoutsRecyclerViewAdapter.notifyDataSetChanged();

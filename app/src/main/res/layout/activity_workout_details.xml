@@ -58,8 +58,14 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:navigationIcon="@drawable/white_back_button"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/white_back_button"
+                    android:layout_marginRight="10dp"
+                    android:onClick="goBack"/>
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -80,8 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="expandInfo"
-                android:layout_marginTop="10dp"
-                android:animateLayoutChanges="true">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/viewMore"
@@ -216,8 +221,17 @@
             <include
                 layout="@layout/exercise_view_layout"/>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                android:id="@+id/lottietest"/>
+
+
 
         </LinearLayout>
+
 
 
 
