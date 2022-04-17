@@ -12,6 +12,8 @@
 
 <!--        <include layout="@layout/workouts_view_layout"/>-->
 
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/workoutRecyclerView"
             android:layout_width="match_parent"
