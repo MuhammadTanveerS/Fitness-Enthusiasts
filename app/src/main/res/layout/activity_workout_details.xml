@@ -218,23 +218,28 @@
 
 
             </androidx.cardview.widget.CardView>
-            <include
-                layout="@layout/exercise_view_layout"/>
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                android:id="@+id/lottietest"/>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/exRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>
 
 
-
-
     </androidx.core.widget.NestedScrollView>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="START"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/neon"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:padding="13sp"
+        android:fontFamily="@font/robotoregular"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="40dp"
+        />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
