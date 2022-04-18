@@ -87,10 +87,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include layout="@layout/posts_view_layout"/>
-        <include layout="@layout/posts_view_layout"/>
-        <include layout="@layout/posts_view_layout"/>
-        <include layout="@layout/posts_view_layout"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/postsRV"

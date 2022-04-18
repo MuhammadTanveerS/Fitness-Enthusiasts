@@ -46,6 +46,7 @@ public class WorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutsRe
         holder.woPoints.setText(workoutsModel.points);
         Picasso.get()
                 .load(workoutsModel.bg)
+                .fit()
                 .into(holder.woBg);
 
         //Sending data

@@ -40,12 +40,14 @@ public class HomeFragment extends Fragment {
         postModels = new ArrayList<>();
 
 
-//        postModels.add(new PostModel(R.drawable.avatar_female,R.drawable.fitness_stats,
-//                "Marilyn Monroe","Checking stats!", "15","5"));
-//        postModels.add(new PostModel(R.drawable.avatar_male,R.drawable.chest_b,
-//                "Sean Connery","Doing chest workouts.", "52","22"));
-//        postModels.add(new PostModel(R.drawable.avatar_male,R.drawable.ic_workingout,
-//                "Clark Gable","Just Working Out!", "5","2"));
+        postModels.add(new PostModel(R.drawable.avatar_female,R.drawable.testphoto1,
+                "Joe March","Checking stats!", "15","5"));
+        postModels.add(new PostModel(R.drawable.avatar_male,R.drawable.chest_b,
+                "Chris Walker","Doing chest workouts.", "52","22"));
+        postModels.add(new PostModel(R.drawable.avatar_male2,R.drawable.testphoto2,
+                "Tim Drake","About to hit the GYM!!!", "5","2"));
+        postModels.add(new PostModel(R.drawable.avatar_female2,R.drawable.testphoto3,
+                "Elise Velcoro","Just Working Out!", "5","2"));
 
 
         PostAdapter postAdapter = new PostAdapter(postModels,getContext());
