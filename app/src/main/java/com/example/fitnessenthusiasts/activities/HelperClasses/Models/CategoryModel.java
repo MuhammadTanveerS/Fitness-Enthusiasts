@@ -1,4 +1,4 @@
-package com.example.fitnessenthusiasts.activities.HelperClasses;
+package com.example.fitnessenthusiasts.activities.HelperClasses.Models;
 
 import android.widget.RelativeLayout;
 

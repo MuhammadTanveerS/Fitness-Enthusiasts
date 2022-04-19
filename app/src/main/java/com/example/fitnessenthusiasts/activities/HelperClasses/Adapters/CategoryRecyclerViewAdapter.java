@@ -1,4 +1,4 @@
-package com.example.fitnessenthusiasts.activities.HelperClasses;
+package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessenthusiasts.R;
-import com.squareup.picasso.Picasso;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CategoryModel;
 
 import java.util.ArrayList;
 
@@ -38,13 +38,13 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     public void onBindViewHolder(@NonNull CategoryRecyclerViewAdapter.MyViewHolder holder, int position) {
 
         CategoryModel categoryModel = list.get(position);
-        holder.textView.setText(categoryModel.catName);
+        holder.textView.setText(categoryModel.getCatName());
         holder.imageView.setImageResource(categoryModel.getCatImage());
         holder.relativeLayout.setBackgroundResource(categoryModel.getCatBgImage());
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Selected "+ categoryModel.catName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Selected "+ categoryModel.getCatName(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -10,7 +10,7 @@
     tools:context=".activities.LogReg.SignUp2nd">
 
     <ImageView
-        android:id="@+id/signup_back_button"
+        android:id="@+id/notif_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"

@@ -95,7 +95,7 @@
                             android:layout_below="@+id/noPost"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/antic"
-                            android:text="Post"
+                            android:text="Posts"
                             android:textColor="@color/custom_black"
                             android:textSize="14sp"
                             tools:ignore="HardcodedText,SpUsage" />
@@ -188,16 +188,31 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circularImageView"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/avatar_male"
+                app:civ_border_color="@color/neon"
+                app:civ_border_width="3dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/profSettings"
+                android:layout_width="37dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_nav_settings"
+                app:layout_constraintBottom_toBottomOf="@+id/circularImageView"
+                app:layout_constraintEnd_toEndOf="@+id/circularImageView"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/circularImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.96"
+                app:tint="@color/custom_black" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -209,73 +224,49 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
+
                 <Button
                     android:id="@+id/follow"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/blue_btn_radius"
+                    android:backgroundTint="@color/neon"
                     android:fontFamily="@font/robotoblack"
                     android:text="Follow"
-                    android:textAllCaps="false"
-                    android:textColor="#fff"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toStartOf="@+id/message"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="HardcodedText,SpUsage" />
-
-                <Button
-                    android:id="@+id/following"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/border_blue_button"
-                    android:fontFamily="@font/robotoblack"
-                    android:text="Following"
-                    android:textAllCaps="false"
-                    android:textColor="@color/custom_black"
-                    android:textSize="16sp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="HardcodedText,SpUsage" />
-
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/message"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/grey_button_radius"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/sub_grey"
                     android:fontFamily="@font/robotoblack"
                     android:text="Message"
-                    android:textAllCaps="false"
-                    android:textColor="#161F3D"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:textColor="@color/custom_black"
+                    app:layout_constraintEnd_toStartOf="@+id/followers"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/follow"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline2"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/followers"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/custom_black"
+                    android:fontFamily="@font/robotoblack"
+                    android:text="Followers"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintGuide_end="206dp"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/message"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

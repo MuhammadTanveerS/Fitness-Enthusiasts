@@ -1,4 +1,4 @@
-package com.example.fitnessenthusiasts.activities.HelperClasses;
+package com.example.fitnessenthusiasts.activities.HelperClasses.Models;
 
 public class WorkoutsModel {
     String name, diff, bg,points;

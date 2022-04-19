@@ -45,6 +45,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:padding="5dp"
+                android:onClick="notifications"
                 android:src="@drawable/ic_notification"
                 app:tint="@color/custom_black" />
 

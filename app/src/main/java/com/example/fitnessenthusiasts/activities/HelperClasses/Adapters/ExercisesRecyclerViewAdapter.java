@@ -1,4 +1,4 @@
-package com.example.fitnessenthusiasts.activities.HelperClasses;
+package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Exercises;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.ExercisesModel;
 
 import java.util.ArrayList;
 
@@ -35,9 +37,9 @@ public class ExercisesRecyclerViewAdapter extends RecyclerView.Adapter<Exercises
     public void onBindViewHolder(@NonNull ExercisesRecyclerViewAdapter.MyViewHolder holder, int position) {
 
         ExercisesModel exercisesModel = list.get(position);
-        holder.exName.setText(exercisesModel.name);
-        holder.exTime.setText(exercisesModel.time);
-        holder.exAnim.setAnimation(Exercises.ex(exercisesModel.name));
+        holder.exName.setText(exercisesModel.getName());
+        holder.exTime.setText(exercisesModel.getTime());
+        holder.exAnim.setAnimation(Exercises.ex(exercisesModel.getName()));
 
     }
 

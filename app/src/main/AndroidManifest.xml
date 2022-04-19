@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
+            android:name=".activities.Common.Notification.Notifications"
+            android:exported="false" />
+        <activity
             android:name=".activities.Common.Workout.WorkoutDetails"
             android:exported="false" />
         <activity
@@ -44,7 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

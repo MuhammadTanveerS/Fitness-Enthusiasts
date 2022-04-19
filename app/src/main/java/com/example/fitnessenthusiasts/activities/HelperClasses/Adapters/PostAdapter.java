@@ -1,4 +1,4 @@
-package com.example.fitnessenthusiasts.activities.HelperClasses;
+package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.PostModel;
 
 import java.util.ArrayList;
 

@@ -39,7 +39,7 @@ public class SignUp2nd extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up2nd);
 
         //Hooks
-        backBtn = findViewById(R.id.signup_back_button);
+        backBtn = findViewById(R.id.notif_back_button);
         next = findViewById(R.id.signup_next_button);
         titleText = findViewById(R.id.title_text);
         radioGroup = findViewById(R.id.radio_group);

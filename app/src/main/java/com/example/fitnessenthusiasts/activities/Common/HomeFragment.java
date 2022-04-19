@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
-import com.example.fitnessenthusiasts.activities.HelperClasses.PostAdapter;
-import com.example.fitnessenthusiasts.activities.HelperClasses.PostModel;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.PostAdapter;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.PostModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
         postModels.add(new PostModel(R.drawable.avatar_male2,R.drawable.testphoto2,
                 "Tim Drake","About to hit the GYM!!!", "5","2"));
         postModels.add(new PostModel(R.drawable.avatar_female2,R.drawable.testphoto3,
-                "Elise Velcoro","Just Working Out!", "5","2"));
+                "Elise Velcoro","Just Working Out!", "56","35"));
 
 
         PostAdapter postAdapter = new PostAdapter(postModels,getContext());

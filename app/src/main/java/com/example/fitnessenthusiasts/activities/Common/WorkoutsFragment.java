@@ -7,15 +7,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.fitnessenthusiasts.R;
-import com.example.fitnessenthusiasts.activities.HelperClasses.ExercisesModel;
-import com.example.fitnessenthusiasts.activities.HelperClasses.WorkoutsModel;
-import com.example.fitnessenthusiasts.activities.HelperClasses.WorkoutsRecyclerViewAdapter;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.WorkoutsModel;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.WorkoutsRecyclerViewAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +30,7 @@ public class WorkoutsFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     WorkoutsRecyclerViewAdapter workoutsRecyclerViewAdapter;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +45,8 @@ public class WorkoutsFragment extends Fragment {
         setUpWorkoutModels();
         workoutsRecyclerViewAdapter = new WorkoutsRecyclerViewAdapter(view.getContext(),workoutsModel);
         recyclerView.setAdapter(workoutsRecyclerViewAdapter);
+
+        progressBar = view.findViewById(R.id.progressBar);
 
         return view;
     }
@@ -64,6 +66,7 @@ public class WorkoutsFragment extends Fragment {
                         data.setKey(snapshot1.getKey());
                         workoutsModel.add(data);
 //                        Log.e("ERRROO",snapshot1.getKey());
+                        progressBar.setVisibility(View.GONE);
 
                     }
                     workoutsRecyclerViewAdapter.notifyDataSetChanged();

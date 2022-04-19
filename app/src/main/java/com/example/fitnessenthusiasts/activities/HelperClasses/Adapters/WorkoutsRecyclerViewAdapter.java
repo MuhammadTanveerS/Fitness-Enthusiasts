@@ -1,4 +1,4 @@
-package com.example.fitnessenthusiasts.activities.HelperClasses;
+package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -16,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.Workout.WorkoutDetails;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.WorkoutsModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,11 +40,11 @@ public class WorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutsRe
     public void onBindViewHolder(@NonNull WorkoutsRecyclerViewAdapter.MyViewHolder holder, int position) {
 
         WorkoutsModel workoutsModel = list.get(position);
-        holder.woName.setText(workoutsModel.name);
-        holder.woDiff.setText(workoutsModel.diff);
-        holder.woPoints.setText(workoutsModel.points);
+        holder.woName.setText(workoutsModel.getName());
+        holder.woDiff.setText(workoutsModel.getDiff());
+        holder.woPoints.setText(workoutsModel.getPoints());
         Picasso.get()
-                .load(workoutsModel.bg)
+                .load(workoutsModel.getBg())
                 .fit()
                 .into(holder.woBg);
 
@@ -54,11 +53,11 @@ public class WorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutsRe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), WorkoutDetails.class);
-                intent.putExtra("name",workoutsModel.name);
-                intent.putExtra("diff",workoutsModel.diff);
-                intent.putExtra("points",workoutsModel.points);
-                intent.putExtra("bg",workoutsModel.bg);
-                intent.putExtra("key",workoutsModel.key);
+                intent.putExtra("name",workoutsModel.getName());
+                intent.putExtra("diff",workoutsModel.getDiff());
+                intent.putExtra("points",workoutsModel.getPoints());
+                intent.putExtra("bg",workoutsModel.getBg());
+                intent.putExtra("key",workoutsModel.getKey());
                 view.getContext().startActivity(intent);
             }
         });

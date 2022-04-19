@@ -15,9 +15,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Notification.Notifications;
 import com.example.fitnessenthusiasts.activities.Common.Workout.WorkoutDetails;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
@@ -170,6 +170,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     }
 
 
-
-
+    public void notifications(View view) {
+        startActivity(new Intent(getApplicationContext(), Notifications.class));
+    }
 }

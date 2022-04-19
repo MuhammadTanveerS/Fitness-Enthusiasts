@@ -7,26 +7,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Debug;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.R;
-import com.example.fitnessenthusiasts.activities.HelperClasses.CategoriesGet;
-import com.example.fitnessenthusiasts.activities.HelperClasses.CategoryModel;
-import com.example.fitnessenthusiasts.activities.HelperClasses.CategoryRecyclerViewAdapter;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CategoriesGet;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CategoryModel;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.CategoryRecyclerViewAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Console;
 import java.util.ArrayList;
 
 

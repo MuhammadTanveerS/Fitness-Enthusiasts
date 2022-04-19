@@ -38,7 +38,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(com.example.fitnessenthusiasts.R.layout.activity_sign_up);
 
         //Hooks
-        backBtn = findViewById(R.id.signup_back_button);
+        backBtn = findViewById(R.id.notif_back_button);
         next = findViewById(R.id.signup_next_button);
         login = findViewById(R.id.signup_login_button);
         titleText = findViewById(R.id.title_text);
