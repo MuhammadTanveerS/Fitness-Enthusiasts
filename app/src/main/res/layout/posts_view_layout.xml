@@ -23,6 +23,8 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/post_proPic"
                 android:layout_width="45dp"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/neon"
                 android:layout_height="45dp"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/avatar_female" />
