@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
+            android:name=".activities.Common.Search.SearchPeople"
+            android:exported="false" />
+        <activity
             android:name=".activities.Common.Notification.Notifications"
             android:exported="false" />
         <activity
@@ -20,13 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.Common.HomeScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activities.LogReg.SignUp3rd"
             android:exported="false" />
@@ -47,7 +44,13 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

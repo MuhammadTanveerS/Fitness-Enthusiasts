@@ -23,7 +23,12 @@ import android.widget.Toast;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.HomeScreen;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,11 +40,13 @@ public class Login extends AppCompatActivity {
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
 
     //Variables
     ImageView image;
     TextView logoText, sloganText;
-    TextInputLayout username, password;
+    TextInputLayout email, password;
     Button login_btn, signup_Btn;
 
     @Override
@@ -48,11 +55,14 @@ public class Login extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(com.example.fitnessenthusiasts.R.layout.activity_login);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+
         //hooks
         image = findViewById(R.id.topImage);
         logoText = findViewById(R.id.logo_name);
         sloganText = findViewById(R.id.slogan_name);
-        username = findViewById(R.id.signin_username);
+        email = findViewById(R.id.signin_email);
         password = findViewById(R.id.signin_password);
         login_btn = findViewById(R.id.Login_btn);
         signup_Btn = findViewById(R.id.Signup_btn);
@@ -67,7 +77,7 @@ public class Login extends AppCompatActivity {
         pairs[0] = new Pair<View, String>(image, "logo_image");
         pairs[1] = new Pair<View, String>(logoText, "logo_text");
         pairs[2] = new Pair<View, String>(sloganText, "logo_desc");
-        pairs[3] = new Pair<View, String>(username, "user_tran");
+        pairs[3] = new Pair<View, String>(email, "user_tran");
         pairs[4] = new Pair<View, String>(password, "pass_tran");
         pairs[5] = new Pair<View, String>(login_btn, "button_tran");
         pairs[6] = new Pair<View, String>(signup_Btn, "login_signup_tran");
@@ -96,7 +106,7 @@ public class Login extends AppCompatActivity {
         }
 
 
-        String _username = username.getEditText().getText().toString().trim();
+        String _username = email.getEditText().getText().toString().trim();
         String _password = password.getEditText().getText().toString().trim();
 
         //Database
@@ -105,8 +115,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    username.setError(null);
-                    username.setErrorEnabled(false);
+                    email.setError(null);
+                    email.setErrorEnabled(false);
 
                     String systemPassword = dataSnapshot.child(_username).child("password").getValue(String.class);
                     if (systemPassword.equals(_password)) {
@@ -143,6 +153,24 @@ public class Login extends AppCompatActivity {
         });
 
 
+    }
+
+
+    public void loggingIn(View view){
+        String _email = email.getEditText().getText().toString().trim();
+        String _password = password.getEditText().getText().toString().trim();
+
+        auth.signInWithEmailAndPassword(_email,_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+//                    Toast.makeText(Login.this, "Successssssssss", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Login.this,HomeScreen.class));
+                }else{
+                    Toast.makeText(Login.this, "Successssssssss", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
@@ -187,4 +215,11 @@ public class Login extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(currentUser!=null){
+            startActivity(new Intent(Login.this,HomeScreen.class));
+        }
+    }
 }

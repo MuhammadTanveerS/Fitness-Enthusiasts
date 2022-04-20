@@ -13,18 +13,19 @@
         android:padding="30dp">
 
         <ImageView
-        android:id="@+id/settings_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/general_back_button"
-        android:layout_marginBottom="15dp" />
+            android:id="@+id/settings_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:onClick="close"
+            android:src="@drawable/general_back_button" />
 
         <TextView
             style="@style/viewParent.headerText"
+            android:layout_marginBottom="15dp"
             android:text="Settings"
-            android:textColor="@color/neon"
             android:textAllCaps="true"
-            android:layout_marginBottom="15dp"/>
+            android:textColor="@color/neon" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -49,7 +50,7 @@
                 android:layout_marginTop="20dp" />
 
             <TextView
-                android:id="@+id/usernameTextView"
+                android:id="@+id/nameSettings"
                 style="@style/viewParent.headerText"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/settingCircleImageView"
@@ -58,7 +59,7 @@
 
             <TextView
                 style="@style/viewParent.headerText"
-                android:layout_below="@id/usernameTextView"
+                android:layout_below="@id/nameSettings"
                 android:layout_toRightOf="@id/settingCircleImageView"
                 android:text="Edit personal details"
                 android:textColor="#5D5C5C"
@@ -85,9 +86,10 @@
         <TextView
             android:id="@+id/changeProf"
             style="@style/viewParent.headerText.settingsTextIcon"
+            android:onClick="changeProfPic"
+            android:layout_marginBottom="5dp"
             android:drawableLeft="@drawable/ic_edit_profile"
-            android:text="Change Profile Picture"
-            android:layout_marginBottom="5dp"/>
+            android:text="Change Profile Picture" />
 
         <TextView
             style="@style/viewParent.headerText.settingsTextIcon"

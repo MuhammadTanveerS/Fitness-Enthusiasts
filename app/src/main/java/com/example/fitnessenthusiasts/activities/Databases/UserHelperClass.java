@@ -2,15 +2,20 @@ package com.example.fitnessenthusiasts.activities.Databases;
 
 public class UserHelperClass {
 
-    String fullName, username, email, phoneNo, password, date, gender;
+    String fullName;
+    String username;
+    String email;
+    String password;
+    String date;
+    String gender;
+    String profilePhoto;
 
     public UserHelperClass(){}
 
-    public UserHelperClass(String fullName, String username, String email, String phoneNo, String password, String date, String gender) {
+    public UserHelperClass(String fullName, String username, String email,  String password, String date, String gender) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
-        this.phoneNo = phoneNo;
         this.password = password;
         this.date = date;
         this.gender = gender;
@@ -40,12 +45,12 @@ public class UserHelperClass {
         this.email = email;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public String getProfilePhoto() {
+        return profilePhoto;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
     }
 
     public String getPassword() {

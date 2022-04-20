@@ -46,7 +46,7 @@ public class SignUp extends AppCompatActivity {
         //Hooks for getting data
         fullName = findViewById(R.id.signup_fname);
         username = findViewById(R.id.signup_uname);
-        email = findViewById(R.id.signin_username);
+        email = findViewById(R.id.signin_email);
         password = findViewById(R.id.signin_password);
 
 

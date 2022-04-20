@@ -45,12 +45,12 @@ public class NotificationFragment extends Fragment {
         recyclerView = view.findViewById(R.id.notifRecyclerView);
 
         notificationModels = new ArrayList<>();
-        notificationModels.add(new NotificationModel(R.drawable.avatar_male,"David liked your post.","Just Now"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female,"Angelina commented on your post.","2m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female2,"Rachel commented on your post.","3m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_male2,"Kevin liked your post.","3m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female,"Angelina liked your post.","6m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female2,"Rachel liked your post.","8m"));
+        notificationModels.add(new NotificationModel(R.drawable.avatar_male,"<b>David</b> liked your post.","Just Now"));
+        notificationModels.add(new NotificationModel(R.drawable.avatar_female,"<b>Angelina Adams</b> commented on your post.","2m"));
+        notificationModels.add(new NotificationModel(R.drawable.avatar_female2,"<b>Rachel</b> commented on your post.","3m"));
+        notificationModels.add(new NotificationModel(R.drawable.avatar_male2,"<b>Kevin Peters</b> liked your post.","3m"));
+        notificationModels.add(new NotificationModel(R.drawable.avatar_female,"<b>Angelina</b> liked your post.","6m"));
+        notificationModels.add(new NotificationModel(R.drawable.avatar_female2,"<b>Rachel</b> liked your post.","8m"));
 
         NotificationAdapter notificationAdapter = new NotificationAdapter(notificationModels,getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

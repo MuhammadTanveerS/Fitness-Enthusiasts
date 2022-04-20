@@ -2,6 +2,7 @@ package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
 import android.media.Image;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         NotificationModel model = list.get(position);
 
         holder.profile.setImageResource(model.getProfile());
-        holder.notification.setText(model.getNotification());
+        holder.notification.setText(Html.fromHtml(model.getNotification()));
         holder.time.setText(model.getTime());
     }
 
