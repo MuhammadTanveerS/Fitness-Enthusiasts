@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.example.fitnessenthusiasts.R;
@@ -27,5 +28,9 @@ public class Notifications extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
+    }
+
+    public void notiFinish(View view) {
+        finish();
     }
 }

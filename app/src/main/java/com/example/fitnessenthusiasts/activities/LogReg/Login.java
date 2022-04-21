@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     FirebaseAuth auth;
-    FirebaseUser currentUser;
+
 
     //Variables
     ImageView image;
@@ -55,8 +55,6 @@ public class Login extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(com.example.fitnessenthusiasts.R.layout.activity_login);
 
-        auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();
 
         //hooks
         image = findViewById(R.id.topImage);
@@ -215,11 +213,5 @@ public class Login extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(currentUser!=null){
-            startActivity(new Intent(Login.this,HomeScreen.class));
-        }
-    }
+
 }

@@ -16,9 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.fitnessenthusiasts.activities.Common.HomeScreen;
 import com.example.fitnessenthusiasts.activities.LogReg.Login;
 import com.example.fitnessenthusiasts.activities.LogReg.StartUpScreen;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,5 +68,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }, SPLASH_TIME);
 
+
     }
+
+
+
 }

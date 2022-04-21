@@ -22,7 +22,7 @@
         android:layout_marginLeft="@dimen/_55mdp"
         android:layout_alignLeft="@id/profilePic">
         <TextView
-            android:id="@+id/notification"
+            android:id="@+id/profileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/custom_black"
@@ -30,7 +30,7 @@
             android:textSize="16sp"
             android:text="Angelina Armstrong"/>
         <TextView
-            android:id="@+id/notificationTime"
+            android:id="@+id/profileFollowers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
@@ -38,13 +38,15 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/followButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/sub_grey"
+        android:background="@color/custom_black"
         android:fontFamily="@font/robotoregular"
+        android:textColor="@color/white"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:padding="10dp"

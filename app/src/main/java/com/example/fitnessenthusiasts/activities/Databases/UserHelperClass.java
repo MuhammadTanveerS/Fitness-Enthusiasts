@@ -8,7 +8,8 @@ public class UserHelperClass {
     String password;
     String date;
     String gender;
-    String profilePhoto;
+    String profilePhoto,userID;
+    int followersCount;
 
     public UserHelperClass(){}
 
@@ -75,5 +76,21 @@ public class UserHelperClass {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public int getFollowersCount() {
+        return followersCount;
+    }
+
+    public void setFollowersCount(int followersCount) {
+        this.followersCount = followersCount;
     }
 }

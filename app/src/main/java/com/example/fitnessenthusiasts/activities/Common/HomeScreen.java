@@ -18,11 +18,14 @@ import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.Notification.Notifications;
+import com.example.fitnessenthusiasts.activities.Common.Search.SearchPeople;
 import com.example.fitnessenthusiasts.activities.Common.Workout.WorkoutDetails;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
+import com.example.fitnessenthusiasts.activities.LogReg.StartUpScreen;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -152,10 +155,15 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(new Intent(getApplicationContext(), Settings.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
-            case R.id.nav_home2:
-                startActivity(new Intent(getApplicationContext(), WorkoutDetails.class));
+            case R.id.nav_find:
+                startActivity(new Intent(getApplicationContext(), SearchPeople.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
+                return false;
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), StartUpScreen.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return false;
         }
 
         return true;

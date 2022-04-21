@@ -15,6 +15,7 @@
         android:layout_marginTop="33dp"
         android:layout_marginEnd="24dp"
         android:padding="5dp"
+        android:onClick="notiFinish"
         android:src="@drawable/general_back_button"
         app:layout_constraintEnd_toStartOf="@+id/textView13"
         app:layout_constraintStart_toStartOf="parent"

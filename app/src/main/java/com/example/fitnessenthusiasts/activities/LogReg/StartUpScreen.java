@@ -13,12 +13,17 @@ import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.MainActivity;
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.HomeScreen;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class StartUpScreen extends AppCompatActivity {
 
     //Variables
 //    ImageView image;
 //    TextView slogan;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,9 @@ public class StartUpScreen extends AppCompatActivity {
         //Hooks
 //        image = findViewById(R.id.topImage);
 //        slogan = findViewById(R.id.slogan_name);
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
 
     }
 
@@ -53,4 +61,13 @@ public class StartUpScreen extends AppCompatActivity {
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StartUpScreen.this,pairs);
         startActivity(intent,options.toBundle());
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(currentUser!=null){
+            startActivity(new Intent(StartUpScreen.this, HomeScreen.class));
+        }
+    }
+
 }

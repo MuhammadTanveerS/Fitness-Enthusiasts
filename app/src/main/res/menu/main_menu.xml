@@ -20,9 +20,9 @@
             android:icon="@drawable/field_user_icon"/>
 
         <item
-            android:id="@+id/nav_home3"
-            android:title="Home"
-            android:icon="@drawable/field_user_icon"/>
+            android:id="@+id/nav_find"
+            android:title="Find Enthusiasts"
+            android:icon="@drawable/ic_search"/>
 
 
     </group>

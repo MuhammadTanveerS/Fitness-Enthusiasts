@@ -82,6 +82,7 @@ public class ProfileFragment extends Fragment {
                     username.setText(user.getUsername());
                     Picasso.get()
                             .load(user.getProfilePhoto())
+                            .placeholder(R.drawable.placeholder_avatar)
                             .into(avatar);
 
                     progressBar.setVisibility(View.GONE);

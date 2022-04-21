@@ -132,6 +132,7 @@ public class Settings extends AppCompatActivity {
                     binding.nameSettings.setText(user.getFullName());
                     Picasso.get()
                             .load(user.getProfilePhoto())
+                            .placeholder(R.drawable.placeholder_avatar)
                             .into(binding.settingCircleImageView);
                 }
             }
