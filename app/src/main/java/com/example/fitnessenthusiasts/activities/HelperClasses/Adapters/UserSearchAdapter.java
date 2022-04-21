@@ -49,6 +49,8 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.vi
                 .into(holder.binding.profilePic);
         holder.binding.profileName.setText(user.getFullName());
         holder.binding.profileFollowers.setText("4");
+
+
         holder.binding.followButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

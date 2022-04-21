@@ -12,6 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -54,6 +55,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(com.example.fitnessenthusiasts.R.layout.activity_login);
+
+        auth = FirebaseAuth.getInstance();
 
 
         //hooks
@@ -158,14 +161,17 @@ public class Login extends AppCompatActivity {
         String _email = email.getEditText().getText().toString().trim();
         String _password = password.getEditText().getText().toString().trim();
 
+       Log.e("Hello",_email);
+
+
         auth.signInWithEmailAndPassword(_email,_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-//                    Toast.makeText(Login.this, "Successssssssss", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Signed In", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Login.this,HomeScreen.class));
                 }else{
-                    Toast.makeText(Login.this, "Successssssssss", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "ERROR INCORRECT INFO", Toast.LENGTH_SHORT).show();
                 }
             }
         });

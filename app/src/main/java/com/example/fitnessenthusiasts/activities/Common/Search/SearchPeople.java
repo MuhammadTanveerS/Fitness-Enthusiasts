@@ -43,7 +43,6 @@ public class SearchPeople extends AppCompatActivity {
         getData();
 
         recyclerView = findViewById(R.id.searchRV);
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(userSearchAdapter);
     }
@@ -52,6 +51,7 @@ public class SearchPeople extends AppCompatActivity {
         database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     UserHelperClass user = dataSnapshot.getValue(UserHelperClass.class);
                     user.setUserID(dataSnapshot.getKey());
