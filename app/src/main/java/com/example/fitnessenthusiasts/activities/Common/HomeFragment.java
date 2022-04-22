@@ -3,12 +3,15 @@ package com.example.fitnessenthusiasts.activities.Common;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
@@ -27,12 +30,14 @@ public class HomeFragment extends Fragment {
     CircleImageView avatar;
     RecyclerView postRV;
     ArrayList<PostModel> postModels;
+    RelativeLayout writePost;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        writePost = view.findViewById(R.id.writePost);
         avatar = view.findViewById(R.id.circular);
         LoadImage();
 
@@ -55,6 +60,9 @@ public class HomeFragment extends Fragment {
         postRV.setHasFixedSize(true);
         postRV.setAdapter(postAdapter);
 
+        viewPost();
+
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -67,6 +75,20 @@ public class HomeFragment extends Fragment {
         Picasso.get()
                 .load(image)
                 .into(avatar);
+    }
+
+    private void viewPost(){
+        writePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_in,R.anim.fragment_out);
+                fragmentTransaction.replace(R.id.frame_layout,new PostFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
 }

@@ -55,7 +55,9 @@ public class SearchPeople extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     UserHelperClass user = dataSnapshot.getValue(UserHelperClass.class);
                     user.setUserID(dataSnapshot.getKey());
-                    list.add(user);
+                    if(!dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getUid())){
+                        list.add(user);
+                    }
                 }
                 userSearchAdapter.notifyDataSetChanged();
             }

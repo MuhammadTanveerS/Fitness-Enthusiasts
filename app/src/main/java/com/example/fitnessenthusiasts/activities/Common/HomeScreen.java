@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.R;
@@ -108,6 +109,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 .into(menuImage);
 
 
+
     }
 
     //Method for navigation drawer
@@ -181,4 +183,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     public void notifications(View view) {
         startActivity(new Intent(getApplicationContext(), Notifications.class));
     }
+
+
 }

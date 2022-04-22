@@ -13,6 +13,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="custom_black">#1F2117</color>
     <color name="sub_grey">#C0C1BE</color>
+    <color name="sub_greyDark">#868786</color>
+
 
 
 <!--    Activity-->

@@ -46,11 +46,13 @@
         android:layout_marginRight="10dp"
         android:background="@color/custom_black"
         android:fontFamily="@font/robotoregular"
-        android:textColor="@color/white"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:padding="10dp"
         android:text="Follow"
+        android:textColor="@color/white"
+        android:visibility="visible"
         android:textSize="12sp" />
+
 
 </RelativeLayout>
