@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
+            android:name=".activities.Common.Other.Comments"
+            android:exported="false" />
+        <activity
             android:name=".activities.Common.Search.SearchPeople"
             android:exported="false" />
         <activity
@@ -23,7 +26,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.Common.HomeScreen"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.LogReg.SignUp3rd"
             android:exported="false" />

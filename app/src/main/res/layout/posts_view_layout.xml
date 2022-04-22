@@ -30,26 +30,42 @@
                 android:src="@drawable/avatar_female" />
 
 
-
-            <TextView
-                android:id="@+id/post_proName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/llayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/robotoregular"
-                android:text="Bruce Wayne"
-                android:textColor="@color/neon"
-                android:textSize="17sp" />
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/post_proName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+
+                    android:fontFamily="@font/robotoregular"
+                    android:text="Bruce Wayne"
+                    android:textColor="@color/neon"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/post_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/post_proName"
+                    android:layout_marginLeft="70dp"
+                    android:textColor="@color/sub_greyDark"
+                    android:text="3m"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
 
 
             <TextView
                 android:id="@+id/post_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/post_proName"
+                android:layout_below="@id/llayout"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
                 android:text="This is Status"
                 android:textColor="@color/black"
@@ -129,6 +145,7 @@
                 android:padding="10dp">
 
                 <ImageView
+                    android:id="@+id/post_likeIC"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:adjustViewBounds="true"

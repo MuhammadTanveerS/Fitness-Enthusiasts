@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +23,7 @@ import com.example.fitnessenthusiasts.activities.Common.Notification.Notificatio
 import com.example.fitnessenthusiasts.activities.Common.Search.SearchPeople;
 import com.example.fitnessenthusiasts.activities.Common.Workout.WorkoutDetails;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
+import com.example.fitnessenthusiasts.activities.Databases.Session;
 import com.example.fitnessenthusiasts.activities.LogReg.StartUpScreen;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
@@ -37,7 +39,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageView navIcon;
-
+    Session session;
     View header;
     TextView menuName;
 
@@ -53,6 +55,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         replaceFragment(new HomeFragment());
 
         //Testing Session
+        session = new Session(this);
 
         SPManager spManager = new SPManager(this);
         HashMap<String, String> userDetails = spManager.getUserDetails();
@@ -105,7 +108,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
         ImageView menuImage = header.findViewById(R.id.avatar_img);
         Picasso.get()
-                .load(image)
+                .load(session.getPhoto())
+                .placeholder(R.drawable.placeholder_avatar)
                 .into(menuImage);
 
 

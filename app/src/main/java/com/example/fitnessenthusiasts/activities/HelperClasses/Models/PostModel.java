@@ -1,40 +1,43 @@
 package com.example.fitnessenthusiasts.activities.HelperClasses.Models;
 
 public class PostModel {
-    int profileImage, postImage;
-    String profileName, postStatus, likeCount, commentCount;
+    String postId, postImage, postedBy,postStatus;
+    private long postedAt;
+    private int postLikes;
 
-    public PostModel(int profileImage, int postImage, String profileName, String postStatus, String likeCount, String commentCount) {
-        this.profileImage = profileImage;
+    public PostModel(String postId, String postImage, String postedBy, String postStatus, long postedAt) {
+        this.postId = postId;
         this.postImage = postImage;
-        this.profileName = profileName;
+        this.postedBy = postedBy;
         this.postStatus = postStatus;
-        this.likeCount = likeCount;
-        this.commentCount = commentCount;
+        this.postedAt = postedAt;
     }
 
-    public int getProfileImage() {
-        return profileImage;
+    public PostModel() {
     }
 
-    public void setProfileImage(int profileImage) {
-        this.profileImage = profileImage;
+    public String getPostId() {
+        return postId;
     }
 
-    public int getPostImage() {
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public String getPostImage() {
         return postImage;
     }
 
-    public void setPostImage(int postImage) {
+    public void setPostImage(String postImage) {
         this.postImage = postImage;
     }
 
-    public String getProfileName() {
-        return profileName;
+    public String getPostedBy() {
+        return postedBy;
     }
 
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
+    public void setPostedBy(String postedBy) {
+        this.postedBy = postedBy;
     }
 
     public String getPostStatus() {
@@ -45,19 +48,19 @@ public class PostModel {
         this.postStatus = postStatus;
     }
 
-    public String getLikeCount() {
-        return likeCount;
+    public long getPostedAt() {
+        return postedAt;
     }
 
-    public void setLikeCount(String likeCount) {
-        this.likeCount = likeCount;
+    public void setPostedAt(long postedAt) {
+        this.postedAt = postedAt;
     }
 
-    public String getCommentCount() {
-        return commentCount;
+    public int getPostLikes() {
+        return postLikes;
     }
 
-    public void setCommentCount(String commentCount) {
-        this.commentCount = commentCount;
+    public void setPostLikes(int postLikes) {
+        this.postLikes = postLikes;
     }
 }

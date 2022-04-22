@@ -2,12 +2,14 @@ package com.example.fitnessenthusiasts.activities.Common;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +17,14 @@ import android.widget.RelativeLayout;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
+import com.example.fitnessenthusiasts.activities.Databases.Session;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.PostAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.PostModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,6 +39,9 @@ public class HomeFragment extends Fragment {
     RecyclerView postRV;
     ArrayList<PostModel> postModels;
     RelativeLayout writePost;
+    FirebaseDatabase database;
+    FirebaseAuth auth;
+    PostAdapter postAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,25 +52,19 @@ public class HomeFragment extends Fragment {
         avatar = view.findViewById(R.id.circular);
         LoadImage();
 
+        auth=FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
+
         postRV = view.findViewById(R.id.postsRV);
         postModels = new ArrayList<>();
 
 
-        postModels.add(new PostModel(R.drawable.avatar_female,R.drawable.testphoto1,
-                "Joe March","Checking stats!", "15","5"));
-        postModels.add(new PostModel(R.drawable.avatar_male,R.drawable.chest_b,
-                "Chris Walker","Doing chest workouts.", "52","22"));
-        postModels.add(new PostModel(R.drawable.avatar_male2,R.drawable.testphoto2,
-                "Tim Drake","About to hit the GYM!!!", "5","2"));
-        postModels.add(new PostModel(R.drawable.avatar_female2,R.drawable.testphoto3,
-                "Elise Velcoro","Just Working Out!", "56","35"));
-
-
-        PostAdapter postAdapter = new PostAdapter(postModels,getContext());
+        postAdapter = new PostAdapter(postModels,getContext());
         postRV.setLayoutManager(new LinearLayoutManager(view.getContext()));
         postRV.setHasFixedSize(true);
         postRV.setAdapter(postAdapter);
 
+        fetchPosts();
         viewPost();
 
 
@@ -67,13 +72,14 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+
+
     private void LoadImage(){
-        SPManager spManager = new SPManager(view.getContext());
-        HashMap<String, String> userDetails = spManager.getUserDetails();
-        String image = userDetails.get(SPManager.S_IMAGE);
+        Session session = new Session(view.getContext());
 
         Picasso.get()
-                .load(image)
+                .load(session.getPhoto())
+                .placeholder(R.drawable.placeholder_avatar)
                 .into(avatar);
     }
 
@@ -91,4 +97,22 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private void fetchPosts() {
+        database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                postModels.clear();
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    PostModel post = dataSnapshot.getValue(PostModel.class);
+                    post.setPostId(dataSnapshot.getKey());
+                    postModels.add(post);
+                }
+                postAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 }
