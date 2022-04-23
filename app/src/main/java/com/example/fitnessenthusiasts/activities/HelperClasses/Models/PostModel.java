@@ -3,7 +3,7 @@ package com.example.fitnessenthusiasts.activities.HelperClasses.Models;
 public class PostModel {
     String postId, postImage, postedBy,postStatus;
     private long postedAt;
-    private int postLikes;
+    private int postLikes,commentCount;
 
     public PostModel(String postId, String postImage, String postedBy, String postStatus, long postedAt) {
         this.postId = postId;
@@ -62,5 +62,13 @@ public class PostModel {
 
     public void setPostLikes(int postLikes) {
         this.postLikes = postLikes;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 }

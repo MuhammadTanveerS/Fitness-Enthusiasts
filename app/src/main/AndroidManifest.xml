@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
-            android:name=".activities.Common.Other.Comments"
+            android:name=".activities.Common.Other.CommentActivity"
             android:exported="false" />
         <activity
             android:name=".activities.Common.Search.SearchPeople"

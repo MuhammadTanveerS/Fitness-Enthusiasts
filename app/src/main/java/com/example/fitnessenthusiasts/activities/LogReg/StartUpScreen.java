@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -33,6 +35,8 @@ public class StartUpScreen extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser currentUser;
     FirebaseDatabase database;
+    ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +44,17 @@ public class StartUpScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_start_up_screen);
 
+
+
         //Hooks
 //        image = findViewById(R.id.topImage);
 //        slogan = findViewById(R.id.slogan_name);
+        dialog = new ProgressDialog(this,R.style.MyAlertDialogStyle);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Loggin In");
+        dialog.setMessage("Please Wait ...");
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
@@ -76,13 +88,18 @@ public class StartUpScreen extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(currentUser!=null){
+            dialog.show();
             database.getReference().child("Users").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
+
                         UserHelperClass user = snapshot.getValue(UserHelperClass.class);
                         Session session = new Session(StartUpScreen.this);
+                        Log.e("1",user.getFullName());
                         session.saveSession(user);
+                        dialog.dismiss();
+                        startActivity(new Intent(StartUpScreen.this, HomeScreen.class));
                     }
                 }
 
@@ -91,8 +108,10 @@ public class StartUpScreen extends AppCompatActivity {
 
                 }
             });
-            startActivity(new Intent(StartUpScreen.this, HomeScreen.class));
+
         }
     }
+
+
 
 }

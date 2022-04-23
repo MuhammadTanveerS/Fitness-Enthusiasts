@@ -57,13 +57,13 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         //Testing Session
         session = new Session(this);
 
-        SPManager spManager = new SPManager(this);
-        HashMap<String, String> userDetails = spManager.getUserDetails();
-
-        String fullName = userDetails.get(SPManager.S_FULLNAME);
-        String email = userDetails.get(SPManager.S_EMAIL);
-        String gender = userDetails.get(SPManager.S_GENDER);
-        String image = userDetails.get(SPManager.S_IMAGE);
+//        SPManager spManager = new SPManager(this);
+//        HashMap<String, String> userDetails = spManager.getUserDetails();
+//
+//        String fullName = userDetails.get(SPManager.S_FULLNAME);
+//        String email = userDetails.get(SPManager.S_EMAIL);
+//        String gender = userDetails.get(SPManager.S_GENDER);
+//        String image = userDetails.get(SPManager.S_IMAGE);
 
 
 
@@ -104,15 +104,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         //Menu
         header = navigationView.getHeaderView(0);
         menuName = header.findViewById(R.id.menu_name);
-        menuName.setText(fullName);
+        menuName.setText(session.getName());
 
         ImageView menuImage = header.findViewById(R.id.avatar_img);
         Picasso.get()
                 .load(session.getPhoto())
                 .placeholder(R.drawable.placeholder_avatar)
                 .into(menuImage);
-
-
+        ///SOLVVEEEE
 
     }
 

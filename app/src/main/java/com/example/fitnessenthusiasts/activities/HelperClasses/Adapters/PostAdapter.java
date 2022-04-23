@@ -1,16 +1,16 @@
 package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Other.CommentActivity;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.PostModel;
 import com.example.fitnessenthusiasts.databinding.PostsViewLayoutBinding;
@@ -47,10 +47,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         PostModel model = list.get(position);
         Picasso.get()
                 .load(model.getPostImage())
-                .fit()
                 .placeholder(R.drawable.image_placeholder)
                 .into(holder.binding.postPic);
         holder.binding.postLikeCount.setText(model.getPostLikes()+"");
+        holder.binding.postComCount.setText(model.getCommentCount()+"");
         String status = model.getPostStatus();
         if(status.equals("")){
             holder.binding.postStatus.setVisibility(View.GONE);
@@ -120,7 +120,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
                     }
                 });
-
+        holder.binding.commentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("postId",model.getPostId());
+                intent.putExtra("postedBy",model.getPostedBy());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
 
     }

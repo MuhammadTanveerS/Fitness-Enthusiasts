@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/commentProPic"
+        android:layout_width="@dimen/_40mdp"
+        android:layout_height="@dimen/_40mdp"
+        app:civ_border_color="@color/neon"
+        app:civ_border_width="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/avatar_female" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/grey_button_radius">
+        <TextView
+            android:id="@+id/commentProName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/neon"
+            android:fontFamily="@font/robotoregular"
+            android:textSize="16sp"
+            android:text="Angelina Sylph"/>
+        <TextView
+            android:id="@+id/commentDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/robotolight"
+            android:textSize="15sp"
+            android:text="Hello How are You"/>
+        <TextView
+            android:id="@+id/commentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/sub_grey"
+            android:textSize="12sp"
+            android:text="Just Now"/>
+    </LinearLayout>
+
+</LinearLayout>
