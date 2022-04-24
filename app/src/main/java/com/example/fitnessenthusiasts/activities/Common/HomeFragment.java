@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
 import com.example.fitnessenthusiasts.activities.Databases.Session;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
 
     View view;
     CircleImageView avatar;
-    RecyclerView postRV;
+    ShimmerRecyclerView postRV;
     ArrayList<PostModel> postModels;
     RelativeLayout writePost;
     FirebaseDatabase database;
@@ -48,6 +49,9 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        postRV = view.findViewById(R.id.postsRV);
+        postRV.showShimmerAdapter();
+
         writePost = view.findViewById(R.id.writePost);
         avatar = view.findViewById(R.id.circular);
         LoadImage();
@@ -55,14 +59,10 @@ public class HomeFragment extends Fragment {
         auth=FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
 
-        postRV = view.findViewById(R.id.postsRV);
         postModels = new ArrayList<>();
-
-
         postAdapter = new PostAdapter(postModels,getContext());
         postRV.setLayoutManager(new LinearLayoutManager(view.getContext()));
         postRV.setHasFixedSize(true);
-        postRV.setAdapter(postAdapter);
 
         fetchPosts();
         viewPost();
@@ -107,6 +107,8 @@ public class HomeFragment extends Fragment {
                     post.setPostId(dataSnapshot.getKey());
                     postModels.add(post);
                 }
+                postRV.setAdapter(postAdapter);
+                postRV.hideShimmerAdapter();
                 postAdapter.notifyDataSetChanged();
             }
 

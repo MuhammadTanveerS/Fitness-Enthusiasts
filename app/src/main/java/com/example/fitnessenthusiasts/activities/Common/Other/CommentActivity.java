@@ -15,6 +15,7 @@ import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.CommentAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CommentModel;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.NotificationModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.PostModel;
 import com.example.fitnessenthusiasts.databinding.ActivityCommentsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -135,6 +136,17 @@ public class CommentActivity extends AppCompatActivity {
                                     public void onSuccess(Void unused) {
                                         binding.textContent.setText("");
                                         Toast.makeText(CommentActivity.this, "COMMENTED", Toast.LENGTH_SHORT).show();
+
+                                        NotificationModel notificationModel = new NotificationModel();
+                                        notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                        notificationModel.setNotificationAt(new Date().getTime());
+                                        notificationModel.setPostID(postId);
+                                        notificationModel.setPostedBy(postedBy);
+                                        notificationModel.setType("comment");
+
+                                        database.getReference().child("Notification")
+                                                .child(postedBy).child("notifications")
+                                                .push().setValue(notificationModel);
                                     }
                                 });
                             }

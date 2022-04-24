@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.Other.CommentActivity;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.NotificationModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.PostModel;
 import com.example.fitnessenthusiasts.databinding.PostsViewLayoutBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
@@ -106,6 +108,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     holder.binding.postLikeIC.setImageResource(R.drawable.ic_like_filled);
+
+                                                    NotificationModel notificationModel = new NotificationModel();
+                                                    notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                    notificationModel.setNotificationAt(new Date().getTime());
+                                                    notificationModel.setPostID(model.getPostId());
+                                                    notificationModel.setPostedBy(model.getPostedBy());
+                                                    notificationModel.setType("like");
+
+                                                    FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+                                                            .getReference().child("Notification")
+                                                            .child(model.getPostedBy()).child("notifications")
+                                                            .push().setValue(notificationModel);
                                                 }
                                             });
                                         }

@@ -2,11 +2,13 @@ package com.example.fitnessenthusiasts.activities.Common.Notification;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,11 @@ import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.Notifica
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.PostAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.NotificationModel;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -25,6 +32,7 @@ public class NotificationFragment extends Fragment {
 
     RecyclerView recyclerView;
     ArrayList<NotificationModel> notificationModels;
+    FirebaseDatabase database;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -34,6 +42,7 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
     }
 
     @Override
@@ -43,19 +52,34 @@ public class NotificationFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_notification, container, false);
 
         recyclerView = view.findViewById(R.id.notifRecyclerView);
-
         notificationModels = new ArrayList<>();
-        notificationModels.add(new NotificationModel(R.drawable.avatar_male,"<b>David</b> liked your post.","Just Now"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female,"<b>Angelina Adams</b> commented on your post.","2m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female2,"<b>Rachel</b> commented on your post.","3m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_male2,"<b>Kevin Peters</b> liked your post.","3m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female,"<b>Angelina</b> liked your post.","6m"));
-        notificationModels.add(new NotificationModel(R.drawable.avatar_female2,"<b>Rachel</b> liked your post.","8m"));
 
         NotificationAdapter notificationAdapter = new NotificationAdapter(notificationModels,getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(notificationAdapter);
+
+        database.getReference().child("Notification")
+                .child(FirebaseAuth.getInstance().getUid())
+                .child("notifications").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                notificationModels.clear();
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                        NotificationModel notificationModel = dataSnapshot.getValue(NotificationModel.class);
+                        notificationModel.setNotificationID(dataSnapshot.getKey());
+                        notificationModels.add(notificationModel);
+                    }
+                    notificationAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return view;
     }

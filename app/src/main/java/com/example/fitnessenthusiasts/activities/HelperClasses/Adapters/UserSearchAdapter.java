@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.FollowModel;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.NotificationModel;
 import com.example.fitnessenthusiasts.databinding.UsersearchViewLayoutBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,7 +70,6 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.vi
                     holder.binding.followButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            int index = position;
                             notifyDataSetChanged();
 
                             FollowModel followModel= new FollowModel();
@@ -91,6 +91,16 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.vi
                                             holder.binding.followButton.setText("Following");
                                             holder.binding.followButton.setEnabled(false);
                                             Toast.makeText(context, "You Followed "+user.getFullName(),Toast.LENGTH_SHORT).show(); ///IMPROVVEESSSS
+
+                                            NotificationModel notificationModel = new NotificationModel();
+                                            notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                            notificationModel.setNotificationAt(new Date().getTime());
+                                            notificationModel.setType("follow");
+
+                                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+                                                    .getReference().child("Notification")
+                                                    .child(user.getUserID()).child("notifications")
+                                                    .push().setValue(notificationModel);
 
                                             /*
                                             ADD
