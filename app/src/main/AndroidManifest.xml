@@ -29,7 +29,8 @@
             android:exported="true" />
         <activity
             android:name=".activities.LogReg.SignUp3rd"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
         <activity
             android:name=".activities.LogReg.SignUp2nd"
             android:exported="false" />
@@ -53,6 +54,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data

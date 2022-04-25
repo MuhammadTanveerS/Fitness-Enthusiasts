@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.HomeScreen;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
+import com.example.fitnessenthusiasts.activities.Databases.Session;
+import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -39,7 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
-    FirebaseDatabase rootNode;
+    FirebaseDatabase database;
     DatabaseReference reference;
     FirebaseAuth auth;
 
@@ -57,6 +59,7 @@ public class Login extends AppCompatActivity {
         setContentView(com.example.fitnessenthusiasts.R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
 
 
         //hooks
@@ -88,73 +91,6 @@ public class Login extends AppCompatActivity {
 
     }
 
-    //Testing a code
-    public void login(View view) {
-
-        /*
-        --------------------------------
-        ADD
-        PROGRESS
-        BAR
-        LATER
-        ---------------------------------
-         */
-
-        //Checking internet Connection
-        //Get it to work later
-        if (!isconnected(this)) {
-            showCustomDialog();
-        }
-
-
-        String _username = email.getEditText().getText().toString().trim();
-        String _password = password.getEditText().getText().toString().trim();
-
-        //Database
-        Query checkUser = FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com").getReference("Users").orderByChild("username").equalTo(_username);
-        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    email.setError(null);
-                    email.setErrorEnabled(false);
-
-                    String systemPassword = dataSnapshot.child(_username).child("password").getValue(String.class);
-                    if (systemPassword.equals(_password)) {
-                        password.setError(null);
-                        password.setErrorEnabled(false);
-
-                        String _fullname = dataSnapshot.child(_username).child("fullName").getValue(String.class);
-                        String _userName = dataSnapshot.child(_username).child("username").getValue(String.class);
-                        String _dob = dataSnapshot.child(_username).child("date").getValue(String.class);
-                        String _email = dataSnapshot.child(_username).child("email").getValue(String.class);
-                        String _pass= dataSnapshot.child(_username).child("password").getValue(String.class);
-                        String _phoneNo = dataSnapshot.child(_username).child("phoneNo").getValue(String.class);
-                        String _gender = dataSnapshot.child(_username).child("gender").getValue(String.class);
-                        String _image = dataSnapshot.child(_username).child("Data").child("image").getValue(String.class);
-
-                        //Store in Shared Preferences
-                        SPManager spManager = new SPManager(Login.this);
-                        spManager.createLoginSession(_fullname, _userName, _email, _phoneNo, _pass, _dob,_gender, _image);
-
-                        startActivity(new Intent(getApplicationContext(), HomeScreen.class));
-
-                        //Toast.makeText(Login.this, _fullname + "\n" + _userName + "\n" + _dob + "\n" + _email + "\n" + _phoneNo, Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Login.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
 
 
     public void loggingIn(View view){
@@ -163,13 +99,30 @@ public class Login extends AppCompatActivity {
 
        Log.e("Hello",_email);
 
-
         auth.signInWithEmailAndPassword(_email,_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(Login.this, "Signed In", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Login.this,HomeScreen.class));
+
+                    database.getReference().child("Users").child(auth.getUid())
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists()){
+                                        UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                                        Session session = new Session(Login.this);
+                                        session.saveSession(user);
+                                        Toast.makeText(Login.this, "Signed In", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(Login.this,HomeScreen.class));
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                 }else{
                     Toast.makeText(Login.this, "ERROR INCORRECT INFO", Toast.LENGTH_SHORT).show();
                 }

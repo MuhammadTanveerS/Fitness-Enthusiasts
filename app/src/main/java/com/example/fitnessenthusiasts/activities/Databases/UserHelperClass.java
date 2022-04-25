@@ -8,7 +8,7 @@ public class UserHelperClass {
     String password;
     String date;
     String gender;
-    String profilePhoto,userID;
+    String profilePhoto,userID,weight,height;
     int followersCount;
 
     public UserHelperClass(){}
@@ -92,5 +92,21 @@ public class UserHelperClass {
 
     public void setFollowersCount(int followersCount) {
         this.followersCount = followersCount;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
     }
 }

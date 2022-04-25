@@ -13,6 +13,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/custom_black</item>
 
         <item name="android:windowContentTransitions">true</item>
 
@@ -32,10 +33,6 @@
         <item name="colorOnPrimary">@color/custom_black</item>
 
     </style>
-
-
-
-
 
 
     <!--    Styles for settings-->
@@ -70,8 +67,7 @@
     </style>
 
 
-
-<!--    CustomStyles-->
+    <!--    CustomStyles-->
     <style name="workoutCollapsing">
         <item name="colorPrimary">@color/custom_black</item>
         <item name="colorSecondary">@color/neon</item>
@@ -82,8 +78,8 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
     </style>
-    <style name="TextAppearance.Collapsed"
-        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+
+    <style name="TextAppearance.Collapsed" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:fontFamily">@font/robotoregular</item>
         <item name="android:textSize">16sp</item>
 
@@ -93,7 +89,13 @@
         <item name="colorAccent">@color/neon</item>
     </style>
 
+    <style name="CustomNumberPickerTheme" parent="Theme.FitnessEnthusiasts">
+        <item name="colorControlNormal">@android:color/transparent</item>
+    </style>
 
+    <style name="CursorColor">
+        <item name="colorPrimary">@color/custom_black</item>
+    </style>>
 
 
 </resources>

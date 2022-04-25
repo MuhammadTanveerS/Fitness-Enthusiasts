@@ -8,7 +8,8 @@
     android:background="@color/neon"
     android:orientation="vertical"
     android:transitionName="transition_signup"
-    android:padding="30dp">
+    android:paddingVertical="20dp"
+    android:paddingHorizontal="30dp">
 
     <ImageView
         android:id="@+id/notif_back_button"
@@ -52,6 +53,7 @@
             android:id="@+id/signup_fname"
             android:hint="Full Name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/CursorColor"
             app:startIconDrawable="@drawable/field_fullname_icon"
             app:startIconTint="@color/black"
             app:hintTextColor="@color/black"
@@ -75,6 +77,7 @@
             android:id="@+id/signup_uname"
             android:hint="User Name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/CursorColor"
             app:startIconDrawable="@drawable/field_user_icon"
             app:startIconTint="@color/black"
             app:hintTextColor="@color/black"
@@ -98,6 +101,7 @@
             android:id="@+id/signin_email"
             android:hint="Email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/CursorColor"
             app:startIconDrawable="@drawable/field_email_icon"
             app:startIconTint="@color/black"
             app:hintTextColor="@color/black"
@@ -110,7 +114,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -123,11 +127,12 @@
             android:id="@+id/signin_password"
             android:hint="Password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/CursorColor"
             app:startIconDrawable="@drawable/field_password_icon"
             app:startIconTint="@color/black"
             app:hintTextColor="@color/black"
             android:textColorHint="@color/black"
-            app:endIconMode="clear_text"
+            app:endIconMode="password_toggle"
             app:endIconTint="@color/black"
             app:boxStrokeWidthFocused="2dp"
             app:boxStrokeColor="@color/black">
