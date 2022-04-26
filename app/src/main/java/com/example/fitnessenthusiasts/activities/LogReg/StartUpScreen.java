@@ -65,23 +65,23 @@ public class StartUpScreen extends AppCompatActivity {
     public void login(View view){
         Intent intent = new Intent(getApplicationContext(), Login.class);
 
-        Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair<View,String>(findViewById(R.id.btn_login),"transition_login");
+//        Pair[] pairs = new Pair[1];
+//        pairs[0] = new Pair<View,String>(findViewById(R.id.btn_login),"transition_login");
         //pairs[1] = new Pair<View,String>(slogan,"logo_text");
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StartUpScreen.this,pairs);
-        startActivity(intent,options.toBundle());
+        Bundle b = ActivityOptions.makeSceneTransitionAnimation(StartUpScreen.this).toBundle();
+        startActivity(intent,b);
     }
 
     public void signup(View view){
         Intent intent = new Intent(getApplicationContext(), SignUp.class);
 
-        Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair<View,String>(findViewById(R.id.btn_signup),"transition_signup");
-//        pairs[1] = new Pair<View,String>(slogan,"logo_text");
+//        Pair[] pairs = new Pair[1];
+//        pairs[0] = new Pair<View,String>(findViewById(R.id.btn_signup),"transition_signup");
+////        pairs[1] = new Pair<View,String>(slogan,"logo_text");
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StartUpScreen.this,pairs);
-        startActivity(intent,options.toBundle());
+        Bundle b = ActivityOptions.makeSceneTransitionAnimation(StartUpScreen.this).toBundle();
+        startActivity(intent,b);
     }
 
     @Override

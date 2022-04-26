@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -44,6 +45,7 @@ public class Login extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
     FirebaseAuth auth;
+    ProgressDialog dialog;
 
 
     //Variables
@@ -61,6 +63,12 @@ public class Login extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
 
+        dialog = new ProgressDialog(this,R.style.MyAlertDialogStyle);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Loggin In");
+        dialog.setMessage("Please Wait ...");
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
 
         //hooks
         image = findViewById(R.id.topImage);
@@ -78,16 +86,16 @@ public class Login extends AppCompatActivity {
 
         Pair[] pairs = new Pair[7];
 
-        pairs[0] = new Pair<View, String>(image, "logo_image");
-        pairs[1] = new Pair<View, String>(logoText, "logo_text");
-        pairs[2] = new Pair<View, String>(sloganText, "logo_desc");
-        pairs[3] = new Pair<View, String>(email, "user_tran");
-        pairs[4] = new Pair<View, String>(password, "pass_tran");
-        pairs[5] = new Pair<View, String>(login_btn, "button_tran");
-        pairs[6] = new Pair<View, String>(signup_Btn, "login_signup_tran");
+//        pairs[0] = new Pair<View, String>(image, "logo_image");
+//        pairs[1] = new Pair<View, String>(logoText, "logo_text");
+//        pairs[2] = new Pair<View, String>(sloganText, "logo_desc");
+//        pairs[3] = new Pair<View, String>(email, "user_tran");
+//        pairs[4] = new Pair<View, String>(password, "pass_tran");
+//        pairs[5] = new Pair<View, String>(login_btn, "button_tran");
+//        pairs[6] = new Pair<View, String>(signup_Btn, "login_signup_tran");
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Login.this, pairs);
-        startActivity(intent, options.toBundle());
+        Bundle b = ActivityOptions.makeSceneTransitionAnimation(Login.this).toBundle();
+        startActivity(intent, b);
 
     }
 
@@ -97,7 +105,7 @@ public class Login extends AppCompatActivity {
         String _email = email.getEditText().getText().toString().trim();
         String _password = password.getEditText().getText().toString().trim();
 
-       Log.e("Hello",_email);
+        dialog.show();
 
         auth.signInWithEmailAndPassword(_email,_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -113,6 +121,7 @@ public class Login extends AppCompatActivity {
                                         Session session = new Session(Login.this);
                                         session.saveSession(user);
                                         Toast.makeText(Login.this, "Signed In", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
                                         startActivity(new Intent(Login.this,HomeScreen.class));
                                     }
                                 }
@@ -125,6 +134,7 @@ public class Login extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(Login.this, "ERROR INCORRECT INFO", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
             }
         });

@@ -82,14 +82,15 @@ public class SignUp2nd extends AppCompatActivity {
 
 
         //Add Transition
-        Pair[] pairs = new Pair[3];
+//        Pair[] pairs = new Pair[3];
+//
+//        pairs[0] = new Pair<View, String>(backBtn, "backarrow_tran");
+//        pairs[1] = new Pair<View, String>(next, "next_tran");
+//        pairs[2] = new Pair<View, String>(titleText, "title_tran");
 
-        pairs[0] = new Pair<View, String>(backBtn, "backarrow_tran");
-        pairs[1] = new Pair<View, String>(next, "next_tran");
-        pairs[2] = new Pair<View, String>(titleText, "title_tran");
-
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp2nd.this, pairs);
-        startActivity(intent, options.toBundle());
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp2nd.this, pairs);
+        Bundle b = ActivityOptions.makeSceneTransitionAnimation(SignUp2nd.this).toBundle();
+        startActivity(intent, b);
 
     }
 

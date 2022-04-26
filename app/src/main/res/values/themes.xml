@@ -16,6 +16,9 @@
         <item name="colorAccent">@color/custom_black</item>
 
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/trans_anim</item>
+        <item name="android:fragmentExitTransition">@transition/trans_anim</item>
 
     </style>
 

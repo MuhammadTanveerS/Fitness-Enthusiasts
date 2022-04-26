@@ -79,15 +79,15 @@ public class SignUp extends AppCompatActivity {
         intent.putExtra("Password",pass);
 
         //Add Transition
-        Pair[] pairs = new Pair[4];
+//        Pair[] pairs = new Pair[4];
+//
+//        pairs[0] = new Pair<View, String>(backBtn, "backarrow_tran");
+//        pairs[1] = new Pair<View, String>(next, "next_tran");
+//        pairs[2] = new Pair<View, String>(login, "login_signup_tran");
+//        pairs[3] = new Pair<View, String>(titleText, "title_tran");
 
-        pairs[0] = new Pair<View, String>(backBtn, "backarrow_tran");
-        pairs[1] = new Pair<View, String>(next, "next_tran");
-        pairs[2] = new Pair<View, String>(login, "login_signup_tran");
-        pairs[3] = new Pair<View, String>(titleText, "title_tran");
-
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp.this, pairs);
-        startActivity(intent, options.toBundle());
+        Bundle b = ActivityOptions.makeSceneTransitionAnimation(SignUp.this).toBundle();
+        startActivity(intent, b);
 
     }
 
