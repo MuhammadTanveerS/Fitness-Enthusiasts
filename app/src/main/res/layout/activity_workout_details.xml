@@ -222,7 +222,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"/>
 
 
         </LinearLayout>
@@ -240,6 +241,7 @@
         android:padding="13sp"
         android:fontFamily="@font/robotoregular"
         android:layout_marginBottom="10dp"
+        android:onClick="startExc"
         android:layout_marginHorizontal="40dp"
         />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

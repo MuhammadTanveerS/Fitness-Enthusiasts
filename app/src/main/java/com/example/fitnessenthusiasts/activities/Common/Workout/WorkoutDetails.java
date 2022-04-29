@@ -8,9 +8,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -42,6 +44,7 @@ public class WorkoutDetails extends AppCompatActivity {
     ArrayList<ExercisesModel> exercisesModel;
     ExercisesRecyclerViewAdapter exercisesRecyclerViewAdapter;
     RecyclerView recyclerView;
+    String workOutName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +111,7 @@ public class WorkoutDetails extends AppCompatActivity {
 
 
     private void loadExercises(){
-        String workOutName = (String) getIntent().getExtras().get("key");
+        workOutName = (String) getIntent().getExtras().get("key");
         //DB
         databaseReference = FirebaseDatabase.getInstance(getString(R.string.db_instance)).getReference("Workouts").child(workOutName).child("Exercises");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -120,7 +123,7 @@ public class WorkoutDetails extends AppCompatActivity {
 
                         ExercisesModel data = snapshot1.getValue(ExercisesModel.class);
                         exercisesModel.add(data);
-//                        Log.e("Value",data.getTime());
+                      //  Log.e("Value",snapshot1.getKey());//
 
                     }
                     exercisesRecyclerViewAdapter.notifyDataSetChanged();
@@ -135,4 +138,12 @@ public class WorkoutDetails extends AppCompatActivity {
         });
 
     }
+
+    public void startExc(View view) {
+        Intent intent = new Intent(WorkoutDetails.this,ExerciseTimer.class);
+        intent.putExtra("Workout", workOutName);
+        startActivity(intent);
+    }
+
+
 }

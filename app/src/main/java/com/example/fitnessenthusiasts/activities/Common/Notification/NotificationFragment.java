@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class NotificationFragment extends Fragment {
@@ -70,6 +71,7 @@ public class NotificationFragment extends Fragment {
                         NotificationModel notificationModel = dataSnapshot.getValue(NotificationModel.class);
                         notificationModel.setNotificationID(dataSnapshot.getKey());
                         notificationModels.add(notificationModel);
+                        Collections.reverse(notificationModels);
                     }
                     notificationAdapter.notifyDataSetChanged();
                 }

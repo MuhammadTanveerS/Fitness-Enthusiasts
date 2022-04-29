@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".activities.Common.Workout.ExerciseTimer">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="40dp"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/excAnim"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250mdp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/jumpingjacks" />
+
+        <TextView
+            android:id="@+id/readyTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="READY TO GO!"
+            android:textColor="@color/neon"
+            android:fontFamily="@font/robotoregular"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/_20mdp"/>
+
+        <TextView
+            android:id="@+id/excName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JUMPING JACKS"
+            android:textColor="@color/custom_black"
+            android:fontFamily="@font/robotoregular"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/_12mdp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/workoutProgressIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progress="0"
+                app:indicatorColor="@color/neon"
+                app:indicatorSize="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:trackColor="@color/neon_30"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="18dp" />
+            <TextView
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/neon"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/workoutProgressIndicator"
+                app:layout_constraintEnd_toEndOf="@+id/workoutProgressIndicator"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/workoutProgressIndicator"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toggleP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PAUSE"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/neon"
+            android:layout_gravity="bottom"
+            app:icon="@drawable/ic_pause"
+            android:gravity="center"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white"
+            android:textSize="20sp"
+            android:padding="12sp"
+            android:fontFamily="@font/robotoregular"
+            android:layout_marginTop="10dp"
+            android:onClick="toggleP"
+            android:layout_marginHorizontal="40dp"
+            android:visibility="gone"
+            />
+
+
+    </LinearLayout>
+
+   <LinearLayout
+       android:id="@+id/restLayout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/neon"
+           android:layout_weight="3"
+           android:gravity="center"
+           android:orientation="vertical">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="REST"
+               android:textSize="22sp"
+               android:fontFamily="@font/robotoregular"
+               android:textColor="@color/white"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="00:00"
+               android:textSize="40sp"
+               android:fontFamily="@font/robotoregular"
+               android:textColor="@color/white"/>
+           <LinearLayout
+               android:layout_marginTop="10dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <com.google.android.material.button.MaterialButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:backgroundTint="@color/custom_black"
+                   android:textColor="@color/white"
+                   android:text="+20s"
+                   android:textAllCaps="false"
+                   app:cornerRadius="20dp"
+                   android:layout_marginHorizontal="10dp"/>
+               <com.google.android.material.button.MaterialButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:backgroundTint="@color/white"
+                   android:layout_marginHorizontal="10dp"
+                   android:textColor="@color/neon"
+                   android:text="Skip"
+                   android:textAllCaps="false"
+                   app:cornerRadius="20dp"/>
+
+           </LinearLayout>
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/white"
+           android:padding="20dp"
+           android:gravity="center_vertical"
+           android:orientation="horizontal">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingTop="25dp"
+               android:orientation="vertical"
+               android:layout_weight="3">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="NEXT"
+                   android:layout_marginVertical="5dp"
+                   android:textColor="@color/sub_greyDark"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="JUMPING JACKS"
+                   android:layout_marginVertical="5dp"
+                   android:textColor="@color/custom_black"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="00:20"
+                   android:layout_marginVertical="5dp"
+                   android:textColor="@color/sub_greyDark"/>
+
+           </LinearLayout>
+
+           <com.airbnb.lottie.LottieAnimationView
+               android:id="@+id/restAnim"
+               android:layout_weight="1"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               app:lottie_autoPlay="true"
+               app:lottie_loop="true"
+               app:lottie_rawRes="@raw/jumpingjacks" />
+
+       </LinearLayout>
+
+   </LinearLayout>
+
+
+
+</LinearLayout>

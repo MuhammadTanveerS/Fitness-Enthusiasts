@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -62,7 +63,7 @@ public class HomeFragment extends Fragment {
         postModels = new ArrayList<>();
         postAdapter = new PostAdapter(postModels,getContext());
         postRV.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        postRV.setHasFixedSize(true);
+//        postRV.setHasFixedSize(true);
 
         fetchPosts();
         viewPost();
@@ -106,11 +107,68 @@ public class HomeFragment extends Fragment {
                     PostModel post = dataSnapshot.getValue(PostModel.class);
                     post.setPostId(dataSnapshot.getKey());
                     postModels.add(post);
+                    Collections.reverse(postModels);
                 }
                 postRV.setAdapter(postAdapter);
                 postRV.hideShimmerAdapter();
                 postAdapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+
+    //For TESTING
+    //For TESTING
+    //For TESTING
+    private void fetchPosts2() {
+//        database.getReference().child("Posts").orderByChild("postLikes").equalTo(5).addValueEventListener(new ValueEventListener() {
+        database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    PostModel post = dataSnapshot.getValue(PostModel.class);
+                    post.setPostId(dataSnapshot.getKey());
+
+                    database.getReference().child("Users").child(post.getPostedBy())
+                            .child("followers").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot1) {
+                            postModels.clear();
+                            for(DataSnapshot dataSnapshot1:snapshot1.getChildren()){
+                                if(dataSnapshot1.exists()){
+
+//                                    Log.e("Hello",dataSnapshot1.getKey());
+
+                                }}
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+//                    if(post.getPostLikes()==5){
+//                        postModels.add(post);
+                    postModels.add(post);
+                    Collections.reverse(postModels);
+
+
+//
+                }
+                postRV.hideShimmerAdapter();
+                postRV.setAdapter(postAdapter);
+                postAdapter.notifyDataSetChanged();
+
+
+            }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
