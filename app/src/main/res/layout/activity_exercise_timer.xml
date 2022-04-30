@@ -126,6 +126,7 @@
                android:fontFamily="@font/robotoregular"
                android:textColor="@color/white"/>
            <TextView
+               android:id="@+id/restTV"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="00:00"
@@ -143,6 +144,7 @@
                    android:textColor="@color/white"
                    android:text="+20s"
                    android:textAllCaps="false"
+                   android:onClick="addTwentysec"
                    app:cornerRadius="20dp"
                    android:layout_marginHorizontal="10dp"/>
                <com.google.android.material.button.MaterialButton
@@ -153,6 +155,7 @@
                    android:textColor="@color/neon"
                    android:text="Skip"
                    android:textAllCaps="false"
+                   android:onClick="skipRest"
                    app:cornerRadius="20dp"/>
 
            </LinearLayout>
@@ -163,13 +166,14 @@
            android:background="@color/white"
            android:padding="20dp"
            android:gravity="center_vertical"
-           android:orientation="horizontal">
+           android:orientation="horizontal"
+           >
            <LinearLayout
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:paddingTop="25dp"
                android:orientation="vertical"
-               android:layout_weight="3">
+               android:layout_marginRight="@dimen/_100mdp">
 
                <TextView
                    android:layout_width="wrap_content"
@@ -178,12 +182,14 @@
                    android:layout_marginVertical="5dp"
                    android:textColor="@color/sub_greyDark"/>
                <TextView
+                   android:id="@+id/restExcName"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="JUMPING JACKS"
                    android:layout_marginVertical="5dp"
                    android:textColor="@color/custom_black"/>
                <TextView
+                   android:id="@+id/restExcTime"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="00:20"
@@ -194,7 +200,6 @@
 
            <com.airbnb.lottie.LottieAnimationView
                android:id="@+id/restAnim"
-               android:layout_weight="1"
                android:layout_width="wrap_content"
                android:layout_height="match_parent"
                app:lottie_autoPlay="true"

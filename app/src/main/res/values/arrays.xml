@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="vertical_ntb">
+        <item>#cf0060</item>
+        <item>#ffa300</item>
+        <item>#001fff</item>
+        <item>#ff00ff</item>
+        <item>#13a8fe</item>
+        <item>#8801fe</item>
+        <item>#05AF9F</item>
+        <item>#79fe00</item>
+    </string-array>
+</resources>
