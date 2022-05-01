@@ -113,6 +113,14 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.vi
                                     });
                                 }
                             });
+
+                            FollowModel followModel2= new FollowModel();
+                            followModel2.setFollowed(user.getUserID());
+                            followModel2.setFollowedAt(new Date().getTime());
+
+                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+                                    .getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                                    .child("following").child(user.getUserID()).setValue(followModel2);
                         }
                     });
 

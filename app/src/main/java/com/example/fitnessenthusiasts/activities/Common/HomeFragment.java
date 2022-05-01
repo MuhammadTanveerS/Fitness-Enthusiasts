@@ -20,6 +20,7 @@ import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
 import com.example.fitnessenthusiasts.activities.Databases.Session;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.PostAdapter;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.FollowModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.PostModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -125,54 +126,49 @@ public class HomeFragment extends Fragment {
     //For TESTING
     //For TESTING
     private void fetchPosts2() {
-//        database.getReference().child("Posts").orderByChild("postLikes").equalTo(5).addValueEventListener(new ValueEventListener() {
-        database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    PostModel post = dataSnapshot.getValue(PostModel.class);
-                    post.setPostId(dataSnapshot.getKey());
 
-                    database.getReference().child("Users").child(post.getPostedBy())
-                            .child("followers").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot1) {
-                            postModels.clear();
-                            for(DataSnapshot dataSnapshot1:snapshot1.getChildren()){
-                                if(dataSnapshot1.exists()){
 
-//                                    Log.e("Hello",dataSnapshot1.getKey());
+        database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child("following")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot1) {
+                        for(DataSnapshot dataSnapshot1:snapshot1.getChildren()){
+                            FollowModel fModel = dataSnapshot1.getValue(FollowModel.class);
+                            Log.e("Followed",fModel.getFollowed());
 
-                                }}
+                            database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    postModels.clear();
+                                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                                        PostModel post = dataSnapshot.getValue(PostModel.class);
+                                        post.setPostId(dataSnapshot.getKey());
 
+                                        if(post.getPostedBy().equals(fModel.getFollowed())){
+                                            Log.e("GGGGG",fModel.getFollowed());
+                                            postModels.add(post);
+                                            Collections.reverse(postModels);
+                                        }
+
+
+                                    }
+                                    postRV.setAdapter(postAdapter);
+                                    postRV.hideShimmerAdapter();
+                                    postAdapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
 
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
-
-//                    if(post.getPostLikes()==5){
-//                        postModels.add(post);
-                    postModels.add(post);
-                    Collections.reverse(postModels);
-
-
-//
-                }
-                postRV.hideShimmerAdapter();
-                postRV.setAdapter(postAdapter);
-                postAdapter.notifyDataSetChanged();
-
-
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+                    }
+                });
     }
 }

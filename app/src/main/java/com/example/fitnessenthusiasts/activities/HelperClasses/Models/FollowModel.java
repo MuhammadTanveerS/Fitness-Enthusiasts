@@ -1,7 +1,7 @@
 package com.example.fitnessenthusiasts.activities.HelperClasses.Models;
 
 public class FollowModel {
-    private String followedBy;
+    private String followedBy,followed;
     private long followedAt;
 
     public FollowModel() {
@@ -21,5 +21,13 @@ public class FollowModel {
 
     public void setFollowedAt(long followedAt) {
         this.followedAt = followedAt;
+    }
+
+    public String getFollowed() {
+        return followed;
+    }
+
+    public void setFollowed(String followed) {
+        this.followed = followed;
     }
 }

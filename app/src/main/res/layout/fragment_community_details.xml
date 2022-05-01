@@ -66,21 +66,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="HELLO MAN"
-                            android:textSize="30sp"/>
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:text="Pay Now"/>
+                            android:backgroundTint="@color/custom_black"
+                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:text="Subscribe \n $3.99/m"/>
 
                     </RelativeLayout>
 
                 </com.truizlop.fabreveallayout.FABRevealLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,14 +164,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="Suspendisse"
+                                android:text="Community Name"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Maecenas venen"
+                                android:text="Fitness Enthusiasts"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                                 android:textColor="@color/grey_80" />
 
@@ -189,14 +187,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="Phasellus"
+                                android:text="Subscription"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Proin 1256"
+                                android:text="$3.99/month"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                                 android:textColor="@color/grey_80" />
 
@@ -221,14 +219,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="Malesuada"
+                                android:text="Community Type"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Etiam porttitor"
+                                android:text="For Obese People"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                                 android:textColor="@color/grey_80" />
 
@@ -244,14 +242,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="Magna"
+                                android:text="Age"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Curabitur id"
+                                android:text="13+"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                                 android:textColor="@color/grey_80" />
 
