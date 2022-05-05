@@ -44,9 +44,20 @@
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:padding="5dp"
                 android:onClick="notifications"
+                android:padding="5dp"
                 android:src="@drawable/ic_notification"
+                app:tint="@color/custom_black" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_32mdp"
+                android:onClick="messages"
+                android:padding="5dp"
+                android:src="@drawable/ic_message"
                 app:tint="@color/custom_black" />
 
         </RelativeLayout>

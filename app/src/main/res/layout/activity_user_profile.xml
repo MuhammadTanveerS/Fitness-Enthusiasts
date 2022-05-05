@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".activities.Common.ProfileFragment">
+    tools:context=".activities.Common.Search.UserProfile">
 
     <LinearLayout
+        android:id="@+id/profileLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/profileLayout"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,132 +42,76 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileUsername">
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout12"
+                    android:id="@+id/followersly"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/followingly"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    tools:ignore="MissingConstraints,UselessParent">
 
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/noFollowers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        tools:ignore="UselessParent">
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/antic"
+                        android:maxLines="1"
+                        android:text="0"
+                        android:textColor="@color/custom_black"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText,SpUsage" />
 
-                        <TextView
-                            android:id="@+id/noPost"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:fontFamily="@font/antic"
-                            android:maxLines="1"
-                            android:text="0"
-                            android:textColor="@color/custom_black"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/noPost"
-                            android:layout_marginTop="3dp"
-                            android:fontFamily="@font/antic"
-                            android:text="Posts"
-                            android:textColor="@color/custom_black"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/noFollowers"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/antic"
+                        android:text="Followers"
+                        android:textColor="@color/custom_black"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText,SpUsage" />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/followingly"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/relativeLayout12"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <RelativeLayout
-                        android:id="@+id/followersly"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        tools:ignore="UselessParent">
-
-                        <TextView
-                            android:id="@+id/noFollowers"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:fontFamily="@font/antic"
-                            android:maxLines="1"
-                            android:text="0"
-                            android:textColor="@color/custom_black"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/noFollowers"
-                            android:layout_marginTop="3dp"
-                            android:fontFamily="@font/antic"
-                            android:text="Followers"
-                            android:textColor="@color/custom_black"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-                    </RelativeLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/relativeLayout12"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/followersly"
+                    tools:ignore="MissingConstraints,UselessParent">
 
-                    <RelativeLayout
-                        android:id="@+id/followingly"
+                    <TextView
+                        android:id="@+id/noFollowing"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        tools:ignore="UselessParent">
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/antic"
+                        android:maxLines="1"
+                        android:text="0"
+                        android:textColor="@color/custom_black"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText,SpUsage" />
 
-                        <TextView
-                            android:id="@+id/noFollowing"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:fontFamily="@font/antic"
-                            android:maxLines="1"
-                            android:text="0"
-                            android:textColor="@color/custom_black"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/noFollowing"
-                            android:layout_marginTop="3dp"
-                            android:fontFamily="@font/antic"
-                            android:text="Following"
-                            android:textColor="@color/custom_black"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/noFollowing"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/antic"
+                        android:text="Following"
+                        android:textColor="@color/custom_black"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText,SpUsage" />
                 </RelativeLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -237,46 +180,51 @@
 
 
                 <Button
-                    android:id="@+id/follow"
+                    android:id="@+id/followButton"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:backgroundTint="@color/neon"
+                    android:background="@color/custom_black"
                     android:fontFamily="@font/robotoblack"
+                    android:minHeight="@dimen/_28mdp"
                     android:text="Follow"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toStartOf="@+id/followersBtn"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/followersBtn"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/sub_grey"
-                    android:fontFamily="@font/robotoblack"
-                    android:text="Message"
-                    android:textColor="@color/custom_black"
+                    android:textColor="@color/neon"
                     app:layout_constraintEnd_toStartOf="@+id/messageBtn"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/follow"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="3dp"
+                    tools:ignore="MissingConstraints" />
 
                 <Button
                     android:id="@+id/messageBtn"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/custom_black"
+                    android:background="@color/sub_grey"
                     android:fontFamily="@font/robotoblack"
+                    android:minHeight="@dimen/_28mdp"
+                    android:text="Message"
+                    android:textColor="@color/custom_black"
+                    app:layout_constraintEnd_toStartOf="@+id/followersBtn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/followButton"
+                    app:layout_constraintTop_toTopOf="@+id/followButton" />
+
+                <Button
+                    android:id="@+id/followersBtn"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/custom_black"
+                    android:fontFamily="@font/robotoblack"
+                    android:minHeight="@dimen/_28mdp"
                     android:text="Followers"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/followersBtn"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/messageBtn"
+                    app:layout_constraintTop_toTopOf="@+id/messageBtn" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -285,16 +233,18 @@
 
     </LinearLayout>
 
+
+<!--    VISIBILITY GONE-->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_centerInParent="true"
         android:backgroundTint="@color/neon"
         android:foregroundTint="@color/neon"
         android:progressBackgroundTint="@color/neon"
         android:indeterminateTint="@color/neon"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
-</FrameLayout>
+</RelativeLayout>

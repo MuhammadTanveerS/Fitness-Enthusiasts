@@ -6,9 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilePic"
-        android:layout_width="@dimen/_50mdp"
-        android:layout_height="@dimen/_50mdp"
+        android:id="@+id/msgProfilePic"
+        android:layout_width="@dimen/_40mdp"
+        android:layout_height="@dimen/_40mdp"
         app:civ_border_color="@color/neon"
         app:civ_border_width="1dp"
         android:layout_marginStart="16dp"
@@ -18,41 +18,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="@dimen/_55mdp"
-        android:layout_alignLeft="@id/profilePic">
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="@dimen/_50mdp"
+        android:layout_alignLeft="@id/msgProfilePic">
         <TextView
-            android:id="@+id/profileName"
+            android:id="@+id/msgProfileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/custom_black"
             android:fontFamily="@font/robotoregular"
             android:textSize="16sp"
             android:text="Angelina Armstrong"/>
+
         <TextView
-            android:id="@+id/profileFollowers"
+            android:id="@+id/msgStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="15 Followers"/>
+            android:text="Tap to chat"
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/viewProfile"
+    <TextView
+        android:id="@+id/msgTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:background="@color/custom_black"
         android:fontFamily="@font/robotoregular"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
         android:padding="10dp"
-        android:text="View Profile"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:visibility="visible" />
+        android:text="6:00 PM"
+        android:visibility="visible"
+        android:textSize="12sp" />
 
 
 </RelativeLayout>

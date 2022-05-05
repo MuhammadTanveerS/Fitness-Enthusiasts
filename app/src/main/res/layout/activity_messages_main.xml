@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".activities.Common.Notification.Notifications">
+    tools:context=".activities.Common.Messages.MessagesMainActivity">
 
     <ImageView
         android:id="@+id/notif_back_button"
@@ -14,8 +13,8 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="33dp"
         android:layout_marginEnd="24dp"
+        android:onClick="msgFinish"
         android:padding="5dp"
-        android:onClick="notiFinish"
         android:src="@drawable/general_back_button"
         app:layout_constraintEnd_toStartOf="@+id/textView13"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +28,7 @@
         android:layout_marginTop="38dp"
         android:layout_marginEnd="245dp"
         android:fontFamily="@font/robotoregular"
-        android:text="Notifications"
+        android:text="Messages"
         android:textColor="@color/custom_black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,29 +48,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/msgUserRV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:tabIndicatorColor="@color/neon"
-        app:tabRippleColor="@color/neon"
-        app:tabSelectedTextColor="@color/neon" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+        tools:listitem="@layout/message_userview_layout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

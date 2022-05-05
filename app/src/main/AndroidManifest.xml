@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
+            android:name=".activities.Common.Search.UserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Common.Messages.MessagesMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.Common.Community.CommunityMainActivity"
             android:exported="false" />
         <activity
@@ -66,7 +72,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

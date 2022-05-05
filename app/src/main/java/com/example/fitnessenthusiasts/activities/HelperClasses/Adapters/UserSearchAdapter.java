@@ -1,6 +1,7 @@
 package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Search.UserProfile;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.FollowModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.NotificationModel;
@@ -52,86 +54,105 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.vi
                 .placeholder(R.drawable.placeholder_avatar)
                 .into(holder.binding.profilePic);
         holder.binding.profileName.setText(user.getFullName());
-        holder.binding.profileFollowers.setText("4");
+        if(user.getFollowersCount() == 1){
+            holder.binding.profileFollowers.setText(user.getFollowersCount()+" Follower");
+        }else{
+            holder.binding.profileFollowers.setText(user.getFollowersCount()+" Followers");
+        }
 
-        FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
-                .getReference().child("Users").child(user.getUserID())
-                .child("followers").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        holder.binding.viewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    holder.binding.followButton.setBackground(ContextCompat.getDrawable(context,R.drawable.neon_btn_radius));
-                    holder.binding.followButton.setText("Following");
-                    holder.binding.followButton.setEnabled(false);
-
-                }
-                else{
-
-                    holder.binding.followButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            notifyDataSetChanged();
-
-                            FollowModel followModel= new FollowModel();
-                            followModel.setFollowedBy(FirebaseAuth.getInstance().getUid());;
-                            followModel.setFollowedAt(new Date().getTime());
-
-                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
-                                    .getReference().child("Users").child(user.getUserID())
-                                    .child("followers").child(FirebaseAuth.getInstance().getUid())
-                                    .setValue(followModel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
-                                            .getReference().child("Users").child(user.getUserID())
-                                            .child("followersCount").setValue(user.getFollowersCount()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            holder.binding.followButton.setBackground(ContextCompat.getDrawable(context,R.drawable.neon_btn_radius));
-                                            holder.binding.followButton.setText("Following");
-                                            holder.binding.followButton.setEnabled(false);
-                                            Toast.makeText(context, "You Followed "+user.getFullName(),Toast.LENGTH_SHORT).show(); ///IMPROVVEESSSS
-
-                                            NotificationModel notificationModel = new NotificationModel();
-                                            notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
-                                            notificationModel.setNotificationAt(new Date().getTime());
-                                            notificationModel.setType("follow");
-
-                                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
-                                                    .getReference().child("Notification")
-                                                    .child(user.getUserID()).child("notifications")
-                                                    .push().setValue(notificationModel);
-
-                                            /*
-                                            ADD
-                                            FOLLOW
-                                            ON
-                                            PROFILE
-                                            ONLY
-                                             */
-                                        }
-                                    });
-                                }
-                            });
-
-                            FollowModel followModel2= new FollowModel();
-                            followModel2.setFollowed(user.getUserID());
-                            followModel2.setFollowedAt(new Date().getTime());
-
-                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
-                                    .getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
-                                    .child("following").child(user.getUserID()).setValue(followModel2);
-                        }
-                    });
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UserProfile.class);
+                intent.putExtra("userId",user.getUserID());
+                intent.putExtra("userFName",user.getFullName());
+                intent.putExtra("userName",user.getUsername());
+                intent.putExtra("userFollowersCount",user.getFollowersCount());
+                intent.putExtra("userPhoto",user.getProfilePhoto());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
+
+
+//        FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+//                .getReference().child("Users").child(user.getUserID())
+//                .child("followers").child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    holder.binding.followButton.setBackground(ContextCompat.getDrawable(context,R.drawable.neon_btn_radius));
+//                    holder.binding.followButton.setText("Following");
+//                    holder.binding.followButton.setEnabled(false);
+//
+//                }
+//                else{
+//
+//                    holder.binding.followButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            notifyDataSetChanged();
+//
+//                            FollowModel followModel= new FollowModel();
+//                            followModel.setFollowedBy(FirebaseAuth.getInstance().getUid());;
+//                            followModel.setFollowedAt(new Date().getTime());
+//
+//                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+//                                    .getReference().child("Users").child(user.getUserID())
+//                                    .child("followers").child(FirebaseAuth.getInstance().getUid())
+//                                    .setValue(followModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                @Override
+//                                public void onSuccess(Void unused) {
+//                                    FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+//                                            .getReference().child("Users").child(user.getUserID())
+//                                            .child("followersCount").setValue(user.getFollowersCount()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                        @Override
+//                                        public void onSuccess(Void unused) {
+//                                            holder.binding.followButton.setBackground(ContextCompat.getDrawable(context,R.drawable.neon_btn_radius));
+//                                            holder.binding.followButton.setText("Following");
+//                                            holder.binding.followButton.setEnabled(false);
+//                                            Toast.makeText(context, "You Followed "+user.getFullName(),Toast.LENGTH_SHORT).show(); ///IMPROVVEESSSS
+//
+//                                            NotificationModel notificationModel = new NotificationModel();
+//                                            notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+//                                            notificationModel.setNotificationAt(new Date().getTime());
+//                                            notificationModel.setType("follow");
+//
+//                                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+//                                                    .getReference().child("Notification")
+//                                                    .child(user.getUserID()).child("notifications")
+//                                                    .push().setValue(notificationModel);
+//
+//                                            /*
+//                                            ADD
+//                                            FOLLOW
+//                                            ON
+//                                            PROFILE
+//                                            ONLY
+//                                             */
+//                                        }
+//                                    });
+//                                }
+//                            });
+//
+//                            FollowModel followModel2= new FollowModel();
+//                            followModel2.setFollowed(user.getUserID());
+//                            followModel2.setFollowedAt(new Date().getTime());
+//
+//                            FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+//                                    .getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+//                                    .child("following").child(user.getUserID()).setValue(followModel2);
+//                        }
+//                    });
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
 
     }
