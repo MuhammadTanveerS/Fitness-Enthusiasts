@@ -72,39 +72,45 @@ public class MessagesMainActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                            String str=dataSnapshot.getKey();
-                            int length = FirebaseAuth.getInstance().getUid().length();
-                            String subStr=str.substring(0,length);
+                        if(snapshot.exists()){
+                            for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                                String str=dataSnapshot.getKey();
+                                int length = FirebaseAuth.getInstance().getUid().length();
+                                String subStr=str.substring(0,length);
+                                Log.e(str,subStr);
 
-                            if(FirebaseAuth.getInstance().getUid().equals(subStr)){
-                                String userId = str.substring(length);
-                                conUsers.add(userId);
+                                if(FirebaseAuth.getInstance().getUid().equals(subStr)){
+                                    String userId = str.substring(length);
+                                    conUsers.add(userId);
+                                }
+
+                            }
+                            for(int i=0;i<conUsers.size();i++){
+                                database.getReference().child("Users")
+                                        .child(conUsers.get(i))
+                                        .addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot1) {
+                                                users.clear();
+                                                UserHelperClass user = snapshot1.getValue(UserHelperClass.class);
+                                                user.setUserID(snapshot1.getKey());
+//                                            Log.e("GG",user.getFullName());
+                                                users.add(user);
+                                                binding.progressBar.setVisibility(View.GONE);
+                                                adapter.notifyDataSetChanged();
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+//                            Log.e("GG",conUsers.get(i));
                             }
 
                         }
-                        for(int i=0;i<conUsers.size();i++){
-                            database.getReference().child("Users")
-                                    .child(conUsers.get(i))
-                                    .addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot1) {
-                                            users.clear();
-                                            UserHelperClass user = snapshot1.getValue(UserHelperClass.class);
-                                            user.setUserID(snapshot1.getKey());
-//                                            Log.e("GG",user.getFullName());
-                                            users.add(user);
-                                            binding.progressBar.setVisibility(View.GONE);
-                                            adapter.notifyDataSetChanged();
-                                        }
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-//                            Log.e("GG",conUsers.get(i));
-                        }
+                        binding.progressBar.setVisibility(View.GONE);
 
                     }
 
@@ -117,5 +123,20 @@ public class MessagesMainActivity extends AppCompatActivity {
 
     public void msgFinish(View view) {
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("UserStatus").child(currentId).setValue("Online");
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("UserStatus").child(currentId).setValue("Offline");
     }
 }

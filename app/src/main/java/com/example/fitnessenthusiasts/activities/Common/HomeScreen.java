@@ -30,6 +30,7 @@ import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -42,6 +43,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     ImageView navIcon;
     Session session;
     View header;
+    FirebaseDatabase database;
     TextView menuName;
 
     ActivityHomeScreenBinding binding;
@@ -55,6 +57,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
 
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
         //Testing Session
         session = new Session(this);
 
@@ -190,6 +193,20 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     public void messages(View view) {
         startActivity(new Intent(getApplicationContext(), MessagesMainActivity.class));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("UserStatus").child(currentId).setValue("Online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("UserStatus").child(currentId).setValue("Offline");
     }
 
 

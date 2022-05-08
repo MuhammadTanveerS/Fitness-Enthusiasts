@@ -65,6 +65,18 @@
                 app:fontFamily="@font/robotoregular"
                 android:textSize="@dimen/_12mdp"/>
 
+            <TextView
+                android:id="@+id/chatStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Online"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/custom_black"
+                android:layout_marginLeft="2dp"
+                app:fontFamily="@font/robotoregular"
+                android:textSize="@dimen/_10mdp"
+                android:visibility="gone"/>
+
 
         </LinearLayout>
 

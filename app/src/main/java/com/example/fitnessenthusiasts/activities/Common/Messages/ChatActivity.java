@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -59,8 +62,12 @@ public class ChatActivity extends AppCompatActivity {
         receiverRoom = receiverUid + senderUid;
 
         getMessages();
+        checkUserStatus();
+        listenText();
 
     }
+
+
     private void getDataFromIntent() {
         userId =    intent.getStringExtra("userId");
         userFName = intent.getStringExtra("userFName");
@@ -125,5 +132,74 @@ public class ChatActivity extends AppCompatActivity {
 
                             }
                 });
+    }
+
+
+    private void checkUserStatus(){
+        database.getReference().child("UserStatus").child(receiverUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    String status = snapshot.getValue(String.class);
+                    if(!status.isEmpty()){
+                        if(status.equals("Offline")){
+                            binding.chatStatus.setVisibility(View.GONE);
+                        }else{
+                            binding.chatStatus.setText(status);
+                            binding.chatStatus.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void listenText() {
+        final Handler handler = new Handler();
+
+        binding.msgContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                database.getReference().child("UserStatus").child(FirebaseAuth.getInstance().getUid()).setValue("typing....");
+                handler.removeCallbacksAndMessages(null);
+                handler.postDelayed(typingStopped,1000);
+            }
+            Runnable typingStopped = new Runnable() {
+                @Override
+                public void run() {
+                    database.getReference().child("UserStatus").child(FirebaseAuth.getInstance().getUid()).setValue("Online");
+                }
+            };
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("UserStatus").child(currentId).setValue("Online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("UserStatus").child(currentId).setValue("Offline");
     }
 }
