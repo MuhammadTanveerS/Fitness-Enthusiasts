@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Messages.ChatActivity;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.FollowModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.NotificationModel;
 import com.example.fitnessenthusiasts.databinding.ActivityUserProfileBinding;
@@ -37,7 +38,6 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityUserProfileBinding.inflate(getLayoutInflater());
-        ;
         setContentView(binding.getRoot());
 
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
@@ -146,5 +146,14 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void OpenChat(View view) {
+        Intent intent = new Intent(UserProfile.this, ChatActivity.class);
+        intent.putExtra("userId",userId);
+        intent.putExtra("userFName",userFName);
+        intent.putExtra("userPhoto",userPhoto);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

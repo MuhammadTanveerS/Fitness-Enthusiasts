@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
+            android:name=".activities.Common.Messages.ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.Common.Search.UserProfile"
             android:exported="false" />
         <activity
