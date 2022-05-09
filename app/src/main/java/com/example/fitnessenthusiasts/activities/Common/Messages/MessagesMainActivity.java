@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -138,5 +139,9 @@ public class MessagesMainActivity extends AppCompatActivity {
         super.onPause();
         String currentId = FirebaseAuth.getInstance().getUid();
         database.getReference().child("UserStatus").child(currentId).setValue("Offline");
+    }
+
+    public void viewUsersForChat(View view) {
+        startActivity(new Intent(this,ViewUsers.class));
     }
 }

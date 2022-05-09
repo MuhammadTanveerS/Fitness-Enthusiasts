@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.Messages.MessagesMainActivity;
@@ -28,9 +29,11 @@ import com.example.fitnessenthusiasts.activities.Databases.Session;
 import com.example.fitnessenthusiasts.activities.LogReg.StartUpScreen;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -117,6 +120,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 .into(menuImage);
         ///SOLVVEEEE
 
+        generateToken();
     }
 
     //Method for navigation drawer
@@ -195,6 +199,22 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         startActivity(new Intent(getApplicationContext(), MessagesMainActivity.class));
     }
 
+    private void generateToken(){
+        FirebaseMessaging.getInstance()
+                .getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        HashMap<String ,Object> map = new HashMap<>();
+                        map.put("token",s);
+                        database.getReference().child("Users")
+                                .child(FirebaseAuth.getInstance().getUid())
+                                .updateChildren(map);
+
+                    }
+                });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -208,6 +228,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         String currentId = FirebaseAuth.getInstance().getUid();
         database.getReference().child("UserStatus").child(currentId).setValue("Offline");
     }
+
 
 
 }

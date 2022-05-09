@@ -12,7 +12,14 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.MessageAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.MessageModel;
@@ -26,14 +33,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
     ActivityChatBinding binding;
     Intent intent;
-    String userId, userFName, userPhoto;
+    String userId, userFName, userPhoto, token;
     String senderUid,receiverUid,senderRoom,receiverRoom;
     MessageAdapter adapter;
     FirebaseDatabase database;
@@ -53,8 +63,11 @@ public class ChatActivity extends AppCompatActivity {
 
         messageModels = new ArrayList<>();
         adapter = new MessageAdapter(this,messageModels);
-        binding.chatRV.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager.setReverseLayout(true);
+        binding.chatRV.setLayoutManager(linearLayoutManager);
         binding.chatRV.setAdapter(adapter);
+//        binding.chatRV.scrollToPosition(items.size() - 1);
 
         receiverUid = userId;
         senderUid = FirebaseAuth.getInstance().getUid();
@@ -72,7 +85,7 @@ public class ChatActivity extends AppCompatActivity {
         userId =    intent.getStringExtra("userId");
         userFName = intent.getStringExtra("userFName");
         userPhoto = intent.getStringExtra("userPhoto");
-
+        token = intent.getStringExtra("token");
 
         binding.chatName.setText(userFName);
         Picasso.get()
@@ -93,6 +106,7 @@ public class ChatActivity extends AppCompatActivity {
                             messageModels.add(model);
                         }
                         adapter.notifyDataSetChanged();
+                        binding.chatRV.scrollToPosition(messageModels.size() - 1);
                     }
 
                     @Override
@@ -128,7 +142,13 @@ public class ChatActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
 
                         database.getReference().child("Chats").child(receiverRoom)
-                                .child("messages").push().setValue(model);
+                                .child("messages").push().setValue(model)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        sendNotification(userFName,model.getContent(),token);
+                                    }
+                                });
 
                             }
                 });
@@ -187,6 +207,46 @@ public class ChatActivity extends AppCompatActivity {
                 }
             };
         });
+    }
+
+    private void sendNotification(String name, String content, String token){
+        try {
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = "https://fcm.googleapis.com/fcm/send";
+
+            JSONObject data = new JSONObject();
+            data.put("title", name);
+            data.put("body", content);
+
+            JSONObject notificationData = new JSONObject();
+            notificationData.put("notification",data);
+            notificationData.put("to",token);
+
+            JsonObjectRequest request = new JsonObjectRequest(url, notificationData
+                    , new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(ChatActivity.this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String,String> map = new HashMap<>();
+                    String key = "Key=AAAA_Vfot6Q:APA91bGwel3qlwaZaDZ7oM77N9XQjMOwyzAm5pR7kcB4K63D-nt_gtsrUnBwcpe37qSCNA0nX0BmJNaHV0lVE_mHxKEGZu2xWTWwekPIlAmrEtvMcP7FLGeHhgQQUi2FQruAl671CdNA";
+                    map.put("Authorization",key);
+                    map.put("Content-Type","application/json");
+                    return map;
+                }
+            };
+            queue.add(request);
+        } catch (Exception ex){
+
+        }
     }
 
     @Override

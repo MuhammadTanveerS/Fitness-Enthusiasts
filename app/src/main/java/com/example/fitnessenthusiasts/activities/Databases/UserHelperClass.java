@@ -8,7 +8,7 @@ public class UserHelperClass {
     String password;
     String date;
     String gender;
-    String profilePhoto,userID,weight,height;
+    String profilePhoto,userID,weight,height,token;
     int followersCount;
 
     public UserHelperClass(){}
@@ -108,5 +108,13 @@ public class UserHelperClass {
 
     public void setHeight(String height) {
         this.height = height;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

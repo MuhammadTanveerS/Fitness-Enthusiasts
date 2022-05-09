@@ -87,6 +87,7 @@ public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.
                 intent.putExtra("userId",model.getUserID());
                 intent.putExtra("userFName",model.getFullName());
                 intent.putExtra("userPhoto",model.getProfilePhoto());
+                intent.putExtra("token",model.getToken());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

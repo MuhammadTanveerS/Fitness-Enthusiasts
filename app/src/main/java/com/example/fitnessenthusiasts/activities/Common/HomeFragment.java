@@ -63,7 +63,9 @@ public class HomeFragment extends Fragment {
 
         postModels = new ArrayList<>();
         postAdapter = new PostAdapter(postModels,getContext());
-        postRV.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
+//        linearLayoutManager.setReverseLayout(true);
+        postRV.setLayoutManager(linearLayoutManager);
 //        postRV.setHasFixedSize(true);
 
         fetchPosts();

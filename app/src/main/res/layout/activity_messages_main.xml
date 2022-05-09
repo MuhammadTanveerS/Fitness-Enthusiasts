@@ -78,4 +78,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/neon"
+        android:clickable="true"
+        app:borderWidth="0dp"
+        app:fabCustomSize="@dimen/_50mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="viewUsersForChat"
+        app:maxImageSize="@dimen/_25mdp"
+        app:srcCompat="@drawable/ic_chat" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
