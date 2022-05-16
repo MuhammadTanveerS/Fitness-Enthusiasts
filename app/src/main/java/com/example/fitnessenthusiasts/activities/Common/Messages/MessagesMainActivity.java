@@ -1,14 +1,13 @@
 package com.example.fitnessenthusiasts.activities.Common.Messages;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
@@ -37,6 +36,7 @@ public class MessagesMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMessagesMainBinding.inflate(getLayoutInflater());
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(binding.getRoot());
 
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
@@ -74,6 +74,7 @@ public class MessagesMainActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         if(snapshot.exists()){
+                            users.clear();
                             for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                                 String str=dataSnapshot.getKey();
                                 int length = FirebaseAuth.getInstance().getUid().length();
@@ -92,7 +93,6 @@ public class MessagesMainActivity extends AppCompatActivity {
                                         .addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot1) {
-                                                users.clear();
                                                 UserHelperClass user = snapshot1.getValue(UserHelperClass.class);
                                                 user.setUserID(snapshot1.getKey());
 //                                            Log.e("GG",user.getFullName());

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.fitnessenthusiasts.activities.Common.Community.CommunityDetailsFragment;
+import com.example.fitnessenthusiasts.activities.Common.Community.CommunityLeaderboardFragment;
 import com.example.fitnessenthusiasts.activities.Common.Notification.ImportantFragment;
 import com.example.fitnessenthusiasts.activities.Common.Notification.NotificationFragment;
 import com.example.fitnessenthusiasts.activities.Common.ProfileFragment;
@@ -23,7 +24,7 @@ public class CommunityViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0: return  new CommunityDetailsFragment();
-            case 1: return  new ImportantFragment();
+            case 1: return  new CommunityLeaderboardFragment();
             case 4: return new WorkoutsFragment();
             case 5: return new ProfileFragment();
             case 6: return new WorkoutsFragment();

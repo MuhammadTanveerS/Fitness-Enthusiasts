@@ -1,23 +1,49 @@
 package com.example.fitnessenthusiasts.activities.Common;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Activities.DiaryFragment;
+import com.example.fitnessenthusiasts.databinding.FragmentActivityBinding;
+import com.example.fitnessenthusiasts.databinding.FragmentPostBinding;
 
 
 public class ActivityFragment extends Fragment {
 
+    FragmentActivityBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_activity, container, false);
+        binding = FragmentActivityBinding.inflate(inflater,container, false);
+
+        openDiary();
+
+        return binding.getRoot();
+    }
+
+    private void openDiary(){
+
+        binding.diaryCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_in,R.anim.fragment_out);
+                fragmentTransaction.replace(R.id.frame_layout,new DiaryFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
     }
 }
