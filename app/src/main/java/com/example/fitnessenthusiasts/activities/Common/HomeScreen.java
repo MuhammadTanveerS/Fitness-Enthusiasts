@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Activities.PlanMainActivity;
 import com.example.fitnessenthusiasts.activities.Common.Messages.MessagesMainActivity;
 import com.example.fitnessenthusiasts.activities.Common.Notification.Notifications;
 import com.example.fitnessenthusiasts.activities.Common.Search.SearchPeople;
@@ -170,6 +171,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 return true;
             case R.id.nav_find:
                 startActivity(new Intent(getApplicationContext(), SearchPeople.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return false;
+            case R.id.test:
+                startActivity(new Intent(getApplicationContext(), PlanMainActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             case R.id.nav_logout:

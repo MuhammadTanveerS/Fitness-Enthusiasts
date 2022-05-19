@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Common.Activities.PlansFragment">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotoblack"
+            android:padding="18dp"
+            android:text="Plans"
+            android:textAllCaps="true"
+            android:textColor="@color/neon"
+            android:textSize="20sp" />
+        <include
+            layout="@layout/plans_view_layout"/>
+        <include
+            layout="@layout/plans_view_layout"/>
+        <include
+            layout="@layout/plans_view_layout"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/plansRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

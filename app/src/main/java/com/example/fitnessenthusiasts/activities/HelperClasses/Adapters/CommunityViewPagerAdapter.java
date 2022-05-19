@@ -25,6 +25,8 @@ public class CommunityViewPagerAdapter extends FragmentPagerAdapter {
         switch (position){
             case 0: return  new CommunityDetailsFragment();
             case 1: return  new CommunityLeaderboardFragment();
+            case 2: return new WorkoutsFragment();
+            case 3: return new WorkoutsFragment();
             case 4: return new WorkoutsFragment();
             case 5: return new ProfileFragment();
             case 6: return new WorkoutsFragment();

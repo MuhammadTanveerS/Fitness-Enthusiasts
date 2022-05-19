@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.Activities.DiaryFragment;
+import com.example.fitnessenthusiasts.activities.Common.Activities.PlansFragment;
 import com.example.fitnessenthusiasts.databinding.FragmentActivityBinding;
 import com.example.fitnessenthusiasts.databinding.FragmentPostBinding;
 
@@ -27,6 +28,7 @@ public class ActivityFragment extends Fragment {
         binding = FragmentActivityBinding.inflate(inflater,container, false);
 
         openDiary();
+        openPlans();
 
         return binding.getRoot();
     }
@@ -40,6 +42,22 @@ public class ActivityFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.fragment_in,R.anim.fragment_out);
                 fragmentTransaction.replace(R.id.frame_layout,new DiaryFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+    }
+
+    private void openPlans(){
+
+        binding.plansCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_in,R.anim.fragment_out);
+                fragmentTransaction.replace(R.id.frame_layout,new PlansFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

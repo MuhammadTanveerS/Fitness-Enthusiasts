@@ -15,7 +15,7 @@
             android:icon="@drawable/field_user_icon"/>
 
         <item
-            android:id="@+id/nav_home2"
+            android:id="@+id/test"
             android:title="Test"
             android:icon="@drawable/field_user_icon"/>
 

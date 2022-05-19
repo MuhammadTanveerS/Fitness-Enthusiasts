@@ -15,6 +15,7 @@
         android:layout_gravity="right|center"
         android:gravity="center">
         <TextView
+            android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4"
@@ -33,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="@dimen/_50mdp"
-        app:cardBackgroundColor="@color/grey_40">
+        app:cardBackgroundColor="@color/black">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profilePic"
             android:layout_width="@dimen/_40mdp"
@@ -45,15 +46,17 @@
             android:layout_marginLeft="@dimen/_40mdp"
             android:src="@drawable/avatar_female" />
         <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/custom_black"
+            android:textColor="@color/white"
             android:fontFamily="@font/robotoregular"
             android:textSize="16sp"
-            android:layout_marginLeft="@dimen/_70mdp"
+            android:layout_marginLeft="@dimen/_45mdp"
             android:layout_gravity="center_vertical"
             android:text=" @username"/>
         <TextView
+            android:id="@+id/points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/neon"

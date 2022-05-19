@@ -42,68 +42,61 @@ public class CommunityMainActivity extends AppCompatActivity {
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_first),
+                        getResources().getDrawable(R.drawable.ic_home),
                         Color.parseColor(colors[0]))
-                        .title("ic_first")
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
-                        .build()
-        );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_second),
-                        Color.parseColor(colors[1]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
-                        .title("ic_second")
-                        .build()
-        );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_second),
-                        Color.parseColor(colors[2]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
-                        .title("ic_third")
-                        .build()
-        );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_fourth),
-                        Color.parseColor(colors[3]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
-                        .title("ic_fourth")
-                        .build()
-        );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_fifth),
-                        Color.parseColor(colors[4]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
-                        .title("ic_fifth")
+                        .title("home")
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_home))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.drawable.ic_sixth),
+                        Color.parseColor(colors[1]))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_sixth))
+                        .title("leaderboard")
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_workout),
+                        Color.parseColor(colors[2]))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_workout))
+                        .title("workouts")
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_dietplan),
+                        Color.parseColor(colors[3]))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_dietplan))
+                        .title("plans")
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_chat),
+                        Color.parseColor(colors[4]))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_chat))
+                        .title("ic_fifth")
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_trainer),
                         Color.parseColor(colors[5]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_trainer))
                         .title("ic_sixth")
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_seventh),
+                        getResources().getDrawable(R.drawable.ic_exit),
                         Color.parseColor(colors[6]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_exit))
                         .title("ic_seventh")
                         .build()
         );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_eighth),
-                        Color.parseColor(colors[7]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
-                        .title("ic_eighth")
-                        .build()
-        );
+
 
         navigationTabBar.setModels(models);
         navigationTabBar.setViewPager(viewPager, 0);

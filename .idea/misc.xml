@@ -32,6 +32,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/ic_act_hr.xml" value="0.18" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/ic_act_wo.xml" value="0.314" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/ic_add.xml" value="0.211" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/ic_error.xml" value="0.3115" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/ic_fit.xml" value="0.24097222222222223" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/ic_foto.xml" value="0.2255" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/ic_home.xml" value="0.1" />
@@ -51,6 +52,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_main.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_messages_main.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_notifications.xml" value="0.265625" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_plan_main.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_search_people.xml" value="0.25" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_settings.xml" value="0.33" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
@@ -73,6 +75,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_home.xml" value="0.2082018927444795" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_important.xml" value="0.25" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_notification.xml" value="0.265625" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_plans.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_post.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_workouts.xml" value="0.265625" />
@@ -86,13 +89,14 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/message_sent_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/message_userview_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/notification_view_layout.xml" value="0.265625" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/plans_view_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/post_demo_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/posts_view_layout.xml" value="0.2114695340501792" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/tessssstttt.xml" value="0.25" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/usersearch_view_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/workouts_view_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
-        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/menu/main_menu.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.183" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.183" />
       </map>
