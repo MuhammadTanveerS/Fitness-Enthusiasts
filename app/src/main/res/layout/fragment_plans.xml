@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.Common.Activities.PlansFragment">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -22,17 +23,14 @@
             android:textAllCaps="true"
             android:textColor="@color/neon"
             android:textSize="20sp" />
-        <include
-            layout="@layout/plans_view_layout"/>
-        <include
-            layout="@layout/plans_view_layout"/>
-        <include
-            layout="@layout/plans_view_layout"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/plansRV"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/plans_view_layout">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>

@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/planCV"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_185mdp"
         android:layout_marginStart="8dp"
@@ -24,13 +25,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/image1"
+                android:id="@+id/planImage"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/protein_diet_image" />
 
             <TextView
+                android:id="@+id/planName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10mdp"
@@ -42,6 +44,7 @@
                 android:textSize="@dimen/_16font_mdp"/>
 
             <TextView
+                android:id="@+id/planDaysAndType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_12mdp"

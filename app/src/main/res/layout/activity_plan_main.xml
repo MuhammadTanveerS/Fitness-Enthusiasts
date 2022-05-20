@@ -23,7 +23,7 @@
             app:titleEnabled="false">
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/planImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -60,17 +60,23 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/planName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="High Protein"
                     android:fontFamily="@font/robotoblack"
+                    android:drawableLeft="@drawable/white_back_button"
+                    android:drawablePadding="@dimen/_10mdp"
+                    android:onClick="finish"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@android:color/white" />
 
                 <TextView
+                    android:id="@+id/planDaysAndType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    android:layout_marginLeft="@dimen/_30mdp"
                     android:text="28 days ● Daily"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/custom_black" />
@@ -133,6 +139,7 @@
                     android:paddingTop="5dp">
 
                     <TextView
+                        android:id="@+id/planDetails"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -147,5 +154,17 @@
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FOLLOW PLAN"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/neon"
+        android:layout_gravity="bottom"
+        android:textSize="20sp"
+        android:padding="13sp"
+        android:fontFamily="@font/robotoregular"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="40dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
