@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.MainActivity;
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Activities.PlanMainActivity;
 import com.example.fitnessenthusiasts.activities.Common.HomeScreen;
 import com.example.fitnessenthusiasts.activities.Databases.Session;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
@@ -98,8 +99,26 @@ public class StartUpScreen extends AppCompatActivity {
                         Session session = new Session(StartUpScreen.this);
                         Log.e("1",user.getFullName());
                         session.saveSession(user);
+
+                        /*
+                        USE
+                        THIS
+                        For
+                        LATER
+                         */
+//                        if(user.getTrainer()){
+//                            dialog.dismiss();
+//                            Log.e("ss","it Exixst");
+//                            startActivity(new Intent(StartUpScreen.this, PlanMainActivity.class));
+//                        }else{
+//                            dialog.dismiss();
+//                            Log.e("gg","it dont Exixst");
+//                            startActivity(new Intent(StartUpScreen.this, HomeScreen.class));
+//                        }
+
                         dialog.dismiss();
                         startActivity(new Intent(StartUpScreen.this, HomeScreen.class));
+
                     }
                 }
 

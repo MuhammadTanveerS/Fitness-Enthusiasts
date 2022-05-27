@@ -174,7 +174,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             case R.id.test:
-                startActivity(new Intent(getApplicationContext(), PlanMainActivity.class));
+                startActivity(new Intent(getApplicationContext(), testMainActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             case R.id.nav_logout:

@@ -2,6 +2,7 @@ package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnessenthusiasts.MainActivity;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.Community.CommunityMainActivity;
+import com.example.fitnessenthusiasts.activities.Common.Other.CommentActivity;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CategoryModel;
 
 import java.util.ArrayList;
@@ -48,8 +50,12 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Selected "+ categoryModel.getCatName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(view.getContext(), CommunityMainActivity.class);
-                view.getContext().startActivity(intent);
+
+                Intent intent = new Intent(context, CommunityMainActivity.class);
+                intent.putExtra("comKey",categoryModel.getCatKey());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
             }
         });
 

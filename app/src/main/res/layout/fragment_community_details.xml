@@ -26,6 +26,7 @@
                 android:layout_height="250dp">
 
                 <ImageView
+                    android:id="@+id/comImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -50,7 +51,7 @@
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_send"
+                        android:src="@drawable/ic_buy"
                         app:backgroundTint="@color/neon" />
 
                     <RelativeLayout
@@ -108,6 +109,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/comTrainerName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Julie Depny"
@@ -169,6 +171,7 @@
                                 android:textColor="@color/grey_40" />
 
                             <TextView
+                                android:id="@+id/comName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Fitness Enthusiasts"
@@ -192,6 +195,7 @@
                                 android:textColor="@color/grey_40" />
 
                             <TextView
+                                android:id="@+id/comPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$3.99/month"
@@ -224,6 +228,7 @@
                                 android:textColor="@color/grey_40" />
 
                             <TextView
+                                android:id="@+id/comType"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="For Obese People"
@@ -247,6 +252,7 @@
                                 android:textColor="@color/grey_40" />
 
                             <TextView
+                                android:id="@+id/comAge"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="13+"
@@ -276,6 +282,7 @@
 
 
                     <TextView
+                        android:id="@+id/comDes1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -287,6 +294,7 @@
                         android:textColor="@color/grey_80" />
 
                     <TextView
+                        android:id="@+id/comDes2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"

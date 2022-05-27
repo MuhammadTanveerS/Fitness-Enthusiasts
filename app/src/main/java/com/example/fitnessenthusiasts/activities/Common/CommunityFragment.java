@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,8 +89,13 @@ public class CommunityFragment extends Fragment {
                     for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                     {
                         CategoriesGet i =dataSnapshot1.getValue(CategoriesGet.class);
+
                         String t = i.getCatName();
-                        categoryModels.add(new CategoryModel(t,categoryImages[i.getCatBgImage()],categoryBgImages[i.getCatImage()]));
+
+                        CategoryModel model = new CategoryModel(t,categoryImages[i.getCatBgImage()],categoryBgImages[i.getCatImage()]);
+                        model.setCatKey(dataSnapshot1.getKey());
+                        categoryModels.add(model);
+
                         progressBar.setVisibility(View.GONE);
                     }
                     categoryRecyclerViewAdapter.notifyDataSetChanged();

@@ -9,6 +9,7 @@ public class UserHelperClass {
     String date;
     String gender;
     String profilePhoto,userID,weight,height,token;
+    Boolean trainer;
     int followersCount;
 
     public UserHelperClass(){}
@@ -116,5 +117,13 @@ public class UserHelperClass {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Boolean getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Boolean trainer) {
+        this.trainer = trainer;
     }
 }

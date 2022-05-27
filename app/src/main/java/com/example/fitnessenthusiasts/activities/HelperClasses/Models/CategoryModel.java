@@ -4,7 +4,7 @@ import android.widget.RelativeLayout;
 
 public class CategoryModel {
 
-    String catName;
+    String catName,catKey;
     int catImage, catBgImage;
 
     public CategoryModel(String catName, int catImage, int catBgImage) {
@@ -25,5 +25,13 @@ public class CategoryModel {
 
     public int getCatBgImage() {
         return catBgImage;
+    }
+
+    public String getCatKey() {
+        return catKey;
+    }
+
+    public void setCatKey(String catKey) {
+        this.catKey = catKey;
     }
 }
