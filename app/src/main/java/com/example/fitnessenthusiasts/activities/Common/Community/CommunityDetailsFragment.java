@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CommunityInfoModel;
 import com.example.fitnessenthusiasts.databinding.FragmentActivityBinding;
 import com.example.fitnessenthusiasts.databinding.FragmentCommunityDetailsBinding;
@@ -29,7 +30,7 @@ public class CommunityDetailsFragment extends Fragment {
     FABRevealLayout fabRevealLayout;
     FragmentCommunityDetailsBinding binding;
     FirebaseDatabase database;
-    String key;
+    String key,name;
 
 
     public CommunityDetailsFragment() {
@@ -57,6 +58,7 @@ public class CommunityDetailsFragment extends Fragment {
         configureFABReveal(fabRevealLayout);
 
         key=((CommunityMainActivity)getActivity()).key;
+        name=((CommunityMainActivity)getActivity()).name;
         fetchDate();
         return binding.getRoot();
     }
@@ -69,21 +71,41 @@ public class CommunityDetailsFragment extends Fragment {
                         if(snapshot.exists()){
                             CommunityInfoModel model = snapshot.getValue(CommunityInfoModel.class);
 
+                            binding.comName.setText(name);
                             binding.comAge.setText(model.getAgeLimit());
                             binding.comDes1.setText(model.getDescription1());
                             binding.comDes2.setText(model.getDescription2());
+                            binding.comPrice.setText("$"+model.getPrice()+"/month");
+                            binding.comType.setText(model.getType());
+                            binding.comBtnSub.setText("Subscribe \n $"+model.getPrice()+"/m");
 
                             Picasso.get()
                                     .load(model.getImage())
                                     .placeholder(R.drawable.image_placeholder)
                                     .into(binding.comImage);
-                            /*
-                            Continue
-                            Here
-                            Later
-                            For
-                            Other Info
-                             */
+
+
+                            database.getReference().child("Users").child(model.getTrainer())
+                                    .addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                            UserHelperClass model2 = snapshot.getValue(UserHelperClass.class);
+
+                                            binding.comTrainerName.setText(model2.getFullName());
+                                            Picasso.get()
+                                                    .load(model2.getProfilePhoto())
+                                                    .placeholder(R.drawable.image_placeholder)
+                                                    .into(binding.comTrainerImage);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+
                         }
                     }
 

@@ -2,7 +2,7 @@ package com.example.fitnessenthusiasts.activities.HelperClasses.Models;
 
 public class MessageModel {
 
-    private String msgID,content,senderID;
+    private String msgID,content,senderID,senderName;
     private long time;
 
     public MessageModel() {
@@ -44,5 +44,13 @@ public class MessageModel {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
     }
 }

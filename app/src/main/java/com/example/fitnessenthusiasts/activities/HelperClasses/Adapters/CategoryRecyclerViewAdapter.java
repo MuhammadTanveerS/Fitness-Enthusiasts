@@ -53,6 +53,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
                 Intent intent = new Intent(context, CommunityMainActivity.class);
                 intent.putExtra("comKey",categoryModel.getCatKey());
+                intent.putExtra("comName",categoryModel.getCatName());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 

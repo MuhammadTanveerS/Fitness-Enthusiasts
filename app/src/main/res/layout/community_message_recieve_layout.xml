@@ -33,7 +33,19 @@
             android:paddingRight="5dp"
             android:paddingTop="5dp">
 
-
+            <TextView
+                android:id="@+id/reciever_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="@dimen/_3mdp"
+                android:text="Abdul Hakeem"
+                android:fontFamily="@font/robotolight"
+                android:textSize="@dimen/_10mdp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@android:color/black"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/msg_content"

@@ -25,7 +25,7 @@ import devlight.io.library.ntb.NavigationTabBar;
 public class CommunityMainActivity extends AppCompatActivity {
 
     Intent intent;
-    String key;
+    String key,name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,7 @@ public class CommunityMainActivity extends AppCompatActivity {
 
         intent = getIntent();
         key =intent.getStringExtra("comKey");
+        name =intent.getStringExtra("comName");
         setUpNav();
     }
 
