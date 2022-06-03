@@ -16,7 +16,13 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.CommunityViewPagerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -26,16 +32,47 @@ public class CommunityMainActivity extends AppCompatActivity {
 
     Intent intent;
     String key,name;
+    Boolean isTrainer;
+    FirebaseDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_community_main);
 
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
+
         intent = getIntent();
         key =intent.getStringExtra("comKey");
         name =intent.getStringExtra("comName");
-        setUpNav();
+        isTrainer=false;
+
+        checkTrainer();
+
+    }
+
+    private void checkTrainer() {
+        database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            UserHelperClass model = snapshot.getValue(UserHelperClass.class);
+                            if(model.getTrainer()){
+                                isTrainer = model.getTrainer();
+                            }
+                        }
+//                        Log.e("g",isTrainer+"");
+                        setUpNav();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 
     private void setUpNav() {
@@ -87,18 +124,29 @@ public class CommunityMainActivity extends AppCompatActivity {
                         .title("ic_fifth")
                         .build()
         );
+
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_home),
+                        Color.parseColor(colors[5]))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_home))
+                        .title("members")
+                        .build()
+        );
+
         models.add(
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.drawable.ic_trainer),
-                        Color.parseColor(colors[5]))
+                        Color.parseColor(colors[6]))
                         .selectedIcon(getResources().getDrawable(R.drawable.ic_trainer))
-                        .title("ic_sixth")
+                        .title("trainer")
                         .build()
         );
+
         models.add(
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.drawable.ic_exit),
-                        Color.parseColor(colors[6]))
+                        Color.parseColor(colors[7]))
                         .selectedIcon(getResources().getDrawable(R.drawable.ic_exit))
                         .title("ic_seventh")
                         .build()

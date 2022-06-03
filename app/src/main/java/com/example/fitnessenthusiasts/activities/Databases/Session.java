@@ -19,6 +19,7 @@ public class Session {
         String FULLNAME = user.getFullName();
         String PROFILEPICTURE = user.getProfilePhoto();
 
+
         editor.putString("FULLNAME",FULLNAME);
         editor.putString("PROFILEPICTURE",PROFILEPICTURE);
         editor.apply();

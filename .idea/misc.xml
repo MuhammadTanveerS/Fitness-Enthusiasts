@@ -54,6 +54,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_main.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_messages_main.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_notifications.xml" value="0.265625" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_payment.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_plan_main.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_search_people.xml" value="0.25" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_settings.xml" value="0.33" />
@@ -67,6 +68,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_view_users.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_workout_details.xml" value="0.25" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/comment_view_layout.xml" value="0.33" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/community_members_view_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/community_message_recieve_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/community_message_send_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/community_view_layout.xml" value="0.1527777777777778" />
@@ -76,6 +78,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_community_chat.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_community_details.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_community_leaderboard.xml" value="0.25" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_community_members.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_diary.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_home.xml" value="0.2082018927444795" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/fragment_important.xml" value="0.25" />

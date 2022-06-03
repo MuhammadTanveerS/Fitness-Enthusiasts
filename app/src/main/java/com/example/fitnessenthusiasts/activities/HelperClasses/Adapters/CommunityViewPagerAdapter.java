@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.fitnessenthusiasts.activities.Common.Community.CommunityChatFragment;
 import com.example.fitnessenthusiasts.activities.Common.Community.CommunityDetailsFragment;
 import com.example.fitnessenthusiasts.activities.Common.Community.CommunityLeaderboardFragment;
+import com.example.fitnessenthusiasts.activities.Common.Community.CommunityMembersFragment;
 import com.example.fitnessenthusiasts.activities.Common.Notification.ImportantFragment;
 import com.example.fitnessenthusiasts.activities.Common.Notification.NotificationFragment;
 import com.example.fitnessenthusiasts.activities.Common.ProfileFragment;
@@ -29,8 +30,9 @@ public class CommunityViewPagerAdapter extends FragmentPagerAdapter {
             case 2: return new WorkoutsFragment();
             case 3: return new WorkoutsFragment();
             case 4: return new CommunityChatFragment();
-            case 5: return new ProfileFragment();
-            case 6: return new WorkoutsFragment();
+            case 5: return new CommunityMembersFragment();
+            case 6: return new ProfileFragment();
+            case 7: return new WorkoutsFragment();
             default: return  new NotificationFragment();
         }
     }

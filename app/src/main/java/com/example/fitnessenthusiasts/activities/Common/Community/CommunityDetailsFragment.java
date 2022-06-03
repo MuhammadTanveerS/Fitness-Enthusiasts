@@ -31,6 +31,7 @@ public class CommunityDetailsFragment extends Fragment {
     FragmentCommunityDetailsBinding binding;
     FirebaseDatabase database;
     String key,name;
+    Boolean isTrainer;
 
 
     public CommunityDetailsFragment() {
@@ -57,11 +58,17 @@ public class CommunityDetailsFragment extends Fragment {
         fabRevealLayout = binding.fabRevealLayout;
         configureFABReveal(fabRevealLayout);
 
+
+
         key=((CommunityMainActivity)getActivity()).key;
         name=((CommunityMainActivity)getActivity()).name;
+        isTrainer=((CommunityMainActivity)getActivity()).isTrainer;
         fetchDate();
+        subscribe();
         return binding.getRoot();
     }
+
+
 
     private void fetchDate() {
         database.getReference().child("Communities").child(key).child("info")
@@ -85,6 +92,8 @@ public class CommunityDetailsFragment extends Fragment {
                                     .into(binding.comImage);
 
 
+
+
                             database.getReference().child("Users").child(model.getTrainer())
                                     .addValueEventListener(new ValueEventListener() {
                                         @Override
@@ -97,6 +106,15 @@ public class CommunityDetailsFragment extends Fragment {
                                                     .load(model2.getProfilePhoto())
                                                     .placeholder(R.drawable.image_placeholder)
                                                     .into(binding.comTrainerImage);
+
+                                            /*
+                                            Hide
+                                            Subscribe button
+                                            for Trainer
+                                             */
+                                            if(isTrainer){
+                                                fabRevealLayout.setVisibility(View.GONE);
+                                            }
                                         }
 
                                         @Override
@@ -135,5 +153,18 @@ public class CommunityDetailsFragment extends Fragment {
                 fabRevealLayout.revealMainView();
             }
         },2000);
+    }
+
+    private void subscribe() {
+        binding.comBtnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),PaymentActivity.class);
+                intent.putExtra("comKey",key);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }
+        });
     }
 }

@@ -143,6 +143,7 @@ public class SignUp3rd extends AppCompatActivity {
                     addNewUser.setHeight(heightInch+"");
                     addNewUser.setWeight(weightstr);
                     addNewUser.setProfilePhoto(uri.toString());
+                    addNewUser.setTrainer(false);
                     String id = task.getResult().getUser().getUid();
                     database.getReference().child("Users").child(id).setValue(addNewUser);
 
