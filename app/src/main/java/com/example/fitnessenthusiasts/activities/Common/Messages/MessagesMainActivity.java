@@ -72,7 +72,7 @@ public class MessagesMainActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                        conUsers.clear();
                         if(snapshot.exists()){
                             users.clear();
                             for(DataSnapshot dataSnapshot:snapshot.getChildren()){
@@ -88,16 +88,22 @@ public class MessagesMainActivity extends AppCompatActivity {
 
                             }
                             for(int i=0;i<conUsers.size();i++){
+                                users.clear();
                                 database.getReference().child("Users")
                                         .child(conUsers.get(i))
                                         .addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot1) {
-                                                UserHelperClass user = snapshot1.getValue(UserHelperClass.class);
-                                                user.setUserID(snapshot1.getKey());
-//                                            Log.e("GG",user.getFullName());
-                                                users.add(user);
-                                                binding.progressBar.setVisibility(View.GONE);
+
+                                                if(snapshot1.exists()){
+
+                                                    UserHelperClass user = snapshot1.getValue(UserHelperClass.class);
+
+                                                    user.setUserID(snapshot1.getKey());
+                                                    Log.e("GG",user.getFullName());
+                                                    users.add(user);
+                                                    binding.progressBar.setVisibility(View.GONE);
+                                                }
                                                 adapter.notifyDataSetChanged();
                                             }
 
