@@ -12,12 +12,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.NotificationAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.NotificationViewPagerAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.PostAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.NotificationModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -80,6 +82,22 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        TextView clear = view.findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                database.getReference().child("Notification")
+                        .child(FirebaseAuth.getInstance().getUid())
+                        .removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        notificationModels.clear();
+                        notificationAdapter.notifyDataSetChanged();
+                    }
+                });
             }
         });
 
