@@ -58,7 +58,11 @@ public class StartUpScreen extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
 
         auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();
+        if (auth != null) {
+            currentUser = auth.getCurrentUser();
+        }
+
+
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
 
     }

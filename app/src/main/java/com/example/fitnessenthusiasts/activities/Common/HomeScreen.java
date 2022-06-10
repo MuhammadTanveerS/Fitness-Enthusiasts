@@ -30,7 +30,10 @@ import com.example.fitnessenthusiasts.activities.Databases.Session;
 import com.example.fitnessenthusiasts.activities.LogReg.StartUpScreen;
 import com.example.fitnessenthusiasts.activities.testMainActivity;
 import com.example.fitnessenthusiasts.databinding.ActivityHomeScreenBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -178,8 +181,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             case R.id.nav_logout:
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), StartUpScreen.class));
+                Toast.makeText(this, "Nothing YET", Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
         }

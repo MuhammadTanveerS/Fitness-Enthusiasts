@@ -1,6 +1,7 @@
 package com.example.fitnessenthusiasts.activities.HelperClasses.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.fitnessenthusiasts.activities.HelperClasses.Models.Leaderboar
 import com.example.fitnessenthusiasts.databinding.CommunityMembersViewLayoutBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -59,6 +61,25 @@ public class CommunityMembersAdapter extends RecyclerView.Adapter<CommunityMembe
                                     .placeholder(R.drawable.placeholder_avatar)
                                     .into(holder.binding.profilePic);
 
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+                .getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                            if(!user.getTrainer()){
+                                holder.binding.btnRemove.setVisibility(View.GONE);
+                            }
                         }
                     }
 

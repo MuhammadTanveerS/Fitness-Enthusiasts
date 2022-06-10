@@ -127,9 +127,9 @@ public class CommunityMainActivity extends AppCompatActivity {
 
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_home),
+                        getResources().getDrawable(R.drawable.ic_com_members),
                         Color.parseColor(colors[5]))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_home))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_com_members))
                         .title("members")
                         .build()
         );
