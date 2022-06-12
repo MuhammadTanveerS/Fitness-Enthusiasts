@@ -66,6 +66,7 @@
                         android:src="@drawable/laderboard_up" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/photo2"
                         android:layout_width="@dimen/_75mdp"
                         android:layout_height="@dimen/_75mdp"
                         android:layout_marginBottom="@dimen/_5mdp"
@@ -74,6 +75,7 @@
                         app:civ_border_width="@dimen/_2mdp" />
 
                     <TextView
+                        android:id="@+id/username2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5mdp"
@@ -120,6 +122,7 @@
                         android:src="@drawable/laderboard_up" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/photo3"
                         android:layout_width="@dimen/_75mdp"
                         android:layout_height="@dimen/_75mdp"
                         android:layout_marginBottom="@dimen/_5mdp"
@@ -128,6 +131,7 @@
                         app:civ_border_width="@dimen/_2mdp" />
 
                     <TextView
+                        android:id="@+id/username3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5mdp"
@@ -174,6 +178,7 @@
                         android:src="@drawable/ic_crown" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/photo1"
                         android:layout_width="@dimen/_80mdp"
                         android:layout_height="@dimen/_80mdp"
                         android:layout_marginBottom="@dimen/_15mdp"
@@ -182,6 +187,7 @@
                         app:civ_border_width="@dimen/_4mdp" />
 
                     <TextView
+                        android:id="@+id/username1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotoregular"

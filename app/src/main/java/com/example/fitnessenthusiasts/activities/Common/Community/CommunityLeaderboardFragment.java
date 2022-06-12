@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.LeaderboardAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CommunitySubscriberModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.LeaderboardModel;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -91,9 +93,18 @@ public class CommunityLeaderboardFragment extends Fragment {
 
                 setTop3();
 
-                leaderboardModels.remove(0);
-                leaderboardModels.remove(0);
-                leaderboardModels.remove(0);
+                if(leaderboardModels.size() > 0){
+                    leaderboardModels.remove(0);
+                }
+                if(leaderboardModels.size() > 0){
+                    leaderboardModels.remove(0);
+                }
+                if(leaderboardModels.size() > 0){
+                    leaderboardModels.remove(0);
+                }
+
+                adapter.notifyDataSetChanged();
+
                 for(LeaderboardModel l : leaderboardModels){
                     Log.e("lead", l.getPoints()+"");
 
@@ -119,8 +130,81 @@ public class CommunityLeaderboardFragment extends Fragment {
     }
 
     private void setTop3() {
-        binding.points1.setText(top3.get(0).getPoints()+"");
-        binding.points2.setText(top3.get(1).getPoints()+"");
-        binding.points3.setText(top3.get(2).getPoints()+"");
+
+        if(top3.size() > 0){
+            binding.points1.setText(top3.get(0).getPoints()+"");
+
+            database.getReference().child("Users")
+                    .child(top3.get(0).getUserId())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                                binding.username1.setText("@"+user.getUsername());
+                                Picasso.get()
+                                        .load(user.getProfilePhoto())
+                                        .placeholder(R.drawable.placeholder_avatar)
+                                        .into(binding.photo1);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
+
+
+        if(top3.size() > 1){
+            binding.points2.setText(top3.get(1).getPoints()+"");
+            database.getReference().child("Users")
+                    .child(top3.get(1).getUserId())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                                binding.username2.setText("@"+user.getUsername());
+                                Picasso.get()
+                                        .load(user.getProfilePhoto())
+                                        .placeholder(R.drawable.placeholder_avatar)
+                                        .into(binding.photo2);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
+
+
+        if(top3.size() > 2){
+            binding.points3.setText(top3.get(2).getPoints()+"");
+            database.getReference().child("Users")
+                    .child(top3.get(2).getUserId())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                                binding.username3.setText("@"+user.getUsername());
+                                Picasso.get()
+                                        .load(user.getProfilePhoto())
+                                        .placeholder(R.drawable.placeholder_avatar)
+                                        .into(binding.photo3);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
+
     }
 }

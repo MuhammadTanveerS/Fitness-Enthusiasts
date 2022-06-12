@@ -9,8 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.LeaderboardModel;
 import com.example.fitnessenthusiasts.databinding.LeaderboardViewLayoutBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,6 +25,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     Context context;
     ArrayList<LeaderboardModel> user;
+    int pos =4;
 
     public LeaderboardAdapter(Context context, ArrayList<LeaderboardModel> user) {
         this.context = context;
@@ -37,6 +44,29 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         LeaderboardModel model = user.get(position);
 
         holder.binding.points.setText(model.getPoints()+"");
+
+        FirebaseDatabase.getInstance("https://fitness-enthusiasts-default-rtdb.firebaseio.com")
+                .getReference().child("Users").child(model.getUserId())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                            holder.binding.position.setText(pos+"");
+                            pos++;
+                            holder.binding.username.setText("@"+user.getUsername());
+                            Picasso.get()
+                                    .load(user.getProfilePhoto())
+                                    .placeholder(R.drawable.placeholder_avatar)
+                                    .into(holder.binding.profilePic);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
     }
 
