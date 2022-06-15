@@ -37,6 +37,7 @@ public class CommunityLeaderboardFragment extends Fragment {
     LeaderboardAdapter adapter;
     FirebaseDatabase database;
     String key;
+    Boolean isTrainer;
 
 
 
@@ -58,6 +59,13 @@ public class CommunityLeaderboardFragment extends Fragment {
         leaderboardModels = new ArrayList<>();
         adapter = new LeaderboardAdapter(getContext(), leaderboardModels);
         binding.leaderboardRV.setAdapter(adapter);
+
+        isTrainer=((CommunityMainActivity)getActivity()).isTrainer;
+
+        if(!isTrainer){
+            binding.toggleComp.setVisibility(View.GONE);
+        }
+
         loadData();
 
         return binding.getRoot();
