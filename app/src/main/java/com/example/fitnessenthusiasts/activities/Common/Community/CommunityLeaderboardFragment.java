@@ -1,5 +1,6 @@
 package com.example.fitnessenthusiasts.activities.Common.Community;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +16,11 @@ import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.LeaderboardAdapter;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CommunitySubscriberModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.LeaderboardModel;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.WinnersModel;
 import com.example.fitnessenthusiasts.databinding.FragmentActivityBinding;
 import com.example.fitnessenthusiasts.databinding.FragmentCommunityBinding;
 import com.example.fitnessenthusiasts.databinding.FragmentCommunityLeaderboardBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 
 public class CommunityLeaderboardFragment extends Fragment {
@@ -37,7 +41,9 @@ public class CommunityLeaderboardFragment extends Fragment {
     LeaderboardAdapter adapter;
     FirebaseDatabase database;
     String key;
-    Boolean isTrainer;
+    Boolean isTrainer,compFlag;
+    ProgressDialog dialog;
+    WinnersModel winners;
 
 
 
@@ -56,6 +62,13 @@ public class CommunityLeaderboardFragment extends Fragment {
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
         top3 = new ArrayList<>();
 
+        dialog = new ProgressDialog(getActivity(),R.style.MyAlertDialogStyle);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Performing the Operation");
+        dialog.setMessage("Please Wait ...");
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+
         leaderboardModels = new ArrayList<>();
         adapter = new LeaderboardAdapter(getContext(), leaderboardModels);
         binding.leaderboardRV.setAdapter(adapter);
@@ -67,9 +80,12 @@ public class CommunityLeaderboardFragment extends Fragment {
         }
 
         loadData();
+        toggleCompetition();
 
         return binding.getRoot();
     }
+
+
 
     private void loadData() {
 
@@ -214,5 +230,80 @@ public class CommunityLeaderboardFragment extends Fragment {
                     });
         }
 
+    }
+
+    private void toggleCompetition() {
+
+
+        database.getReference().child("Communities").child(key)
+                .child("competition").child("isStarted").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                compFlag = snapshot.getValue(Boolean.class);
+                if(compFlag){
+                    binding.toggleComp.setText("End Competition");
+                }else{
+                    binding.toggleComp.setText("Start Competition");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        binding.toggleComp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+                database.getReference().child("Communities").child(key)
+                        .child("competition").child("isStarted")
+                        .setValue(!compFlag).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        compFlag = !compFlag;
+                        if(compFlag){
+                            binding.toggleComp.setText("End Competition");
+                        }else{
+                            binding.toggleComp.setText("Start Competition");
+                            long date = new Date().getTime();
+
+                            if(top3.size() > 0){
+                                winners = new WinnersModel(top3.get(0).getUserId(),null,null,date);
+                                if(top3.size()>1){
+                                    winners = new WinnersModel(top3.get(0).getUserId(),top3.get(1).getUserId(),null,date);
+                                    if(top3.size()>2){
+                                        winners = new WinnersModel(top3.get(0).getUserId(),top3.get(1).getUserId(),top3.get(2).getUserId(),date);
+                                    }
+                                }
+                                database.getReference().child("Communities").child(key)
+                                        .child("competition").child("winners")
+                                        .push().setValue(winners);
+
+                                //Set Winners
+                                binding.leaderboardRV.setVisibility(View.GONE);
+                                binding.points1.setVisibility(View.GONE);
+                                binding.points2.setVisibility(View.GONE);
+                                binding.points3.setVisibility(View.GONE);
+//
+//                              //TEST
+                                //THIS
+                                //LATER
+                            }
+
+
+
+
+
+                        }
+                        dialog.dismiss();
+                    }
+                });
+
+
+
+            }
+        });
     }
 }

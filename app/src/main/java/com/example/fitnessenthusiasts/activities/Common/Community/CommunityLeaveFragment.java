@@ -11,11 +11,15 @@ import android.view.ViewGroup;
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.databinding.FragmentCommunityLeaveBinding;
 import com.example.fitnessenthusiasts.databinding.FragmentCommunityMembersBinding;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class CommunityLeaveFragment extends Fragment {
 
     FragmentCommunityLeaveBinding binding;
+    FirebaseDatabase database;
+
+    String key;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,12 +33,16 @@ public class CommunityLeaveFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCommunityLeaveBinding.inflate(inflater,container, false);
 
+        key=((CommunityMainActivity)getActivity()).key;
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
+
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().finish();
             }
         });
+
 
         return binding.getRoot();
     }
