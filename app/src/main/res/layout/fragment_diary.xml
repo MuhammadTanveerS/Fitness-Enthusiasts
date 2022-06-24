@@ -18,6 +18,14 @@
             android:clipToPadding="false"
             android:padding="16dp">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEARCH"
+                android:id="@+id/searchFoodBtn"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView"
+                tools:layout_editor_absoluteX="16dp" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
                 android:layout_width="match_parent"
