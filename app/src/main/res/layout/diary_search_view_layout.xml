@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="#D5EC97"
+    android:id="@+id/diarySearchLayout"
+    android:layout_marginBottom="@dimen/_2mdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_20mdp"
+        android:layout_marginTop="3dp">
+        <TextView
+            android:id="@+id/foodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/custom_black"
+            android:fontFamily="@font/robotoregular"
+            android:textSize="16sp"
+            android:text="Mango"/>
+        <TextView
+            android:id="@+id/foodDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="100 cal, Bites"/>
+    </LinearLayout>
+
+</LinearLayout>

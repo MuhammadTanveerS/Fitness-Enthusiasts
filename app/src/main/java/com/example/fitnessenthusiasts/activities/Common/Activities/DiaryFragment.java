@@ -19,6 +19,8 @@ import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.DiarySe
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.JSONPlaceholder;
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Nutrition;
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Post;
+import com.example.fitnessenthusiasts.databinding.FragmentDiaryBinding;
+import com.example.fitnessenthusiasts.databinding.FragmentPostBinding;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -36,6 +38,7 @@ public class DiaryFragment extends Fragment {
     View view;
     Retrofit retrofit;
     JSONPlaceholder jsonPlaceholder;
+    FragmentDiaryBinding binding;
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -52,15 +55,14 @@ public class DiaryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_diary, container, false);
+        binding = FragmentDiaryBinding.inflate(inflater,container, false);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://trackapi.nutritionix.com/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Button button = view.findViewById(R.id.searchFoodBtn);
-        button.setOnClickListener(new View.OnClickListener() {
+        binding.searchFoodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), DiarySearchFoods.class));
@@ -69,7 +71,7 @@ public class DiaryFragment extends Fragment {
 
         getFood2();
 
-        return view;
+        return binding.getRoot();
     }
 
     private void getFood() {
@@ -109,8 +111,8 @@ public class DiaryFragment extends Fragment {
                     Gson gson=new Gson();
                     Nutrition nutrition[] = gson.fromJson(res.get("branded").toString(), Nutrition[].class);
                     for(Nutrition n : nutrition){
-                        Log.e(TAG, n.getFood_name());
-                        Log.e(TAG, n.getNf_calories()+" cal");
+//                        Log.e(TAG, n.getFood_name());
+//                        Log.e(TAG, n.getNf_calories()+" cal");
                     }
 
                 } else {

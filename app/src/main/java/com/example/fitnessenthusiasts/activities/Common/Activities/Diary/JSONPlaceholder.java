@@ -22,4 +22,8 @@ public interface JSONPlaceholder {
     @GET("search/instant")
     Call<JsonObject> getSearchNutritions(@Query("query") String query);
 
+    @Headers({"x-app-id: b5005fad", "x-app-key: 0cbd64a1e105bfa42abd4f6579214d24"})
+    @GET("search/item")
+    Call<JsonObject> getFoodDetails(@Query("nix_item_id") String nix_item_id);
+
 }
