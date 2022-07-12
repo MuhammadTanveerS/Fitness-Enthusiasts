@@ -18,13 +18,6 @@
             android:clipToPadding="false"
             android:padding="16dp">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SEARCH"
-                android:id="@+id/searchFoodBtn"
-                app:layout_constraintTop_toTopOf="@+id/materialCardView"
-                tools:layout_editor_absoluteX="16dp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
@@ -40,8 +33,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    >
+                    android:padding="16dp">
 
                     <com.google.android.material.progressindicator.CircularProgressIndicator
                         android:id="@+id/circularProgressIndicator"
@@ -355,6 +347,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addBreakfast"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -411,6 +404,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addLunch"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -464,6 +458,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addSnacks"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -517,6 +512,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addDinner"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

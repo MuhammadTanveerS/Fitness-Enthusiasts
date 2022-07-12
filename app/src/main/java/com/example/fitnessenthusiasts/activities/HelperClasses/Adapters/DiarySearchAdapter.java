@@ -47,6 +47,7 @@ public class DiarySearchAdapter extends RecyclerView.Adapter<DiarySearchAdapter.
             public void onClick(View view) {
                 Intent intent = new Intent(context, DiaryFoodDetailsActivity.class);
                 intent.putExtra("foodId",model.getNix_item_id());
+                intent.putExtra("Linner",model.getLinner());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

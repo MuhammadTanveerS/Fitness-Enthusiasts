@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -36,6 +37,8 @@ public class DiarySearchFoods extends AppCompatActivity {
     ActivityDiarySearchFoodsBinding binding;
     DiarySearchAdapter adapter;
     ArrayList<Nutrition> nutritionModels;
+    Intent intent;
+    String Linner ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,9 @@ public class DiarySearchFoods extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityDiarySearchFoodsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        intent = getIntent();
+        Linner = intent.getStringExtra("Linner");
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://trackapi.nutritionix.com/v2/")
@@ -131,6 +137,7 @@ public class DiarySearchFoods extends AppCompatActivity {
                     Gson gson=new Gson();
                     Nutrition nutrition[] = gson.fromJson(res.get("branded").toString(), Nutrition[].class);
                     for(Nutrition n : nutrition){
+                        n.setLinner(Linner);
                         nutritionModels.add(n);
                     }
                     adapter.notifyDataSetChanged();

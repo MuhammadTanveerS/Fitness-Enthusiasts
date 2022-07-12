@@ -3,6 +3,7 @@ package com.example.fitnessenthusiasts.activities.Common.Activities.Diary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,9 @@ import com.example.fitnessenthusiasts.databinding.ActivityDiaryFoodDetailsBindin
 import com.example.fitnessenthusiasts.databinding.ActivityDiarySearchFoodsBinding;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +30,10 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
     Intent intent;
     Retrofit retrofit;
     JSONPlaceholder jsonPlaceholder;
+    private PieChart chart;
+    private int i1 = 15;
+    private int i2 = 25;
+    private int i3 = 35;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +49,11 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
 
         intent = getIntent();
         String foodId = intent.getStringExtra("foodId");
+//        foodId += " \n "+ intent.getStringExtra("Linner");
         binding.textView15.setText(foodId);
 
         fetchFoodData(foodId);
+        addToPieChart();
     }
 
         public void fetchFoodData(String id) {
@@ -81,7 +91,16 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    private void addToPieChart() {
+        // add to pie chart
 
+        binding.pieChart.addPieSlice(new PieModel("Carbs", i1, Color.parseColor("#08D9D6")));
+        binding.pieChart.addPieSlice(new PieModel("Fat", i2, Color.parseColor("#FF7396")));
+        binding.pieChart.addPieSlice(new PieModel("Protein", i3, Color.parseColor("#E8AA42")));
+//        binding.pieChart.addPieSlice(new PieModel("Integer 4", i4, Color.parseColor("#2986F6")));
+
+        binding.pieChart.startAnimation();
     }
 }

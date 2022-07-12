@@ -62,16 +62,52 @@ public class DiaryFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        binding.searchFoodBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), DiarySearchFoods.class));
-            }
-        });
-
+        addFood();
         getFood2();
 
         return binding.getRoot();
+    }
+
+    private void addFood() {
+        binding.addBreakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
+                i.putExtra("Linner","Breakfast");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+            }
+        });
+
+        binding.addLunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
+                i.putExtra("Linner","Lunch");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+            }
+        });
+
+        binding.addSnacks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
+                i.putExtra("Linner","Snacks");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+            }
+        });
+
+        binding.addDinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
+                i.putExtra("Linner","Dinner");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+            }
+        });
     }
 
     private void getFood() {

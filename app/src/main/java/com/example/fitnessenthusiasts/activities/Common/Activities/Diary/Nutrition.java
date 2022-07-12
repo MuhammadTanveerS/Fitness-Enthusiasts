@@ -2,7 +2,7 @@ package com.example.fitnessenthusiasts.activities.Common.Activities.Diary;
 
 public class Nutrition {
 
-    private String nix_item_id,food_name,nf_calories,serving_unit;
+    private String nix_item_id,food_name,nf_calories,serving_unit,Linner;
 
     public Nutrition(String nix_item_id, String food_name, String nf_calories, String serving_unit) {
         this.nix_item_id = nix_item_id;
@@ -28,5 +28,13 @@ public class Nutrition {
 
     public String getServing_unit() {
         return serving_unit;
+    }
+
+    public String getLinner() {
+        return Linner;
+    }
+
+    public void setLinner(String linner) {
+        Linner = linner;
     }
 }
