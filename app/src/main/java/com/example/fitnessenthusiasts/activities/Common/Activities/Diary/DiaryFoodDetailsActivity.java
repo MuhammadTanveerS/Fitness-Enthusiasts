@@ -34,6 +34,7 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
     private int i1 = 15;
     private int i2 = 25;
     private int i3 = 35;
+    float fat,carbs,protein;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,9 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityDiaryFoodDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.detailsLL.setVisibility(View.GONE);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://trackapi.nutritionix.com/v2/")
@@ -50,10 +54,8 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
         intent = getIntent();
         String foodId = intent.getStringExtra("foodId");
 //        foodId += " \n "+ intent.getStringExtra("Linner");
-        binding.textView15.setText(foodId);
 
         fetchFoodData(foodId);
-        addToPieChart();
     }
 
         public void fetchFoodData(String id) {
@@ -70,36 +72,57 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
                     JsonObject res = response.body();
                     String value = res.get("foods").toString();
                     Log.e("Response", value);
+
                     Gson gson=new Gson();
-//                    Nutrition nutrition[] = gson.fromJson(res.get("branded").toString(), Nutrition[].class);
-//                    for(Nutrition n : nutrition){
-//                        Log.e(TAG, n.getFood_name());
-//                        Log.e(TAG, n.getNf_calories()+" cal");
-//                        results += n.getFood_name()+" "+n.getNf_calories()+" cal\n";
-//                        tv.setText(results);
-//                        editText.setText("");
-//                    }
+                    Nutrition2[] nutrition = gson.fromJson(res.get("foods").toString(), Nutrition2[].class);
+                    Log.e("here", nutrition[0].getServing_unit());
+//
+                    binding.fdFoodName.setText(nutrition[0].getFood_name());
+                    binding.fdCalories.setText(nutrition[0].getNf_calories());
+                    binding.fdServingNum.setText(nutrition[0].getServing_qty());
+                    binding.fdServingUnit.setText(nutrition[0].getServing_unit());
+                    binding.fdServingSize.setText(nutrition[0].getServing_weight_grams()+" grams");
+
+                    carbs = nutrition[0].getNf_total_carbohydrate();
+                    fat = nutrition[0].getNf_total_fat();
+                    protein = nutrition[0].getNf_protein();
+                    binding.fdCarbs.setText(carbs+" g");
+                    binding.fdFat.setText(fat+" g");
+                    binding.fdProtein.setText(protein+" g");
+
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.detailsLL.setVisibility(View.VISIBLE);
+                    addToPieChart();
 
                 } else {
                     Log.e("TAG", "Error in getFoodDetails:" + response.code() + " " + response.message());
+                    binding.progressBar.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                binding.progressBar.setVisibility(View.GONE);
             }
         });
 
     }
 
     private void addToPieChart() {
+
+        float total = carbs+fat+protein;
+        float carbP = (carbs/total)*100;
+        float fatP = (fat/total)*100;
+        float proteinP = (protein/total)*100;
+        binding.fdCarbsPercent.setText(Math.round(carbP)+"%");
+        binding.fdFatPercent.setText(Math.round(fatP)+"%");
+        binding.fdProteinPercent.setText(Math.round(proteinP)+"%");
+
         // add to pie chart
 
-        binding.pieChart.addPieSlice(new PieModel("Carbs", i1, Color.parseColor("#08D9D6")));
-        binding.pieChart.addPieSlice(new PieModel("Fat", i2, Color.parseColor("#FF7396")));
-        binding.pieChart.addPieSlice(new PieModel("Protein", i3, Color.parseColor("#E8AA42")));
-//        binding.pieChart.addPieSlice(new PieModel("Integer 4", i4, Color.parseColor("#2986F6")));
+        binding.pieChart.addPieSlice(new PieModel("Carbs", carbs, Color.parseColor("#08D9D6")));
+        binding.pieChart.addPieSlice(new PieModel("Fat", fat, Color.parseColor("#FF7396")));
+        binding.pieChart.addPieSlice(new PieModel("Protein", protein, Color.parseColor("#E8AA42")));
 
         binding.pieChart.startAnimation();
     }

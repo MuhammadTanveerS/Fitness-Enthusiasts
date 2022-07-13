@@ -11,6 +11,7 @@
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5mdp"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -40,203 +41,308 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
+        android:visibility="visible"
         android:padding="@dimen/_12mdp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
         <TextView
+            android:id="@+id/fdFoodName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_6mdp"
+            android:fontFamily="@font/robotoblack"
             android:text="Food Name (Food Name)"
             android:textColor="@color/neon"
-            android:fontFamily="@font/robotoblack"
-            android:textSize="@dimen/_15font_mdp"
-            android:layout_marginBottom="@dimen/_6mdp"
-            />
+            android:textSize="@dimen/_15font_mdp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/_10mdp"
-            android:paddingVertical="@dimen/_8mdp"
-            >
+            android:paddingVertical="@dimen/_8mdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:textSize="@dimen/_11font_mdp"
-                android:text="Meal"/>
+                android:text="Meal"
+                android:textSize="@dimen/_11font_mdp" />
 
             <TextView
+                android:id="@+id/fdMeal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/custom_black"
-                android:text="Breakfast"/>
+                android:text="Breakfast"
+                android:textColor="@color/custom_black" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/neon"/>
+            android:background="@color/neon" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/_10mdp"
-            android:paddingVertical="@dimen/_8mdp"
-            >
+            android:paddingVertical="@dimen/_8mdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:textSize="@dimen/_11font_mdp"
-                android:text="Number of Servings"/>
+                android:text="Date"
+                android:textSize="@dimen/_11font_mdp" />
 
             <TextView
+                android:id="@+id/fdDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/custom_black"
-                android:text="1"/>
+                android:text="Jul 13, 2022"
+                android:textColor="@color/custom_black" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/neon"/>
+            android:background="@color/neon" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/_10mdp"
-            android:paddingVertical="@dimen/_8mdp"
-            >
+            android:paddingVertical="@dimen/_8mdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:textSize="@dimen/_11font_mdp"
-                android:text="Serving Size"/>
+                android:text="Total Calories"
+                android:textSize="@dimen/_11font_mdp" />
+
+            <TextView
+                android:id="@+id/fdCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="236 cal"
+                android:textColor="@color/custom_black" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/neon" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_10mdp"
+            android:paddingVertical="@dimen/_8mdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Number of Servings"
+                android:textSize="@dimen/_11font_mdp" />
+
+            <TextView
+                android:id="@+id/fdServingNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/custom_black"
-                android:text="17.0 grams"/>
+                android:text="1"
+                android:textColor="@color/custom_black" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/neon"/>
+            android:background="@color/neon" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_10mdp"
+            android:paddingVertical="@dimen/_8mdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Serving Unit"
+                android:textSize="@dimen/_11font_mdp" />
+
+            <TextView
+                android:id="@+id/fdServingUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="tbsp"
+                android:textColor="@color/custom_black" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/neon" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_10mdp"
+            android:paddingVertical="@dimen/_8mdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Serving Size"
+                android:textSize="@dimen/_11font_mdp" />
+
+            <TextView
+                android:id="@+id/fdServingSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="17.0 grams"
+                android:textColor="@color/custom_black" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/neon" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12mdp"
             android:gravity="center_vertical">
+
             <org.eazegraph.lib.charts.PieChart
-                android:layout_weight="1"
                 android:id="@+id/pie_chart"
                 android:layout_width="@dimen/_100mdp"
                 android:layout_height="@dimen/_100mdp"
+                android:layout_weight="1"
                 android:padding="10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
+
                 <TextView
+                    android:id="@+id/fdCarbsPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#08D9D6"
-                    android:text="27%"/>
+                    android:text="27%"
+                    android:textColor="#08D9D6" />
+
+                <TextView
+                    android:id="@+id/fdCarbs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10.7g"
+                    android:textColor="@color/custom_black"
+                    android:textSize="@dimen/_13mdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/custom_black"
-                    android:textSize="@dimen/_13mdp"
-                    android:text="10.7g"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/custom_black"
-                    android:text="Carbs"/>
+                    android:text="Carbs"
+                    android:textColor="@color/custom_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
+
                 <TextView
+                    android:id="@+id/fdFatPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FF7396"
-                    android:text="67%"/>
+                    android:text="67%"
+                    android:textColor="#FF7396" />
+
+                <TextView
+                    android:id="@+id/fdFat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11.7g"
+                    android:textColor="@color/custom_black"
+                    android:textSize="@dimen/_13mdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/custom_black"
-                    android:textSize="@dimen/_13mdp"
-                    android:text="11.7g"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/custom_black"
-                    android:text="Fat"/>
+                    android:text="Fat"
+                    android:textColor="@color/custom_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
+
                 <TextView
+                    android:id="@+id/fdProteinPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#E8AA42"
-                    android:text="6%"/>
+                    android:text="6%"
+                    android:textColor="#E8AA42" />
+
+                <TextView
+                    android:id="@+id/fdProtein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2g"
+                    android:textColor="@color/custom_black"
+                    android:textSize="@dimen/_13mdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/custom_black"
-                    android:textSize="@dimen/_13mdp"
-                    android:text="2g"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/custom_black"
-                    android:text="Protein"/>
+                    android:text="Protein"
+                    android:textColor="@color/custom_black" />
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView15"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="gone"
+        android:backgroundTint="@color/neon"
+        android:foregroundTint="@color/neon"
+        android:indeterminateTint="@color/neon"
+        android:progressBackgroundTint="@color/neon"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
