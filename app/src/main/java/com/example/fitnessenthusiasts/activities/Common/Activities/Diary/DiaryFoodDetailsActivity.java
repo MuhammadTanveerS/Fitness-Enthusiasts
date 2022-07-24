@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.databinding.ActivityDiaryFoodDetailsBinding;
 import com.example.fitnessenthusiasts.databinding.ActivityDiarySearchFoodsBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -35,6 +39,9 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
     private int i2 = 25;
     private int i3 = 35;
     float fat,carbs,protein;
+    String Linner, date;
+    Nutrition2[] nutrition;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +58,20 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
+
         intent = getIntent();
         String foodId = intent.getStringExtra("foodId");
-//        foodId += " \n "+ intent.getStringExtra("Linner");
+        Linner =intent.getStringExtra("Linner");
+        date =intent.getStringExtra("date");
+
+        Log.e(Linner, date);
 
         fetchFoodData(foodId);
+        addFood();
     }
 
-        public void fetchFoodData(String id) {
+    public void fetchFoodData(String id) {
 
         jsonPlaceholder = retrofit.create(JSONPlaceholder.class);
         Call<JsonObject> call = jsonPlaceholder.getFoodDetails(id);
@@ -74,7 +87,7 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
                     Log.e("Response", value);
 
                     Gson gson=new Gson();
-                    Nutrition2[] nutrition = gson.fromJson(res.get("foods").toString(), Nutrition2[].class);
+                    nutrition = gson.fromJson(res.get("foods").toString(), Nutrition2[].class);
                     Log.e("here", nutrition[0].getServing_unit());
 //
                     binding.fdFoodName.setText(nutrition[0].getFood_name());
@@ -125,5 +138,21 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
         binding.pieChart.addPieSlice(new PieModel("Protein", protein, Color.parseColor("#E8AA42")));
 
         binding.pieChart.startAnimation();
+    }
+
+    private void addFood() {
+        binding.addFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                database.getReference().child("Diary").child(FirebaseAuth.getInstance().getUid())
+                        .child(date).child(Linner).setValue(nutrition[0]).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(DiaryFoodDetailsActivity.this, "Food Added", Toast.LENGTH_SHORT).show();
+                        binding.addFood.setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
     }
 }

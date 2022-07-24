@@ -20,6 +20,11 @@
         <item name="android:windowEnterTransition">@transition/trans_anim</item>
         <item name="android:fragmentExitTransition">@transition/trans_anim</item>
 
+        <!-- Date Picker. -->
+        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
+        <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
+
     </style>
 
     <style name="navbar">

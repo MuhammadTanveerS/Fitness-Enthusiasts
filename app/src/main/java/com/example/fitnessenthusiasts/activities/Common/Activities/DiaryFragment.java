@@ -21,10 +21,16 @@ import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Nutriti
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Post;
 import com.example.fitnessenthusiasts.databinding.FragmentDiaryBinding;
 import com.example.fitnessenthusiasts.databinding.FragmentPostBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +45,7 @@ public class DiaryFragment extends Fragment {
     Retrofit retrofit;
     JSONPlaceholder jsonPlaceholder;
     FragmentDiaryBinding binding;
+    String selectedDate;
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -62,10 +69,24 @@ public class DiaryFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
+
+        setDate();
         addFood();
         getFood2();
+        getDate();
 
         return binding.getRoot();
+    }
+
+    private void setDate() {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+        selectedDate = df.format(c);
+
+        binding.currentDate.setText(selectedDate);
     }
 
     private void addFood() {
@@ -74,6 +95,7 @@ public class DiaryFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
                 i.putExtra("Linner","Breakfast");
+                i.putExtra("date",selectedDate);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
@@ -84,6 +106,7 @@ public class DiaryFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
                 i.putExtra("Linner","Lunch");
+                i.putExtra("date",selectedDate);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
@@ -94,6 +117,7 @@ public class DiaryFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
                 i.putExtra("Linner","Snacks");
+                i.putExtra("date",selectedDate);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
@@ -104,6 +128,7 @@ public class DiaryFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), DiarySearchFoods.class);
                 i.putExtra("Linner","Dinner");
+                i.putExtra("date",selectedDate);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
@@ -159,6 +184,29 @@ public class DiaryFragment extends Fragment {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private  void getDate(){
+
+        MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("SELECT DATE");
+        MaterialDatePicker materialDatePicker = builder.build();
+
+
+        binding.date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDatePicker.show(getActivity().getSupportFragmentManager(), "DATE_PICKER");
+            }
+        });
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                selectedDate = materialDatePicker.getHeaderText();
+                binding.currentDate.setText(selectedDate);
             }
         });
     }

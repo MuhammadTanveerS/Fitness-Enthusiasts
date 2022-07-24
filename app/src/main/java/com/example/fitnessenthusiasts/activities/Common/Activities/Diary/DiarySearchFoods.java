@@ -38,7 +38,7 @@ public class DiarySearchFoods extends AppCompatActivity {
     DiarySearchAdapter adapter;
     ArrayList<Nutrition> nutritionModels;
     Intent intent;
-    String Linner ="";
+    String Linner ="", date ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class DiarySearchFoods extends AppCompatActivity {
 
         intent = getIntent();
         Linner = intent.getStringExtra("Linner");
+        date = intent.getStringExtra("date");
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://trackapi.nutritionix.com/v2/")
@@ -138,6 +139,7 @@ public class DiarySearchFoods extends AppCompatActivity {
                     Nutrition nutrition[] = gson.fromJson(res.get("branded").toString(), Nutrition[].class);
                     for(Nutrition n : nutrition){
                         n.setLinner(Linner);
+                        n.setDate(date);
                         nutritionModels.add(n);
                     }
                     adapter.notifyDataSetChanged();
