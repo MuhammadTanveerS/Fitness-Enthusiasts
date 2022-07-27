@@ -145,7 +145,7 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 database.getReference().child("Diary").child(FirebaseAuth.getInstance().getUid())
-                        .child(date).child(Linner).setValue(nutrition[0]).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        .child(date).child(Linner).push().setValue(nutrition[0]).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(DiaryFoodDetailsActivity.this, "Food Added", Toast.LENGTH_SHORT).show();

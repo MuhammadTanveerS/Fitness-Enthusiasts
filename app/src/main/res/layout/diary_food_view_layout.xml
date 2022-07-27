@@ -7,44 +7,33 @@
     android:paddingVertical="4dp">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/foodName"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_box_rounded_16"
-        android:backgroundTint="#eef2f5"
-        android:padding="8dp"
-        android:text="🍊"
+        android:layout_height="wrap_content"
+        android:text="Oat milk"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/foodAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Orange juice"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="150 ml"
+        app:layout_constraintStart_toStartOf="@+id/foodName"
+        app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
     <TextView
+        android:id="@+id/foodCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="80 ml"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="28.8 kcal"
+        android:layout_marginEnd="16dp"
+        android:text="66 kcal"
         android:textColor="@color/neon"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
+        app:layout_constraintBaseline_toBaselineOf="@+id/foodName"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,15 +19,23 @@ import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.DiarySearchFoods;
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.JSONPlaceholder;
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Nutrition;
+import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Nutrition2;
 import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Post;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Adapters.DiaryAdapter;
 import com.example.fitnessenthusiasts.databinding.FragmentDiaryBinding;
 import com.example.fitnessenthusiasts.databinding.FragmentPostBinding;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -46,6 +55,9 @@ public class DiaryFragment extends Fragment {
     JSONPlaceholder jsonPlaceholder;
     FragmentDiaryBinding binding;
     String selectedDate;
+    FirebaseDatabase database;
+    DiaryAdapter breakfastAdapter;
+    ArrayList<Nutrition2> breakfastList, lunchList, snacksList, dinnerList;
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -69,12 +81,15 @@ public class DiaryFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
+        database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
+        breakfastList = new ArrayList<>();
+        breakfastAdapter = new DiaryAdapter(breakfastList, getContext());
+        binding.breakfastRV.setAdapter(breakfastAdapter);
 
         setDate();
         addFood();
-        getFood2();
         getDate();
+        getFood();
 
         return binding.getRoot();
     }
@@ -136,26 +151,27 @@ public class DiaryFragment extends Fragment {
     }
 
     private void getFood() {
-        jsonPlaceholder = retrofit.create(JSONPlaceholder.class);
-        Call<List<Post>> call = jsonPlaceholder.getPost();
-        call.enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(view.getContext(), response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                List<Post> postList = response.body();
-                for (Post p : postList){
-                    Log.e("body", p.getBody());
-                }
-            }
+       database.getReference().child("Diary").child(FirebaseAuth.getInstance().getUid())
+               .child(selectedDate).child("Breakfast").addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               if(snapshot.exists()){
+                   for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                       if(dataSnapshot.exists()){
+                           Nutrition2 nutrition2 = dataSnapshot.getValue(Nutrition2.class);
+                           breakfastList.add(nutrition2);
+                       }
+                   }
+               }
+               breakfastAdapter.notifyDataSetChanged();
 
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                Toast.makeText(view.getContext(), "Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
     }
 
     private void getFood2() {
