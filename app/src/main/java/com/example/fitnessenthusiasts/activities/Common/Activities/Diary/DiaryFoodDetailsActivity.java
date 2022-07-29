@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.databinding.ActivityDiaryFoodDetailsBinding;
-import com.example.fitnessenthusiasts.databinding.ActivityDiarySearchFoodsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -95,6 +94,8 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
                     binding.fdServingNum.setText(nutrition[0].getServing_qty());
                     binding.fdServingUnit.setText(nutrition[0].getServing_unit());
                     binding.fdServingSize.setText(nutrition[0].getServing_weight_grams()+" grams");
+                    binding.fdDate.setText(date);
+                    binding.fdMeal.setText(Linner);
 
                     carbs = nutrition[0].getNf_total_carbohydrate();
                     fat = nutrition[0].getNf_total_fat();
@@ -154,5 +155,9 @@ public class DiaryFoodDetailsActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void closeActivity(View view) {
+        finish();
     }
 }

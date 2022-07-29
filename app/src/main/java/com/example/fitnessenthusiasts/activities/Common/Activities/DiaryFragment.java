@@ -56,7 +56,7 @@ public class DiaryFragment extends Fragment {
     FragmentDiaryBinding binding;
     String selectedDate;
     FirebaseDatabase database;
-    DiaryAdapter breakfastAdapter;
+    DiaryAdapter breakfastAdapter,lunchAdapter,snacksAdapter,dinnerAdapter;
     ArrayList<Nutrition2> breakfastList, lunchList, snacksList, dinnerList;
 
     public DiaryFragment() {
@@ -82,9 +82,21 @@ public class DiaryFragment extends Fragment {
                 .build();
 
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
+
         breakfastList = new ArrayList<>();
+        lunchList = new ArrayList<>();
+        snacksList = new ArrayList<>();
+        dinnerList = new ArrayList<>();
+
         breakfastAdapter = new DiaryAdapter(breakfastList, getContext());
+        lunchAdapter = new DiaryAdapter(lunchList, getContext());
+        snacksAdapter = new DiaryAdapter(snacksList, getContext());
+        dinnerAdapter = new DiaryAdapter(dinnerList, getContext());
+
         binding.breakfastRV.setAdapter(breakfastAdapter);
+        binding.LunchRV.setAdapter(lunchAdapter);
+        binding.SnacksRV.setAdapter(snacksAdapter);
+        binding.DinnerRV.setAdapter(dinnerAdapter);
 
         setDate();
         addFood();
@@ -151,10 +163,12 @@ public class DiaryFragment extends Fragment {
     }
 
     private void getFood() {
+        //BREAKFAST
        database.getReference().child("Diary").child(FirebaseAuth.getInstance().getUid())
                .child(selectedDate).child("Breakfast").addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               breakfastList.clear();
                if(snapshot.exists()){
                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                        if(dataSnapshot.exists()){
@@ -172,6 +186,79 @@ public class DiaryFragment extends Fragment {
 
            }
        });
+
+        //LUNCH
+        database.getReference().child("Diary").child(FirebaseAuth.getInstance().getUid())
+                .child(selectedDate).child("Lunch").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lunchList.clear();
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        if(dataSnapshot.exists()){
+                            Nutrition2 nutrition2 = dataSnapshot.getValue(Nutrition2.class);
+                            lunchList.add(nutrition2);
+                        }
+                    }
+                }
+                lunchAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //SNACKS
+        database.getReference().child("Diary").child(FirebaseAuth.getInstance().getUid())
+                .child(selectedDate).child("Snacks").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                snacksList.clear();
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        if(dataSnapshot.exists()){
+                            Nutrition2 nutrition2 = dataSnapshot.getValue(Nutrition2.class);
+                            snacksList.add(nutrition2);
+                        }
+                    }
+                }
+                snacksAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //DINNER
+        database.getReference().child("Diary").child(FirebaseAuth.getInstance().getUid())
+                .child(selectedDate).child("Dinner").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dinnerList.clear();
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        if(dataSnapshot.exists()){
+                            Nutrition2 nutrition2 = dataSnapshot.getValue(Nutrition2.class);
+                            dinnerList.add(nutrition2);
+                            Log.e("Dinner", dinnerList.toString() );
+                        }
+                    }
+                }
+                dinnerAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void getFood2() {
@@ -223,6 +310,7 @@ public class DiaryFragment extends Fragment {
             public void onPositiveButtonClick(Object selection) {
                 selectedDate = materialDatePicker.getHeaderText();
                 binding.currentDate.setText(selectedDate);
+                getFood();
             }
         });
     }

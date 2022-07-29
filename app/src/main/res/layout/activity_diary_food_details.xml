@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:drawableLeft="@drawable/general_back_button"
+            android:onClick="closeActivity"
             android:paddingHorizontal="@dimen/_20mdp"
             android:paddingVertical="@dimen/_8mdp"
             android:text="      Add Food"
