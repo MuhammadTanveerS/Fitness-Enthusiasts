@@ -53,12 +53,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserHelperClass user = snapshot.getValue(UserHelperClass.class);
-                        Picasso.get()
-                                .load(user.getProfilePhoto())
-                                .placeholder(R.drawable.placeholder_avatar)
-                                .into(holder.binding.commentProPic);
-                        holder.binding.commentProName.setText(user.getFullName());
+                        if(snapshot.exists()){
+                            UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                            Picasso.get()
+                                    .load(user.getProfilePhoto())
+                                    .placeholder(R.drawable.placeholder_avatar)
+                                    .into(holder.binding.commentProPic);
+                            holder.binding.commentProName.setText(user.getFullName());
+                        }
 
                     }
 

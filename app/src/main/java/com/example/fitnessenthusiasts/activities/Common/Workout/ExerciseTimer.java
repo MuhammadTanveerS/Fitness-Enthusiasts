@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.fitnessenthusiasts.R;
@@ -149,6 +150,7 @@ public class ExerciseTimer extends AppCompatActivity {
                     public void onFinish() {
                         if(count==(exercisesModel.size()-1)){
 //                            startActivity(new Intent(ExerciseTimer.this, Settings.class));
+                            Toast.makeText(ExerciseTimer.this, "WORKOUT COMPLETED", Toast.LENGTH_SHORT).show();
                             //USE THIS LATER
                         }else{
                             count+=1;
@@ -240,6 +242,7 @@ public class ExerciseTimer extends AppCompatActivity {
     }
 
     private void rest(){
+
         mainLayout.setVisibility(View.GONE);
         restLayout.setVisibility(View.VISIBLE);
         setUpRest();
