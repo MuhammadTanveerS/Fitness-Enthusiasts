@@ -98,22 +98,23 @@ public class CommunityDetailsFragment extends Fragment {
                                     .addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if(snapshot.exists()){
+                                                UserHelperClass model2 = snapshot.getValue(UserHelperClass.class);
 
-                                            UserHelperClass model2 = snapshot.getValue(UserHelperClass.class);
-
-                                            binding.comTrainerName.setText(model2.getFullName());
-                                            Picasso.get()
-                                                    .load(model2.getProfilePhoto())
-                                                    .placeholder(R.drawable.image_placeholder)
-                                                    .into(binding.comTrainerImage);
+                                                binding.comTrainerName.setText(model2.getFullName());
+                                                Picasso.get()
+                                                        .load(model2.getProfilePhoto())
+                                                        .placeholder(R.drawable.image_placeholder)
+                                                        .into(binding.comTrainerImage);
 
                                             /*
                                             Hide
                                             Subscribe button
                                             for Trainer
                                              */
-                                            if(isTrainer){
-                                                fabRevealLayout.setVisibility(View.GONE);
+                                                if(isTrainer){
+                                                    fabRevealLayout.setVisibility(View.GONE);
+                                                }
                                             }
                                         }
 

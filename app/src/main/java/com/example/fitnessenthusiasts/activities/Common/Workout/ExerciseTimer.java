@@ -18,11 +18,16 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.HomeScreen;
 import com.example.fitnessenthusiasts.activities.Common.Settings;
+import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Exercises;
+import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CommunitySubscriberModel;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.ExercisesModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +43,7 @@ public class ExerciseTimer extends AppCompatActivity {
 
     ArrayList<ExercisesModel> exercisesModel;
     DatabaseReference databaseReference;
-    String workOutName;
+    String workOutName, points;
     LottieAnimationView exAnim;
     CountDownTimer timer,timer2,timer3;
     TextView exName,restTV;
@@ -75,6 +80,8 @@ public class ExerciseTimer extends AppCompatActivity {
         whistle = MediaPlayer.create(this,R.raw.whistle);
 
         restTV = findViewById(R.id.restTV);
+
+        points = (String) getIntent().getExtras().get("points");
 
         fetchExercises();
 
@@ -152,6 +159,7 @@ public class ExerciseTimer extends AppCompatActivity {
 //                            startActivity(new Intent(ExerciseTimer.this, Settings.class));
                             Toast.makeText(ExerciseTimer.this, "WORKOUT COMPLETED", Toast.LENGTH_SHORT).show();
                             //USE THIS LATER
+                            addPoints();
                         }else{
                             count+=1;
                             rest();
@@ -289,4 +297,52 @@ public class ExerciseTimer extends AppCompatActivity {
         rT=10000;
         update(count);
     }
+
+    private void addPoints() {
+        FirebaseDatabase.getInstance(getString(R.string.db_instance)).getReference("Users")
+                .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+
+                    FirebaseDatabase.getInstance(getString(R.string.db_instance)).getReference("Communities")
+                            .child(user.getJoinedCommunity()).child("members").child(FirebaseAuth.getInstance().getUid())
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists()){
+                                        CommunitySubscriberModel model = snapshot.getValue(CommunitySubscriberModel.class);
+                                        model.setPoints(model.getPoints()+Integer.parseInt(points));
+
+                                        FirebaseDatabase.getInstance(getString(R.string.db_instance)).getReference("Communities")
+                                                .child(user.getJoinedCommunity()).child("members").child(FirebaseAuth.getInstance().getUid())
+                                                .setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                //ADD
+                                                //Something//
+                                                //Here
+
+                                            }
+                                        });
+
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

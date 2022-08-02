@@ -8,7 +8,12 @@ public class UserHelperClass {
     String password;
     String date;
     String gender;
-    String profilePhoto,userID,weight,height,token;
+    String profilePhoto;
+    String userID;
+    String weight;
+    String height;
+    String token;
+    String joinedCommunity;
     Boolean trainer;
     int followersCount;
 
@@ -125,5 +130,13 @@ public class UserHelperClass {
 
     public void setTrainer(Boolean trainer) {
         this.trainer = trainer;
+    }
+
+    public String getJoinedCommunity() {
+        return joinedCommunity;
+    }
+
+    public void setJoinedCommunity(String joinedCommunity) {
+        this.joinedCommunity = joinedCommunity;
     }
 }

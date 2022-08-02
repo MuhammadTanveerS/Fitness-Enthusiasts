@@ -44,7 +44,7 @@ public class WorkoutDetails extends AppCompatActivity {
     ArrayList<ExercisesModel> exercisesModel;
     ExercisesRecyclerViewAdapter exercisesRecyclerViewAdapter;
     RecyclerView recyclerView;
-    String workOutName;
+    String workOutName, points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class WorkoutDetails extends AppCompatActivity {
     private void setUpData(){
         String name = (String) getIntent().getExtras().get("name");
         String diff = (String) getIntent().getExtras().get("diff");
-        String points = (String) getIntent().getExtras().get("points");
+        points = (String) getIntent().getExtras().get("points");
         String bg = (String) getIntent().getExtras().get("bg");
 
         woDName.setText(name);
@@ -142,6 +142,7 @@ public class WorkoutDetails extends AppCompatActivity {
     public void startExc(View view) {
         Intent intent = new Intent(WorkoutDetails.this,ExerciseTimer.class);
         intent.putExtra("Workout", workOutName);
+        intent.putExtra("points", points);
         startActivity(intent);
     }
 

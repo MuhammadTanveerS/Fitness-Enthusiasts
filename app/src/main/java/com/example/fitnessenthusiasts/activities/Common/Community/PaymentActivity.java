@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CommunitySubscriberModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -51,7 +52,13 @@ public class PaymentActivity extends AppCompatActivity {
         sub.setCommunityKey(key);
 
         database.getReference().child("Communities").child(key)
-        .child("members").child(userId).setValue(sub);
+        .child("members").child(userId).setValue(sub).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                        .child("joinedCommunity").setValue(key);
+            }
+        });
 
     }
 

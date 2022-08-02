@@ -109,10 +109,12 @@ public class CommunityLeaderboardFragment extends Fragment {
                 });
                 Collections.reverse(leaderboardModels);
 
-                for(int i=0; i<3;i++){
+                for(int i=0; i<leaderboardModels.size();i++){
                     if(!leaderboardModels.isEmpty()){
-                        top3.add(leaderboardModels.get(i));
-                    }
+                        if(i<=3) {
+                            top3.add(leaderboardModels.get(i));
+                        }
+                     }
                 }
 
                 setTop3();
@@ -239,11 +241,13 @@ public class CommunityLeaderboardFragment extends Fragment {
                 .child("competition").child("isStarted").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                compFlag = snapshot.getValue(Boolean.class);
-                if(compFlag){
-                    binding.toggleComp.setText("End Competition");
-                }else{
-                    binding.toggleComp.setText("Start Competition");
+                if(snapshot.exists()){
+                    compFlag = snapshot.getValue(Boolean.class);
+                    if(compFlag){
+                        binding.toggleComp.setText("End Competition");
+                    }else{
+                        binding.toggleComp.setText("Start Competition");
+                    }
                 }
             }
 
