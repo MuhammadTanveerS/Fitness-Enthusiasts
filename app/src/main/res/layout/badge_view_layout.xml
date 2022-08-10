@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:id="@+id/notificationLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/badgePic"
+        android:layout_width="@dimen/_50mdp"
+        android:layout_height="@dimen/_50mdp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/placeholder_avatar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="3dp">
+        <TextView
+            android:id="@+id/badgeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/custom_black"
+            android:fontFamily="@font/robotoregular"
+            android:textSize="16sp"
+            android:text="Ranked 1"/>
+        <TextView
+            android:id="@+id/badgeDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Most points in a community"/>
+    </LinearLayout>
+
+</LinearLayout>

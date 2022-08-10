@@ -282,6 +282,15 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Button
+            android:id="@+id/viewBadges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Earned Badges"
+            android:backgroundTint="@color/neon"
+            android:layout_gravity="center_horizontal"
+            />
+
 
     </LinearLayout>
 

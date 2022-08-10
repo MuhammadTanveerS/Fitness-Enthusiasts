@@ -45,6 +45,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/post_textview_bg.xml" value="0.2255" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/soft_gradient.xml" value="0.3135" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/drawable/white_back_button.xml" value="0.2165" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_badges.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_bottomtestdrrawer.xml" value="0.255078125" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_comments.xml" value="0.22" />
@@ -70,6 +71,7 @@
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_user_profile.xml" value="0.33" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_view_users.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/activity_workout_details.xml" value="0.25" />
+        <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/badge_view_layour.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/comment_view_layout.xml" value="0.33" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/community_members_view_layout.xml" value="0.265625" />
         <entry key="..\:/Study/Project/Fitness-Enthusiasts/app/src/main/res/layout/community_message_recieve_layout.xml" value="0.265625" />

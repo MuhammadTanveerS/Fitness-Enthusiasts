@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Other.BadgesActivity;
 import com.example.fitnessenthusiasts.activities.Databases.SPManager;
 import com.example.fitnessenthusiasts.activities.Databases.UserHelperClass;
 import com.example.fitnessenthusiasts.activities.LogReg.Login;
@@ -37,6 +39,7 @@ public class ProfileFragment extends Fragment {
     ProgressBar progressBar;
     LinearLayout linearLayout;
     FirebaseDatabase database;
+    Button viewBadgesBtn;
     FirebaseAuth auth;
 
 
@@ -66,6 +69,8 @@ public class ProfileFragment extends Fragment {
         username = view.findViewById(R.id.profileUsername);
         loadData();
 
+        viewBadgesBtn = view.findViewById(R.id.viewBadges);
+        viewBadges();
 
         // Inflate the layout for this fragment
         return view;
@@ -93,6 +98,15 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    private void viewBadges() {
+        viewBadgesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), BadgesActivity.class));
             }
         });
     }

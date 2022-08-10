@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
         <activity
+            android:name=".activities.Common.Other.BadgesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.Common.Activities.Diary.DiaryFoodDetailsActivity"
             android:exported="false" />
         <activity
