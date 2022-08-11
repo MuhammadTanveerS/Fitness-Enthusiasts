@@ -13,6 +13,7 @@ import com.example.fitnessenthusiasts.activities.Common.Activities.Diary.Nutriti
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.BadgeModel;
 import com.example.fitnessenthusiasts.databinding.BadgeViewLayoutBinding;
 import com.example.fitnessenthusiasts.databinding.DiarySearchViewLayoutBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,11 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.viewHolder>{
         BadgeModel model = list.get(position);
 
         holder.binding.badgeName.setText(model.getName());
+        holder.binding.badgeDetails.setText(model.getDetails());
+
+        Picasso.get()
+                .load(model.getImage())
+                .into(holder.binding.badgePic);
 
     }
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -50,7 +51,15 @@ public class BadgesActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //Continue Later
+                       if(snapshot.exists()){
+                           for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                               if(dataSnapshot.exists()){
+                                   BadgeModel model = dataSnapshot.getValue(BadgeModel.class);
+                                   badgeModels.add(model);
+                               }
+                               adapter.notifyDataSetChanged();
+                           }
+                       }
                     }
 
                     @Override

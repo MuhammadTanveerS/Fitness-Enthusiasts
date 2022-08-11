@@ -282,19 +282,19 @@ public class CommunityLeaderboardFragment extends Fragment {
                                 winners = new WinnersModel(top3.get(0).getUserId(),null,null,date);
 
                                 BadgeModel model = new BadgeModel("Rank:1","Most points in a Community",badges[0],key);
-                                database.getReference().child("Badges").child(top3.get(0).getUserId()).setValue(model);
+                                database.getReference().child("Badges").child(top3.get(0).getUserId()).push().setValue(model);
 
                                 if(top3.size()>1){
                                     winners = new WinnersModel(top3.get(0).getUserId(),top3.get(1).getUserId(),null,date);
 
                                     BadgeModel model2 = new BadgeModel("Rank:2","Second Most points in a Community",badges[1],key);
-                                    database.getReference().child("Badges").child(top3.get(1).getUserId()).setValue(model2);
+                                    database.getReference().child("Badges").child(top3.get(1).getUserId()).push().setValue(model2);
 
                                     if(top3.size()>2){
                                         winners = new WinnersModel(top3.get(0).getUserId(),top3.get(1).getUserId(),top3.get(2).getUserId(),date);
 
                                         BadgeModel model3 = new BadgeModel("Rank:3","Third Most points in a Community",badges[2],key);
-                                        database.getReference().child("Badges").child(top3.get(2).getUserId()).setValue(model);
+                                        database.getReference().child("Badges").child(top3.get(2).getUserId()).push().setValue(model);
 
                                     }
                                 }
