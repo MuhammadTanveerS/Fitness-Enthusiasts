@@ -23,6 +23,7 @@
                     android:layout_height="wrap_content"
                     android:paddingVertical="@dimen/_10mdp">
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardioCV"
                         android:layout_width="@dimen/_130mdp"
                         android:layout_marginLeft="@dimen/_10mdp"
                         android:layout_marginRight="@dimen/_10mdp"
@@ -47,6 +48,7 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/fullBodyCV"
                         android:layout_width="@dimen/_130mdp"
                         android:layout_height="@dimen/_130mdp"
                         app:cardCornerRadius="@dimen/_20mdp"
@@ -70,6 +72,7 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/yogaCV"
                         android:layout_width="@dimen/_130mdp"
                         android:layout_marginLeft="@dimen/_10mdp"
                         android:layout_marginRight="@dimen/_10mdp"
@@ -95,6 +98,7 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/armsCV"
                         android:layout_width="@dimen/_130mdp"
                         android:layout_height="@dimen/_130mdp"
                         app:cardCornerRadius="@dimen/_20mdp"
@@ -120,6 +124,7 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/chestCV"
                         android:layout_width="@dimen/_130mdp"
                         android:layout_marginLeft="@dimen/_10mdp"
                         android:layout_marginRight="@dimen/_10mdp"
@@ -145,6 +150,7 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/legsCV"
                         android:layout_width="@dimen/_130mdp"
                         android:layout_height="@dimen/_130mdp"
                         android:layout_marginRight="@dimen/_10mdp"

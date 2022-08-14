@@ -1,7 +1,7 @@
 package com.example.fitnessenthusiasts.activities.HelperClasses.Models;
 
 public class WorkoutsModel {
-    String name, diff, bg,points;
+    String name, diff, bg,points, type;
 
     public String getKey() {
         return key;
@@ -38,5 +38,9 @@ public class WorkoutsModel {
 
     public String getPoints() {
         return points;
+    }
+
+    public String getType() {
+        return type;
     }
 }
