@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnessenthusiasts.R;
+import com.example.fitnessenthusiasts.activities.Common.Activities.Pedometer;
 import com.example.fitnessenthusiasts.activities.Common.Activities.PlanMainActivity;
 import com.example.fitnessenthusiasts.activities.Common.Messages.MessagesMainActivity;
 import com.example.fitnessenthusiasts.activities.Common.Notification.Notifications;
@@ -164,7 +165,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             case R.id.step_counter:
-                Intent intent = new Intent(getApplicationContext(), testMainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Pedometer.class);
                 startActivity(intent);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

@@ -3,6 +3,7 @@
     package="com.example.fitnessenthusiasts">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
 
     <queries>
         <intent>
@@ -18,6 +19,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessEnthusiasts">
+        <activity
+            android:name=".activities.Common.Activities.Pedometer"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Common.Community.CheckoutActivityJava"
+            android:exported="false" />
         <activity
             android:name=".activities.Common.Other.BadgesActivity"
             android:exported="false" />

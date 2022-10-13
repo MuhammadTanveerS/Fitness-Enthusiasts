@@ -31,6 +31,7 @@ public class CommunityDetailsFragment extends Fragment {
     FragmentCommunityDetailsBinding binding;
     FirebaseDatabase database;
     String key,name;
+    Double price;
     Boolean isTrainer;
 
 
@@ -83,6 +84,7 @@ public class CommunityDetailsFragment extends Fragment {
                             binding.comDes1.setText(model.getDescription1());
                             binding.comDes2.setText(model.getDescription2());
                             binding.comPrice.setText("$"+model.getPrice()+"/month");
+                            price = model.getPrice();
                             binding.comType.setText(model.getType());
                             binding.comBtnSub.setText("Subscribe \n $"+model.getPrice()+"/m");
 
@@ -160,8 +162,10 @@ public class CommunityDetailsFragment extends Fragment {
         binding.comBtnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(),PaymentActivity.class);
+                Intent intent = new Intent(getContext(),CheckoutActivityJava.class);
+//                Intent intent = new Intent(getContext(),PaymentActivity.class);
                 intent.putExtra("comKey",key);
+                intent.putExtra("comPrice",price);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 

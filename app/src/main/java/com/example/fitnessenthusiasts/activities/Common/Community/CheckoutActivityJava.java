@@ -1,18 +1,16 @@
 package com.example.fitnessenthusiasts.activities.Common.Community;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.icu.util.LocaleData;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitnessenthusiasts.R;
 import com.example.fitnessenthusiasts.activities.HelperClasses.Models.CommunitySubscriberModel;
@@ -29,7 +27,6 @@ import com.stripe.android.model.ConfirmPaymentIntentParams;
 import com.stripe.android.model.PaymentIntent;
 import com.stripe.android.model.PaymentMethodCreateParams;
 import com.stripe.android.view.CardInputWidget;
-
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Type;
@@ -41,7 +38,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -50,28 +46,34 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class PaymentActivity extends AppCompatActivity {
-    Intent intent;
-    FirebaseDatabase database;
-    String key;
+public class CheckoutActivityJava extends AppCompatActivity {
 
     // 10.0.2.2 is the Android emulator's alias to localhost
     private static final String BACKEND_URL = "https://thawing-crag-11806.herokuapp.com/";
     private OkHttpClient httpClient = new OkHttpClient();
     private String paymentIntentClientSecret;
     private Stripe stripe;
+    private TextView amountTextView;
 
+    Intent intent;
+    FirebaseDatabase database;
+    String key;
+    Double price;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_checkout_java);
+
+        amountTextView = findViewById(R.id.amountTextView);
 
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
 
         intent = getIntent();
         key =intent.getStringExtra("comKey");
+        price = intent.getDoubleExtra("comPrice",4.99);
 
+        amountTextView.setText(price+"");
 
         // Configure the SDK with your Stripe publishable key so it can make requests to Stripe
         stripe = new Stripe(
@@ -80,51 +82,11 @@ public class PaymentActivity extends AppCompatActivity {
         );
         startCheckout();
     }
-
-    public void sub(View view) {
-
-        String  userId = FirebaseAuth.getInstance().getUid();
-//        String  userId = "B4JP3pkpiQYlvtzi3m6WVSOXtFN2";
-
-        Date now = new Date();
-        DateFormat Date = DateFormat.getDateInstance();
-        String subDateStart = Date.format(now);
-
-        Calendar c= Calendar.getInstance();
-        c.add(Calendar.DATE, 30);
-        Date d=c.getTime();
-        String subDateExp = Date.format(d);
-
-        CommunitySubscriberModel sub = new CommunitySubscriberModel(userId,subDateStart,subDateExp);
-        sub.setCommunityKey(key);
-
-//        database.getReference().child("Communities").child(key)
-//        .child("members").child(userId).setValue(sub).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//                database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
-//                        .child("joinedCommunity").setValue(key);
-//            }
-//        });
-
-        CardInputWidget cardInputWidget = findViewById(R.id.cardInputWidget);
-        PaymentMethodCreateParams params = cardInputWidget.getPaymentMethodCreateParams();
-        if (params != null) {
-            ConfirmPaymentIntentParams confirmParams = ConfirmPaymentIntentParams
-                    .createWithPaymentMethodCreateParams(params, paymentIntentClientSecret);
-            stripe.confirmPayment(this, confirmParams);
-        }
-
-
-
-    }
-
-
     private void startCheckout() {
         // Create a PaymentIntent by calling the server's endpoint.
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
 
-        double amount = 5*100;
+        double amount = Double.valueOf(amountTextView.getText().toString()) * 100;
 
         Map<String, Object> payMap = new HashMap<>();
         Map<String, Object> itemMap = new HashMap<>();
@@ -136,7 +98,8 @@ public class PaymentActivity extends AppCompatActivity {
         payMap.put("items", itemList);
         String json = new Gson().toJson(payMap);
 
-        RequestBody body = RequestBody.create(json,mediaType);
+        RequestBody body = RequestBody.create(json, mediaType);
+
         Request request = new Request.Builder()
                 .url(BACKEND_URL + "create-payment-intent")
                 .post(body)
@@ -144,8 +107,42 @@ public class PaymentActivity extends AppCompatActivity {
         httpClient.newCall(request)
                 .enqueue(new PayCallback(this));
         // Hook up the pay button to the card widget and stripe instance
+        Button payButton = findViewById(R.id.payButton);
+        payButton.setOnClickListener((View view) -> {
+
+            String  userId = FirebaseAuth.getInstance().getUid();
+//        String  userId = "B4JP3pkpiQYlvtzi3m6WVSOXtFN2";
+
+            Date now = new Date();
+            DateFormat Date = DateFormat.getDateInstance();
+            String subDateStart = Date.format(now);
+
+            Calendar c= Calendar.getInstance();
+            c.add(Calendar.DATE, 30);
+            Date d=c.getTime();
+            String subDateExp = Date.format(d);
+
+            CommunitySubscriberModel sub = new CommunitySubscriberModel(userId,subDateStart,subDateExp);
+            sub.setCommunityKey(key);
+
+        database.getReference().child("Communities").child(key)
+        .child("members").child(userId).setValue(sub).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                        .child("joinedCommunity").setValue(key);
+            }
+        });
 
 
+            CardInputWidget cardInputWidget = findViewById(R.id.cardInputWidget);
+            PaymentMethodCreateParams params = cardInputWidget.getPaymentMethodCreateParams();
+            if (params != null) {
+                ConfirmPaymentIntentParams confirmParams = ConfirmPaymentIntentParams
+                        .createWithPaymentMethodCreateParams(params, paymentIntentClientSecret);
+                stripe.confirmPayment(this, confirmParams);
+            }
+        });
     }
     private void displayAlert(@NonNull String title,
                               @Nullable String message) {
@@ -161,8 +158,6 @@ public class PaymentActivity extends AppCompatActivity {
         // Handle the result of stripe.confirmPayment
         stripe.onPaymentResult(requestCode, data, new PaymentResultCallback(this));
     }
-
-
     private void onPaymentSuccess(@NonNull final Response response) throws IOException {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>(){}.getType();
@@ -172,36 +167,34 @@ public class PaymentActivity extends AppCompatActivity {
         );
         paymentIntentClientSecret = responseMap.get("clientSecret");
     }
-
-
     private static final class PayCallback implements Callback {
-        @NonNull private final WeakReference<PaymentActivity> activityRef;
-        PayCallback(@NonNull PaymentActivity activity) {
+        @NonNull private final WeakReference<CheckoutActivityJava> activityRef;
+        PayCallback(@NonNull CheckoutActivityJava activity) {
             activityRef = new WeakReference<>(activity);
         }
         @Override
         public void onFailure(@NonNull Call call, @NonNull IOException e) {
-            final PaymentActivity activity = activityRef.get();
+            final CheckoutActivityJava activity = activityRef.get();
             if (activity == null) {
                 return;
             }
             activity.runOnUiThread(() ->
                     Toast.makeText(
-                            activity, "Errorrr: " + e.toString(), Toast.LENGTH_LONG
+                            activity, "Error: " + e.toString(), Toast.LENGTH_LONG
                     ).show()
             );
         }
         @Override
         public void onResponse(@NonNull Call call, @NonNull final Response response)
                 throws IOException {
-            final PaymentActivity activity = activityRef.get();
+            final CheckoutActivityJava activity = activityRef.get();
             if (activity == null) {
                 return;
             }
             if (!response.isSuccessful()) {
                 activity.runOnUiThread(() ->
                         Toast.makeText(
-                                activity, "Errorrrrr: " + response.toString(), Toast.LENGTH_LONG
+                                activity, "Error: " + response.toString(), Toast.LENGTH_LONG
                         ).show()
                 );
             } else {
@@ -209,17 +202,15 @@ public class PaymentActivity extends AppCompatActivity {
             }
         }
     }
-
-
     private static final class PaymentResultCallback
             implements ApiResultCallback<PaymentIntentResult> {
-        @NonNull private final WeakReference<PaymentActivity> activityRef;
-        PaymentResultCallback(@NonNull PaymentActivity activity) {
+        @NonNull private final WeakReference<CheckoutActivityJava> activityRef;
+        PaymentResultCallback(@NonNull CheckoutActivityJava activity) {
             activityRef = new WeakReference<>(activity);
         }
         @Override
         public void onSuccess(@NonNull PaymentIntentResult result) {
-            final PaymentActivity activity = activityRef.get();
+            final CheckoutActivityJava activity = activityRef.get();
             if (activity == null) {
                 return;
             }
@@ -242,7 +233,7 @@ public class PaymentActivity extends AppCompatActivity {
         }
         @Override
         public void onError(@NonNull Exception e) {
-            final PaymentActivity activity = activityRef.get();
+            final CheckoutActivityJava activity = activityRef.get();
             if (activity == null) {
                 return;
             }
@@ -250,6 +241,4 @@ public class PaymentActivity extends AppCompatActivity {
             activity.displayAlert("Error", e.toString());
         }
     }
-
-
 }
