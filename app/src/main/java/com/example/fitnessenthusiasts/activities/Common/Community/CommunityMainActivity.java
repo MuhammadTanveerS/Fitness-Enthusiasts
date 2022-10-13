@@ -34,12 +34,19 @@ public class CommunityMainActivity extends AppCompatActivity {
     String key,name;
     Boolean isTrainer;
     FirebaseDatabase database;
+    NavigationTabBar navigationTabBar;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_community_main);
+
+        navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb_vertical);
+        viewPager = (ViewPager) findViewById(R.id.vp_vertical_ntb);
+
+        viewPager.setAdapter(new CommunityViewPagerAdapter(getSupportFragmentManager()));
 
         database = FirebaseDatabase.getInstance(getString(R.string.db_instance));
 
@@ -49,6 +56,7 @@ public class CommunityMainActivity extends AppCompatActivity {
         isTrainer=false;
 
         checkTrainer();
+        setUpNav();
 
     }
 
@@ -64,7 +72,7 @@ public class CommunityMainActivity extends AppCompatActivity {
                             }
                         }
 //                        Log.e("g",isTrainer+"");
-                        setUpNav();
+
                     }
 
                     @Override
@@ -76,13 +84,9 @@ public class CommunityMainActivity extends AppCompatActivity {
     }
 
     private void setUpNav() {
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.vp_vertical_ntb);
-
-        viewPager.setAdapter(new CommunityViewPagerAdapter(getSupportFragmentManager()));
 
         final String[] colors = getResources().getStringArray(R.array.vertical_ntb);
 
-        final NavigationTabBar navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb_vertical);
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
         models.add(
                 new NavigationTabBar.Model.Builder(

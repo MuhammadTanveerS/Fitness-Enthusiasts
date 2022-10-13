@@ -7,10 +7,10 @@
     tools:context=".activities.Common.Community.CommunityMainActivity">
 
     <devlight.io.library.ntb.NavigationTabBar
+        android:id="@+id/ntb_vertical"
         app:ntb_title_mode="all"
         app:ntb_titled="true"
         app:ntb_title_size="14sp"
-        android:id="@+id/ntb_vertical"
         android:layout_width="50dp"
         android:layout_height="match_parent"
         app:ntb_preview_colors="@array/vertical_ntb"
@@ -20,9 +20,10 @@
         />
 
 
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_vertical_ntb"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 
